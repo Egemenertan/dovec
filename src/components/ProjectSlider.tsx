@@ -59,9 +59,9 @@ export const ProjectSlider = () => {
             className="project-swiper !overflow-visible !pt-12 !pb-20"
           >
             {/* Proje Kartı 1 */}
-            <SwiperSlide className="!w-[1000px]">
+            <SwiperSlide className="!w-[300px] sm:!w-[600px] md:!w-[800px] lg:!w-[1000px]">
               <div className="rounded-xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-3xl">
-                <div className="relative h-[600px]">
+                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
                   <Image
                     src="/tatlisu_35 copy 2-1.webp"
                     alt="Proje 1"
@@ -70,10 +70,10 @@ export const ProjectSlider = () => {
                     priority
                   />
                 </div>
-                <div className="p-10 bg-gradient-to-t from-black/80 via-black/50 to-transparent absolute bottom-0 left-0 right-0 text-white">
-                  <h3 className="text-3xl font-semibold mb-4">Tatlısu Villaları</h3>
-                  <p className="text-gray-100 mb-8 text-xl">Modern tasarım, konforlu yaşam alanları ve muhteşem deniz manzarası.</p>
-                  <Link href="/projeler/tatlisu" className="inline-flex items-center text-white hover:text-gray-200 font-medium text-xl group">
+                <div className="p-6 sm:p-8 md:p-10 bg-gradient-to-t from-black/80 via-black/50 to-transparent absolute bottom-0 left-0 right-0 text-white">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-3 md:mb-4">Tatlısu Villaları</h3>
+                  <p className="text-base sm:text-lg md:text-xl text-gray-100 mb-4 sm:mb-6 md:mb-8">Modern tasarım, konforlu yaşam alanları ve muhteşem deniz manzarası.</p>
+                  <Link href="/projeler/tatlisu" className="inline-flex items-center text-lg sm:text-xl md:text-2xl text-white hover:text-gray-200 font-medium group">
                     Detayları Gör 
                     <span className="ml-2 transform transition-transform group-hover:translate-x-1">→</span>
                   </Link>
@@ -82,9 +82,9 @@ export const ProjectSlider = () => {
             </SwiperSlide>
 
             {/* Proje Kartı 2 */}
-            <SwiperSlide className="!w-[1000px]">
+            <SwiperSlide className="!w-[300px] sm:!w-[600px] md:!w-[800px] lg:!w-[1000px]">
               <div className="rounded-xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-3xl">
-                <div className="relative h-[600px]">
+                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
                   <Image
                     src="/tatlisu_23 copy_11zon.webp"
                     alt="Proje 2"
@@ -93,10 +93,10 @@ export const ProjectSlider = () => {
                     priority
                   />
                 </div>
-                <div className="p-10 bg-gradient-to-t from-black/80 via-black/50 to-transparent absolute bottom-0 left-0 right-0 text-white">
-                  <h3 className="text-3xl font-semibold mb-4">Sahil Rezidans</h3>
-                  <p className="text-gray-100 mb-8 text-xl">Lüks yaşamın yeni adresi, şehrin merkezinde ayrıcalıklı bir yaşam.</p>
-                  <Link href="/projeler/sahil-rezidans" className="inline-flex items-center text-white hover:text-gray-200 font-medium text-xl group">
+                <div className="p-6 sm:p-8 md:p-10 bg-gradient-to-t from-black/80 via-black/50 to-transparent absolute bottom-0 left-0 right-0 text-white">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-3 md:mb-4">Sahil Rezidans</h3>
+                  <p className="text-base sm:text-lg md:text-xl text-gray-100 mb-4 sm:mb-6 md:mb-8">Lüks yaşamın yeni adresi, şehrin merkezinde ayrıcalıklı bir yaşam.</p>
+                  <Link href="/projeler/sahil-rezidans" className="inline-flex items-center text-lg sm:text-xl md:text-2xl text-white hover:text-gray-200 font-medium group">
                     Detayları Gör
                     <span className="ml-2 transform transition-transform group-hover:translate-x-1">→</span>
                   </Link>
@@ -105,9 +105,9 @@ export const ProjectSlider = () => {
             </SwiperSlide>
 
             {/* Proje Kartı 3 */}
-            <SwiperSlide className="!w-[1000px]">
+            <SwiperSlide className="!w-[300px] sm:!w-[600px] md:!w-[800px] lg:!w-[1000px]">
               <div className="rounded-xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-3xl">
-                <div className="relative h-[600px]">
+                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
                   <Image
                     src="/Natulux Out View 1 (1)_11zon.jpg"
                     alt="Proje 3"
@@ -116,10 +116,10 @@ export const ProjectSlider = () => {
                     priority
                   />
                 </div>
-                <div className="p-10 bg-gradient-to-t from-black/80 via-black/50 to-transparent absolute bottom-0 left-0 right-0 text-white">
-                  <h3 className="text-3xl font-semibold mb-4">Natulux Residence</h3>
-                  <p className="text-gray-100 mb-8 text-xl">Doğayla iç içe, modern mimarinin en güzel örneği.</p>
-                  <Link href="/projeler/natulux" className="inline-flex items-center text-white hover:text-gray-200 font-medium text-xl group">
+                <div className="p-6 sm:p-8 md:p-10 bg-gradient-to-t from-black/80 via-black/50 to-transparent absolute bottom-0 left-0 right-0 text-white">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-3 md:mb-4">Natulux Residence</h3>
+                  <p className="text-base sm:text-lg md:text-xl text-gray-100 mb-4 sm:mb-6 md:mb-8">Doğayla iç içe, modern mimarinin en güzel örneği.</p>
+                  <Link href="/projeler/natulux" className="inline-flex items-center text-lg sm:text-xl md:text-2xl text-white hover:text-gray-200 font-medium group">
                     Detayları Gör
                     <span className="ml-2 transform transition-transform group-hover:translate-x-1">→</span>
                   </Link>
