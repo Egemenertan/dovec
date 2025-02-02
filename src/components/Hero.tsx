@@ -4,6 +4,7 @@ import { useStorage } from '@/hooks/useStorage';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
+import Link from 'next/link';
 
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -39,7 +40,7 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/40" />
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
       {/* Sol Alt Başlık */}
-      <div className="absolute bottom-8 sm:bottom-12 md:bottom-16 left-4 sm:left-6 md:left-16 lg:left-24 z-10 w-[calc(100%-2rem)] sm:w-auto">
+      <div className="absolute bottom-24 sm:bottom-32 md:bottom-36 left-4 sm:left-6 md:left-16 lg:left-24 z-10 w-[calc(100%-2rem)] sm:w-auto">
         <div className="flex flex-col items-start">
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight text-white mb-3 sm:mb-4 tracking-[.15em] font-manrope leading-tight">
             Geleceği İnşa Ediyoruz
@@ -50,6 +51,26 @@ export const Hero = () => {
           </p>
         </div>
       </div>
+
+      {/* İletişim Butonu */}
+      <Link 
+        href="/iletisim" 
+        className="group absolute bottom-8 sm:bottom-12 md:bottom-16 left-1/2 md:left-auto right-auto md:right-16 lg:right-24 -translate-x-1/2 md:translate-x-0 z-10 inline-flex items-center justify-center px-8 py-4 text-base sm:text-lg font-light tracking-wider text-white transition-all duration-500 bg-transparent overflow-hidden whitespace-nowrap"
+      >
+        <span className="absolute inset-0 border border-white/30 group-hover:border-white/0 transition-all duration-500"></span>
+        <span className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-500 backdrop-blur-sm"></span>
+        <span className="relative flex items-center">
+          İletişime Geç
+          <svg 
+            className="w-5 h-5 ml-3 transform group-hover:translate-x-1 transition-transform duration-500" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </span>
+      </Link>
       </div>
 
       <Swiper

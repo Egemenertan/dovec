@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/Navbar"
+import { Footer } from '@/components/Footer'
 
 const inter = Inter({ subsets: ["latin"] })
 const playfair = Playfair_Display({ 
@@ -11,7 +12,7 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "DOVEC",
+  title: "DOVEC İnşaat",
   description: "Modern yaşam alanları tasarlıyor, geleceği inşa ediyoruz.",
 }
 
@@ -21,12 +22,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="tr">
-      <body className={`${inter.className} ${playfair.variable}`}>
+    <html lang="tr" className="h-full overflow-x-hidden">
+      <body className={`${inter.className} ${playfair.variable} min-h-screen flex flex-col overflow-x-hidden`}>
         <Navbar />
-        <main className="min-h-screen bg-white">
+        <div className="flex-grow">
           {children}
-        </main>
+        </div>
+        <Footer />
       </body>
     </html>
   )
