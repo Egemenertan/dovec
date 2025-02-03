@@ -30,15 +30,33 @@ export const Hero = () => {
 
   return (
     <div className="relative h-screen w-full">
-      <Image
-        src="/hero.webp"
-        alt="Hero Image"
-        fill
-        className="object-cover"
-        priority
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/40" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
+      <Swiper
+        modules={[Autoplay, EffectFade]}
+        effect="fade"
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        className="h-full w-full"
+      >
+        {images.map((imageUrl: string, index: number) => (
+          <SwiperSlide key={index} className="relative h-full">
+            <div className="relative w-full h-full">
+              <Image
+                src={imageUrl}
+                alt={`Hero Image ${index + 1}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+              />
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/40" />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      
       {/* Sol Alt Başlık */}
       <div className="absolute bottom-24 sm:bottom-32 md:bottom-36 left-4 sm:left-6 md:left-16 lg:left-24 z-10 w-[calc(100%-2rem)] sm:w-auto">
         <div className="flex flex-col items-start">
@@ -71,34 +89,6 @@ export const Hero = () => {
           </svg>
         </span>
       </Link>
-      </div>
-
-      <Swiper
-        modules={[Autoplay, EffectFade]}
-        effect="fade"
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-        loop={true}
-        className="h-full w-full"
-      >
-        {images.map((imageUrl, index) => (
-          <SwiperSlide key={index} className="relative h-full">
-            <div className="relative w-full h-full">
-              <Image
-                src={imageUrl}
-                alt={`Hero Image ${index + 1}`}
-                fill
-                className="object-cover"
-                priority={index === 0}
-              />
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/40" />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
     </div>
   );
 }; 

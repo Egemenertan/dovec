@@ -4,6 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, EffectCoverflow } from 'swiper/modules';
+import { useState, useEffect } from 'react';
+import { storage } from '@/firebase/config';
+import { ref, getDownloadURL } from 'firebase/storage';
 
 // Swiper stilleri
 import 'swiper/css';
@@ -11,6 +14,101 @@ import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
 
 export const ProjectSlider = () => {
+  const [projects, setProjects] = useState([
+    {
+      name: 'La Casalia',
+      type: 'KONUT PROJESİ',
+      description: 'Modern mimari ve lüks yaşamın buluştuğu özel bir proje.',
+      image: '',
+      slug: 'la-casalia',
+      storagePath: 'laisla/tatlisu_35 copy 2-1_11zon.webp'
+    },
+    {
+      name: 'Natulux',
+      type: 'KONUT PROJESİ',
+      description: 'Doğa ile iç içe, lüks yaşam standartları.',
+      image: '',
+      slug: 'natulux',
+      storagePath: 'natulux/Natulux Out View 1 (1)_11zon.webp'
+    },
+    {
+      name: 'La Isla',
+      type: 'KONUT PROJESİ',
+      description: 'Ada yaşamının tüm ayrıcalıklarını sunan özel proje.',
+      image: '',
+      slug: 'la-isla',
+      storagePath: 'laisla/DRONE02_11zon.webp'
+    },
+    {
+      name: 'Querencia',
+      type: 'KONUT PROJESİ',
+      description: 'Huzur ve konforun buluştuğu yaşam alanları.',
+      image: '',
+      slug: 'querencia',
+      storagePath: 'querencia/r imaj_3 kopya_11_11zon.webp'
+    },
+    {
+      name: 'Four Seasons Life',
+      type: 'KONUT PROJESİ',
+      description: 'Dört mevsim ayrıcalıklı yaşam deneyimi.',
+      image: '',
+      slug: 'four-seasons-life',
+      storagePath: 'fsl/7.webp'
+    },
+    {
+      name: 'Courtyard Platinum',
+      type: 'KONUT PROJESİ',
+      description: 'Premium yaşam standartlarını sunan seçkin proje.',
+      image: '',
+      slug: 'courtyard-platinum',
+      storagePath: 'platinum/7.webp'
+    }
+  ]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        console.log('Resimler yüklenmeye başlıyor...');
+        const updatedProjects = await Promise.all(
+          projects.map(async (project) => {
+            try {
+              console.log(`${project.name} için resim yükleniyor: ${project.storagePath}`);
+              const imageRef = ref(storage, project.storagePath);
+              const url = await getDownloadURL(imageRef);
+              console.log(`${project.name} resmi başarıyla yüklendi: ${url}`);
+              return { ...project, image: url };
+            } catch (error: any) {
+              console.error(`${project.name} resmi yüklenirken hata:`, error.message);
+              return { 
+                ...project, 
+                image: '/placeholders/project-placeholder.jpg'
+              };
+            }
+          })
+        );
+
+        console.log('Güncellenen projeler:', updatedProjects.map(p => ({ name: p.name, image: p.image })));
+        setProjects(updatedProjects);
+      } catch (error: any) {
+        console.error('Resimler yüklenirken genel hata:', error.message);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
+  // Yükleme kontrolünü güncelliyoruz
+  const loadedProjects = projects.filter(project => project.image);
+  console.log('Yüklenen proje sayısı:', loadedProjects.length);
+
+  if (loadedProjects.length === 0) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-gray-100">
+        <div className="text-2xl text-gray-600">Projeler Yükleniyor...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative py-32 md:py-40">
       {/* Elegant arka plan */}
@@ -67,191 +165,41 @@ export const ProjectSlider = () => {
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             className="project-swiper !overflow-visible !pt-12 !pb-20"
           >
-            {/* Proje Kartı 1 */}
-            <SwiperSlide className="!w-[300px] sm:!w-[600px] md:!w-[800px] lg:!w-[1000px]">
-              <div className="group rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] bg-white shadow-[0_8px_40px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_50px_-6px_rgba(0,0,0,0.15)]">
-                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                  <Image
-                    src="/tatlisu_35 copy 2-1.webp"
-                    alt="Proje 1"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    priority
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* İçerik */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10 md:p-12 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <span className="block text-sm font-light tracking-[0.2em] text-white/80 mb-2">KONUT PROJESİ</span>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-white mb-4">Tatlısu Villaları</h3>
-                    <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6">Modern tasarım, konforlu yaşam alanları ve muhteşem deniz manzarası.</p>
-                    <Link href="/projeler/tatlisu" className="inline-flex items-center text-lg text-white/90 hover:text-white font-light tracking-wide group/link">
-                      <span className="relative">
-                        Detayları Gör
-                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/50 group-hover/link:w-full transition-all duration-300"></span>
-                      </span>
-                      <span className="ml-2 transform transition-transform group-hover/link:translate-x-1">→</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            {/* Proje Kartı 2 */}
-            <SwiperSlide className="!w-[300px] sm:!w-[600px] md:!w-[800px] lg:!w-[1000px]">
-              <div className="group rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] bg-white shadow-[0_8px_40px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_50px_-6px_rgba(0,0,0,0.15)]">
-                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                  <Image
-                    src="/tatlisu_23 copy_11zon.webp"
-                    alt="Proje 2"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    priority
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* İçerik */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10 md:p-12 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <span className="block text-sm font-light tracking-[0.2em] text-white/80 mb-2">KONUT PROJESİ</span>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-white mb-4">Sahil Rezidans</h3>
-                    <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6">Lüks yaşamın yeni adresi, şehrin merkezinde ayrıcalıklı bir yaşam.</p>
-                    <Link href="/projeler/sahil-rezidans" className="inline-flex items-center text-lg text-white/90 hover:text-white font-light tracking-wide group/link">
-                      <span className="relative">
-                        Detayları Gör
-                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/50 group-hover/link:w-full transition-all duration-300"></span>
-                      </span>
-                      <span className="ml-2 transform transition-transform group-hover/link:translate-x-1">→</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            {/* Proje Kartı 3 */}
-            <SwiperSlide className="!w-[300px] sm:!w-[600px] md:!w-[800px] lg:!w-[1000px]">
-              <div className="group rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] bg-white shadow-[0_8px_40px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_50px_-6px_rgba(0,0,0,0.15)]">
-                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                  <Image
-                    src="/Natulux Out View 1 (1)_11zon.jpg"
-                    alt="Proje 3"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    priority
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* İçerik */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10 md:p-12 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <span className="block text-sm font-light tracking-[0.2em] text-white/80 mb-2">KONUT PROJESİ</span>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-white mb-4">Natulux Residence</h3>
-                    <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6">Doğayla iç içe, modern mimarinin en güzel örneği.</p>
-                    <Link href="/projeler/natulux" className="inline-flex items-center text-lg text-white/90 hover:text-white font-light tracking-wide group/link">
-                      <span className="relative">
-                        Detayları Gör
-                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/50 group-hover/link:w-full transition-all duration-300"></span>
-                      </span>
-                      <span className="ml-2 transform transition-transform group-hover/link:translate-x-1">→</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            {/* Proje Kartı 4 */}
-            <SwiperSlide className="!w-[300px] sm:!w-[600px] md:!w-[800px] lg:!w-[1000px]">
-              <div className="group rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] bg-white shadow-[0_8px_40px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_50px_-6px_rgba(0,0,0,0.15)]">
-                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                  <Image
-                    src="/tatlisu_35 copy 2-1.webp"
-                    alt="Proje 4"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    priority
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* İçerik */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10 md:p-12 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <span className="block text-sm font-light tracking-[0.2em] text-white/80 mb-2">KONUT PROJESİ</span>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-white mb-4">Kıbrıs Modern Evleri</h3>
-                    <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6">Modern mimarinin en güzel örnekleri ile tasarlanmış yaşam alanları.</p>
-                    <Link href="/projeler/kibris-modern" className="inline-flex items-center text-lg text-white/90 hover:text-white font-light tracking-wide group/link">
-                      <span className="relative">
-                        Detayları Gör
-                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/50 group-hover/link:w-full transition-all duration-300"></span>
-                      </span>
-                      <span className="ml-2 transform transition-transform group-hover/link:translate-x-1">→</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            {/* Proje Kartı 5 */}
-            <SwiperSlide className="!w-[300px] sm:!w-[600px] md:!w-[800px] lg:!w-[1000px]">
-              <div className="group rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] bg-white shadow-[0_8px_40px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_50px_-6px_rgba(0,0,0,0.15)]">
-                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                  <Image
-                    src="/tatlisu_23 copy_11zon.webp"
-                    alt="Proje 5"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    priority
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* İçerik */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10 md:p-12 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <span className="block text-sm font-light tracking-[0.2em] text-white/80 mb-2">KONUT PROJESİ</span>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-white mb-4">Deniz Konakları</h3>
-                    <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6">Deniz manzaralı lüks yaşam alanları ve özel peyzaj düzenlemesi.</p>
-                    <Link href="/projeler/deniz-konaklari" className="inline-flex items-center text-lg text-white/90 hover:text-white font-light tracking-wide group/link">
-                      <span className="relative">
-                        Detayları Gör
-                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/50 group-hover/link:w-full transition-all duration-300"></span>
-                      </span>
-                      <span className="ml-2 transform transition-transform group-hover/link:translate-x-1">→</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-
-            {/* Proje Kartı 6 */}
-            <SwiperSlide className="!w-[300px] sm:!w-[600px] md:!w-[800px] lg:!w-[1000px]">
-              <div className="group rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] bg-white shadow-[0_8px_40px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_50px_-6px_rgba(0,0,0,0.15)]">
-                <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                  <Image
-                    src="/Natulux Out View 1 (1)_11zon.jpg"
-                    alt="Proje 6"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    priority
-                  />
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
-                  {/* İçerik */}
-                  <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10 md:p-12 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <span className="block text-sm font-light tracking-[0.2em] text-white/80 mb-2">KONUT PROJESİ</span>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-white mb-4">Palm Residence</h3>
-                    <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6">Palmiyelerle çevrili, modern ve lüks yaşam kompleksi.</p>
-                    <Link href="/projeler/palm-residence" className="inline-flex items-center text-lg text-white/90 hover:text-white font-light tracking-wide group/link">
-                      <span className="relative">
-                        Detayları Gör
-                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/50 group-hover/link:w-full transition-all duration-300"></span>
-                      </span>
-                      <span className="ml-2 transform transition-transform group-hover/link:translate-x-1">→</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
+            {projects.map((project, index) => (
+              project.image ? (
+                <SwiperSlide key={index} className="!w-[300px] sm:!w-[600px] md:!w-[800px] lg:!w-[1000px]">
+                  <Link href={`/projeler/${project.slug}`} className="block">
+                    <div className="group rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] bg-white shadow-[0_8px_40px_-4px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_50px_-6px_rgba(0,0,0,0.15)]">
+                      <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                        <Image
+                          src={project.image}
+                          alt={project.name}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          priority={index === 0}
+                        />
+                        {/* Overlay gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        {/* İçerik */}
+                        <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10 md:p-12 transform translate-y-8 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                          <span className="block text-sm font-light tracking-[0.2em] text-white/80 mb-2">{project.type}</span>
+                          <h3 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-white mb-4">{project.name}</h3>
+                          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6">{project.description}</p>
+                          <div className="inline-flex items-center text-lg text-white/90 hover:text-white font-light tracking-wide group/link">
+                            <span className="relative">
+                              Detayları Gör
+                              <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/50 group-hover/link:w-full transition-all duration-300"></span>
+                            </span>
+                            <span className="ml-2 transform transition-transform group-hover/link:translate-x-1">→</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              ) : null
+            ))}
           </Swiper>
         </div>
       </div>

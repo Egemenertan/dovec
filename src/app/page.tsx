@@ -1,14 +1,78 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import { Hero } from '@/components/Hero'
 import { ProjectSlider } from '@/components/ProjectSlider'
+import { storage } from '@/firebase/config'
+import { ref, getDownloadURL } from 'firebase/storage'
 
 // Swiper stilleri
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/autoplay'
 
+const initialServices = [
+  {
+    title: 'Auto Trend',
+    description: 'Premium araç kiralama ve satış hizmetleri.',
+    image: '',
+    storagePath: 'logo/autotrend.webp',
+  },
+  {
+    title: 'Alfam Dormitory',
+    description: 'Modern öğrenci yaşam alanları.',
+    image: '',
+    storagePath: 'logo/alfam yatay.webp',
+  },
+  {
+    title: 'Arredo',
+    description: 'Lüks mobilya ve iç tasarım çözümleri.',
+    image: '',
+    storagePath: 'logo/arredo.webp',
+  },
+  {
+    title: 'Dovec Fitness',
+    description: 'Profesyonel spor ve yaşam merkezi.',
+    image: '',
+    storagePath: 'logo/Dovec_Fitness.webp',
+  },
+  {
+    title: 'DCS',
+    description: 'Profesyonel danışmanlık hizmetleri.',
+    image: '',
+    storagePath: 'logo/DCS LOGO 2.webp',
+  }
+]
+
 export default function Home() {
+  const [services, setServices] = useState(initialServices)
+
+  useEffect(() => {
+    const loadImages = async () => {
+      try {
+        const updatedServices = await Promise.all(
+          initialServices.map(async (service) => {
+            try {
+              const imageRef = ref(storage, service.storagePath)
+              const url = await getDownloadURL(imageRef)
+              return { ...service, image: url }
+            } catch (error: any) {
+              console.error(`${service.title} logosu yüklenemedi:`, error.message)
+              return service
+            }
+          })
+        )
+        setServices(updatedServices)
+      } catch (error) {
+        console.error('Logolar yüklenirken hata oluştu:', error)
+      }
+    }
+
+    loadImages()
+  }, [])
+
   return (
     <div className="relative">
       {/* Hero Section */}
@@ -136,171 +200,43 @@ export default function Home() {
       <ProjectSlider />
 
       {/* Faaliyet Alanları */}
-      <div className="py-16 sm:py-24 md:py-28 lg:py-32 bg-gradient-to-b from-white via-gray-50 to-white">
+      <div className="py-16 sm:py-24 md:py-28 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16 md:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-[#061E4F] mb-4 sm:mb-6 md:mb-8 uppercase">
-              Faaliyet Alanları
+          <div className="text-center mb-20">
+            <span className="block text-sm font-light tracking-[0.4em] text-zinc-400 mb-4">
+              DOVEC GROUP
+            </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-wider text-[#061E4F] mb-6 relative inline-block">
+              Faaliyet Alanlarımız
+              <div className="absolute -bottom-4 left-1/2 w-12 h-[1px] bg-gradient-to-r from-transparent via-zinc-300 to-transparent transform -translate-x-1/2"></div>
             </h2>
-            <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent mx-auto"></div>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
-            {/* İnşaat */}
-            <div className="group">
-              <div className="aspect-square bg-white/50 backdrop-blur-sm rounded-3xl p-4 sm:p-6 md:p-8 flex items-center justify-center transform transition-all duration-500 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
-                <Image
-                  src="/logos/insaat.png"
-                  alt="İnşaat"
-                  width={80}
-                  height={80}
-                  className="w-16 sm:w-20 md:w-24 lg:w-28 h-16 sm:h-20 md:h-24 lg:h-28 opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                />
-              </div>
-              <div className="text-center mt-4 sm:mt-6">
-                <h3 className="text-lg sm:text-xl font-light tracking-wider text-gray-800 group-hover:text-gray-900 transition-colors">İnşaat</h3>
-              </div>
-            </div>
-            
-            {/* Enerji */}
-            <div className="group">
-              <div className="aspect-square bg-white/50 backdrop-blur-sm rounded-3xl p-4 sm:p-6 md:p-8 flex items-center justify-center transform transition-all duration-500 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
-                <Image
-                  src="/logos/enerji.png"
-                  alt="Enerji"
-                  width={80}
-                  height={80}
-                  className="w-16 sm:w-20 md:w-24 lg:w-28 h-16 sm:h-20 md:h-24 lg:h-28 opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                />
-              </div>
-              <div className="text-center mt-4 sm:mt-6">
-                <h3 className="text-lg sm:text-xl font-light tracking-wider text-gray-800 group-hover:text-gray-900 transition-colors">Enerji</h3>
-              </div>
-            </div>
-            
-            {/* Sağlık */}
-            <div className="group">
-              <div className="aspect-square bg-white/50 backdrop-blur-sm rounded-3xl p-4 sm:p-6 md:p-8 flex items-center justify-center transform transition-all duration-500 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
-                <Image
-                  src="/logos/saglik.png"
-                  alt="Sağlık"
-                  width={80}
-                  height={80}
-                  className="w-16 sm:w-20 md:w-24 lg:w-28 h-16 sm:h-20 md:h-24 lg:h-28 opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                />
-              </div>
-              <div className="text-center mt-4 sm:mt-6">
-                <h3 className="text-lg sm:text-xl font-light tracking-wider text-gray-800 group-hover:text-gray-900 transition-colors">Sağlık</h3>
-              </div>
-            </div>
-            
-            {/* Turizm */}
-            <div className="group">
-              <div className="aspect-square bg-white/50 backdrop-blur-sm rounded-3xl p-4 sm:p-6 md:p-8 flex items-center justify-center transform transition-all duration-500 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
-                <Image
-                  src="/logos/turizm.png"
-                  alt="Turizm"
-                  width={80}
-                  height={80}
-                  className="w-16 sm:w-20 md:w-24 lg:w-28 h-16 sm:h-20 md:h-24 lg:h-28 opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                />
-              </div>
-              <div className="text-center mt-4 sm:mt-6">
-                <h3 className="text-lg sm:text-xl font-light tracking-wider text-gray-800 group-hover:text-gray-900 transition-colors">Turizm</h3>
-              </div>
-            </div>
-
-            {/* Teknoloji */}
-            <div className="group">
-              <div className="aspect-square bg-white/50 backdrop-blur-sm rounded-3xl p-4 sm:p-6 md:p-8 flex items-center justify-center transform transition-all duration-500 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
-                <Image
-                  src="/logos/teknoloji.png"
-                  alt="Teknoloji"
-                  width={80}
-                  height={80}
-                  className="w-16 sm:w-20 md:w-24 lg:w-28 h-16 sm:h-20 md:h-24 lg:h-28 opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                />
-              </div>
-              <div className="text-center mt-4 sm:mt-6">
-                <h3 className="text-lg sm:text-xl font-light tracking-wider text-gray-800 group-hover:text-gray-900 transition-colors">Teknoloji</h3>
-              </div>
-            </div>
-            
-            {/* Madencilik */}
-            <div className="group">
-              <div className="aspect-square bg-white/50 backdrop-blur-sm rounded-3xl p-4 sm:p-6 md:p-8 flex items-center justify-center transform transition-all duration-500 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
-                <Image
-                  src="/logos/madencilik.png"
-                  alt="Madencilik"
-                  width={80}
-                  height={80}
-                  className="w-16 sm:w-20 md:w-24 lg:w-28 h-16 sm:h-20 md:h-24 lg:h-28 opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                />
-              </div>
-              <div className="text-center mt-4 sm:mt-6">
-                <h3 className="text-lg sm:text-xl font-light tracking-wider text-gray-800 group-hover:text-gray-900 transition-colors">Madencilik</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Elegance Bölümü */}
-      <div className="py-24 sm:py-32 bg-gradient-to-b from-white to-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Sol Taraf - Görsel */}
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/interior-1.jpg"
-                  alt="Elegant İç Mekan"
-                  fill
-                  className="object-cover transform hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
-              <div className="absolute -top-8 -left-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
-            </div>
-
-            {/* Sağ Taraf - İçerik */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] uppercase">
-                  Zarafet ve
-                  <br />
-                  Mükemmellik
-                </h2>
-                <div className="w-32 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-                <p className="text-lg sm:text-xl font-light leading-relaxed text-gray-600 mt-6">
-                  Her detayda mükemmelliği arayan yaklaşımımızla, yaşam alanlarınıza değer katıyoruz. Modern mimari ve zarif tasarım anlayışımızla, sizin için en iyisini sunuyoruz.
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
+            {services.map((service, index) => (
+              <div key={index} className="group text-center">
+                <div className="mb-6 relative">
+                  {service.image && (
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      width={120}
+                      height={120}
+                      className="mx-auto w-24 h-24 object-contain opacity-80 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110"
+                    />
+                  )}
+                </div>
+                <h3 className="text-lg font-light tracking-wide text-[#061E4F] mb-3 group-hover:text-[#061E4F]/80 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-zinc-500 font-light leading-relaxed">
+                  {service.description}
                 </p>
               </div>
-
-              <div className="grid grid-cols-2 gap-8">
-                <div className="space-y-2">
-                  <div className="text-3xl sm:text-4xl font-extralight text-[#061E4F]">15+</div>
-                  <div className="text-gray-600 font-light">Yıllık Deneyim</div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-3xl sm:text-4xl font-extralight text-[#061E4F]">100%</div>
-                  <div className="text-gray-600 font-light">Müşteri Memnuniyeti</div>
-                </div>
-              </div>
-
-              <Link href="/projeler" className="inline-flex items-center px-8 py-3 border border-[#061E4F] text-[#061E4F] rounded-full hover:bg-[#061E4F] hover:text-white transition-all duration-300 group">
-                <span className="text-lg font-light">Projelerimizi Keşfedin</span>
-                <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            </div>
+            ))}
           </div>
         </div>
       </div>
-
-      {/* Ödüller Bölümü */}
-      {/* ... existing code ... */}
     </div>
   )
 } 

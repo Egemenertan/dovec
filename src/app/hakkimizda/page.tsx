@@ -71,7 +71,7 @@ export default function AboutPage() {
       <div className="relative h-[40vh] lg:h-[50vh]">
         <Image
           src="/about-hero.jpg"
-          alt="Hakkımızda"
+          alt="Biz Kimiz"
           fill
           className="object-cover"
           priority
@@ -79,7 +79,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-white uppercase">
-            Hakkımızda
+            Biz Kimiz
           </h1>
         </div>
       </div>
@@ -89,42 +89,101 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
-            <Image
+              <Image
                 src="/consultant.jpg"
                 alt="Yönetim Kurulu Başkanı"
-              fill
-              className="object-cover"
-            />
-          </div>
+                fill
+                className="object-cover"
+              />
+            </div>
             <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
             <div className="absolute -top-8 -left-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
-      </div>
+          </div>
 
           <div className="space-y-8">
-            <div>
-              <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] uppercase mb-4">
-                Yönetim Kurulu Başkanı'nın Mesajı
-            </h2>
-              <div className="w-32 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent mb-8"></div>
-              <div className="space-y-6 text-gray-600 leading-relaxed">
-                <p className="text-lg font-light italic">
-                  "25 yılı aşkın süredir, DOVEC olarak sadece binalar inşa etmiyoruz; hayalleri, umutları ve geleceği inşa ediyoruz."
-                </p>
-                <p className="text-base">
-                  Değerli Paydaşlarımız,
-                </p>
-                <p className="text-base">
-                  DOVEC olarak, kurulduğumuz günden bu yana sürdürülebilirlik, yenilikçilik ve mükemmellik ilkelerini benimseyerek, sektörümüzde öncü projelere imza atıyoruz. Her projemizde, müşterilerimizin beklentilerini aşmayı ve yaşam kalitesini artırmayı hedefliyoruz.
-                </p>
-                <p className="text-base">
-                  Geleceğe olan inancımız ve vizyonumuz doğrultusunda, çevreye duyarlı, teknolojik ve yenilikçi çözümler üretmeye devam edeceğiz. Bu yolculukta bizimle birlikte olan tüm paydaşlarımıza teşekkür ederiz.
-            </p>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
+                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Başkan</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
+                Yönetim Kurulu Başkanı
+              </h2>
+              <p className="text-xl font-light leading-relaxed text-gray-600">
+                "DOVEC olarak, inşaat sektöründe sadece yapılar değil, yaşamlar inşa ediyoruz. Her projemizde mükemmelliği arıyor, her detayda zarafeti yakalıyoruz."
+              </p>
+            </div>
           </div>
-              <div className="mt-8">
-                <h3 className="text-xl font-medium text-[#061E4F]">Burçin Döveç</h3>
-                <p className="text-gray-600">Yönetim Kurulu Başkanı</p>
+        </div>
+      </div>
+
+      {/* Vizyon ve Misyon */}
+      <div className="relative py-32">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#061E4F]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#061E4F]/5 rounded-full blur-3xl"></div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            {/* Sol Taraf - Vizyon */}
+            <div className="space-y-16">
+              <div className="space-y-8">
+                <div className="flex items-center space-x-4">
+                  <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
+                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Vizyon</span>
+                </div>
+                <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
+                  Geleceği İnşa Ediyoruz
+                </h2>
+                <p className="text-xl font-light leading-relaxed text-gray-600">
+                  Sürdürülebilir ve yenilikçi çözümlerle, yaşam kalitesini artıran projelere imza atarak, 
+                  sektörde öncü bir rol üstlenmek ve global ölçekte tanınan bir marka olmak.
+                </p>
+              </div>
+
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl group">
+                <Image
+                  src="/interior-1.jpg"
+                  alt="Vizyon Görüntüsü"
+                  fill
+                  className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
               </div>
             </div>
+
+            {/* Sağ Taraf - Misyon */}
+            <div className="space-y-16 lg:mt-32">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl group lg:order-first order-last">
+                <Image
+                  src="/exterior-1.jpg"
+                  alt="Misyon Görüntüsü"
+                  fill
+                  className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
+              </div>
+
+              <div className="space-y-8">
+                <div className="flex items-center space-x-4">
+                  <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
+                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Misyon</span>
+                </div>
+                <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
+                  Değer Katıyoruz
+                </h2>
+                <p className="text-xl font-light leading-relaxed text-gray-600">
+                  Müşterilerimize en yüksek kalitede hizmet sunarak, çevreye duyarlı ve sürdürülebilir 
+                  projeler geliştirmek, çalışanlarımızın gelişimine katkıda bulunmak ve topluma değer katmak.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Dekoratif Çizgiler */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none">
+            <div className="absolute inset-0 border border-[#061E4F]/10 rounded-full"></div>
+            <div className="absolute inset-4 border border-[#061E4F]/10 rounded-full"></div>
+            <div className="absolute inset-8 border border-[#061E4F]/10 rounded-full"></div>
           </div>
         </div>
       </div>
@@ -162,38 +221,38 @@ export default function AboutPage() {
           {/* Değerler */}
           <div className="relative w-[70vw] h-[70vh]">
             {/* Sol Üst */}
-            <div className="absolute top-0 left-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center group hover:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center p-8 transform group-hover:scale-110 transition-all duration-500">
+            <div className="absolute top-0 left-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
+              <div className="text-center p-4 lg:p-8 transform lg:group-hover:scale-110 transition-all duration-500">
                 <div className="text-[#061E4F] mb-4">{values[0].icon}</div>
                 <h3 className="text-2xl font-light tracking-wider text-[#061E4F] mb-3">{values[0].title}</h3>
-                <p className="text-gray-600 font-light">{values[0].description}</p>
+                <p className="text-gray-600 font-light text-sm lg:text-base">{values[0].description}</p>
               </div>
             </div>
 
             {/* Sağ Üst */}
-            <div className="absolute top-0 right-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center group hover:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center p-8 transform group-hover:scale-110 transition-all duration-500">
+            <div className="absolute top-0 right-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
+              <div className="text-center p-4 lg:p-8 transform lg:group-hover:scale-110 transition-all duration-500">
                 <div className="text-[#061E4F] mb-4">{values[1].icon}</div>
                 <h3 className="text-2xl font-light tracking-wider text-[#061E4F] mb-3">{values[1].title}</h3>
-                <p className="text-gray-600 font-light">{values[1].description}</p>
+                <p className="text-gray-600 font-light text-sm lg:text-base">{values[1].description}</p>
               </div>
             </div>
 
             {/* Sol Alt */}
-            <div className="absolute bottom-0 left-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center group hover:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center p-8 transform group-hover:scale-110 transition-all duration-500">
+            <div className="absolute bottom-0 left-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
+              <div className="text-center p-4 lg:p-8 transform lg:group-hover:scale-110 transition-all duration-500">
                 <div className="text-[#061E4F] mb-4">{values[2].icon}</div>
                 <h3 className="text-2xl font-light tracking-wider text-[#061E4F] mb-3">{values[2].title}</h3>
-                <p className="text-gray-600 font-light">{values[2].description}</p>
+                <p className="text-gray-600 font-light text-sm lg:text-base">{values[2].description}</p>
               </div>
             </div>
 
             {/* Sağ Alt */}
-            <div className="absolute bottom-0 right-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center group hover:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center p-8 transform group-hover:scale-110 transition-all duration-500">
+            <div className="absolute bottom-0 right-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
+              <div className="text-center p-4 lg:p-8 transform lg:group-hover:scale-110 transition-all duration-500">
                 <div className="text-[#061E4F] mb-4">{values[3].icon}</div>
                 <h3 className="text-2xl font-light tracking-wider text-[#061E4F] mb-3">{values[3].title}</h3>
-                <p className="text-gray-600 font-light">{values[3].description}</p>
+                <p className="text-gray-600 font-light text-sm lg:text-base">{values[3].description}</p>
               </div>
             </div>
 
@@ -358,78 +417,6 @@ export default function AboutPage() {
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
-          </div>
-        </div>
-      </div>
-
-      {/* Hakkımızda Bölümü */}
-      <div className="relative py-32">
-        {/* Dekoratif elementler */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#061E4F]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#061E4F]/5 rounded-full blur-3xl"></div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            {/* Sol Taraf - Vizyon */}
-            <div className="space-y-16">
-              <div className="space-y-8">
-                <div className="flex items-center space-x-4">
-                  <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Vizyon</span>
-                </div>
-                <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
-                  Geleceği İnşa Ediyoruz
-        </h2>
-                <p className="text-xl font-light leading-relaxed text-gray-600">
-                  Sürdürülebilir ve yenilikçi çözümlerle, yaşam kalitesini artıran projelere imza atarak, 
-                  sektörde öncü bir rol üstlenmek ve global ölçekte tanınan bir marka olmak.
-                </p>
-              </div>
-
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl group">
-                <Image
-                  src="/interior-1.jpg"
-                  alt="Vizyon Görüntüsü"
-                  fill
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-              </div>
-            </div>
-
-            {/* Sağ Taraf - Misyon */}
-            <div className="space-y-16">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl group">
-                <Image
-                  src="/exterior-1.jpg"
-                  alt="Misyon Görüntüsü"
-                  fill
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-              </div>
-
-              <div className="space-y-8">
-                <div className="flex items-center space-x-4">
-                  <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Misyon</span>
-                </div>
-                <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
-                  Değer Katıyoruz
-                </h2>
-                <p className="text-xl font-light leading-relaxed text-gray-600">
-                  Müşterilerimize en yüksek kalitede hizmet sunarak, çevreye duyarlı ve sürdürülebilir 
-                  projeler geliştirmek, çalışanlarımızın gelişimine katkıda bulunmak ve topluma değer katmak.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Dekoratif Çizgiler */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none">
-            <div className="absolute inset-0 border border-[#061E4F]/10 rounded-full"></div>
-            <div className="absolute inset-4 border border-[#061E4F]/10 rounded-full"></div>
-            <div className="absolute inset-8 border border-[#061E4F]/10 rounded-full"></div>
           </div>
         </div>
       </div>
