@@ -48,6 +48,11 @@ const initialServices = [
 
 export default function Home() {
   const [services, setServices] = useState(initialServices)
+  const [investmentImages, setInvestmentImages] = useState({
+    image1: '',
+    image2: '',
+    image3: ''
+  })
 
   useEffect(() => {
     const loadImages = async () => {
@@ -65,8 +70,33 @@ export default function Home() {
           })
         )
         setServices(updatedServices)
+
+        // Yatırım bölümü resimlerini yükle
+        const investmentImagePaths = [
+          'laisla/tatlisu_24 copy (1)_11zon.webp',
+          'querencia/r imaj_8 kopya_15_11zon.webp',
+          'natulux/Natulux Out View 1 (1)_11zon.webp'
+        ]
+
+        const loadedImages = await Promise.all(
+          investmentImagePaths.map(async (path) => {
+            try {
+              const imageRef = ref(storage, path)
+              return await getDownloadURL(imageRef)
+            } catch (error: any) {
+              console.error(`Resim yüklenemedi (${path}):`, error.message)
+              return ''
+            }
+          })
+        )
+
+        setInvestmentImages({
+          image1: loadedImages[0],
+          image2: loadedImages[1],
+          image3: loadedImages[2]
+        })
       } catch (error) {
-        console.error('Logolar yüklenirken hata oluştu:', error)
+        console.error('Resimler yüklenirken hata oluştu:', error)
       }
     }
 
@@ -163,16 +193,16 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <div className="relative h-[200px] sm:h-[250px] md:h-[300px] rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-[1.02]">
                   <Image
-                    src="/interior-1.jpg"
-                    alt="İç Mekan"
+                    src={investmentImages.image1 || '/interior-1.jpg'}
+                    alt="Kuzey Kıbrıs Yatırım"
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="relative h-[200px] sm:h-[250px] md:h-[300px] rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-[1.02]">
                   <Image
-                    src="/consultant.jpg"
-                    alt="Danışman"
+                    src={investmentImages.image2 || '/consultant.jpg'}
+                    alt="Kuzey Kıbrıs Yatırım"
                     fill
                     className="object-cover"
                   />
@@ -183,8 +213,8 @@ export default function Home() {
             {/* Sağ Taraf - Görsel */}
             <div className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-[1.02]">
               <Image
-                src="/exterior-1.jpg"
-                alt="Dış Mekan"
+                src={investmentImages.image3 || '/exterior-1.jpg'}
+                alt="Kuzey Kıbrıs Yatırım"
                 fill
                 className="object-cover"
               />

@@ -46,9 +46,14 @@ export default function BlogPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-white uppercase">
-            Blog
-          </h1>
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-wider text-white mb-6">
+              Blog
+            </h1>
+            <p className="text-lg md:text-xl font-light tracking-wide text-white/90 max-w-2xl mx-auto px-4">
+              DOVEC İnşaat'tan en güncel blog yazıları
+            </p>
+          </div>
         </div>
       </div>
 
@@ -58,7 +63,7 @@ export default function BlogPage() {
           {blogPosts.map((post) => (
             <article
               key={post.id}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              className="group bg-white rounded-xl overflow-hidden transform transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)]"
             >
               <Link href={`/blog/${post.id}`}>
                 <div className="relative h-48 sm:h-56">

@@ -21,7 +21,7 @@ export const ProjectSlider = () => {
       description: 'Modern mimari ve lüks yaşamın buluştuğu özel bir proje.',
       image: '',
       slug: 'la-casalia',
-      storagePath: 'laisla/tatlisu_35 copy 2-1_11zon.webp'
+      storagePath: 'lacasalia/tatlisu_23 copy_11zon.webp'
     },
     {
       name: 'Natulux',
@@ -36,8 +36,9 @@ export const ProjectSlider = () => {
       type: 'KONUT PROJESİ',
       description: 'Ada yaşamının tüm ayrıcalıklarını sunan özel proje.',
       image: '',
-      slug: 'la-isla',
-      storagePath: 'laisla/DRONE02_11zon.webp'
+      storagePath: 'laisla/DRONE01E.webp',
+      location: 'GAZİMAĞUSA, KKTC',
+      slug: 'la-isla'
     },
     {
       name: 'Querencia',

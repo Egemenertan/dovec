@@ -2,12 +2,15 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { storage } from '@/firebase/config'
+import { ref, getDownloadURL } from 'firebase/storage'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isLangOpen, setIsLangOpen] = useState(false)
   const [currentLang, setCurrentLang] = useState('TR')
+  const [logoUrl, setLogoUrl] = useState('')
 
   // Mouse pozisyonunu takip etmek için
   const handleMouseMove = useCallback((e: MouseEvent) => {
@@ -39,6 +42,20 @@ export default function Navbar() {
       window.removeEventListener('mousemove', handleMouseMove)
     }
   }, [handleMouseMove])
+
+  useEffect(() => {
+    const loadLogo = async () => {
+      try {
+        const logoRef = ref(storage, 'logo/dovec.webp')
+        const url = await getDownloadURL(logoRef)
+        setLogoUrl(url)
+      } catch (error) {
+        console.error('Logo yüklenemedi:', error)
+      }
+    }
+
+    loadLogo()
+  }, [])
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-700 ${
@@ -162,19 +179,21 @@ export default function Navbar() {
           {/* Logo - Ortada */}
           <div className="flex items-center justify-center mx-4">
             <Link href="/" className="relative w-32 h-12">
-              <Image
-                src="/dovec.webp"
-                alt="DOVEC Logo"
-                fill
-                className={`object-contain transition-all duration-500 ${isScrolled ? 'brightness-0' : 'brightness-0 invert'}`}
-                priority
-              />
+              {logoUrl && (
+                <Image
+                  src={logoUrl}
+                  alt="DOVEC Logo"
+                  fill
+                  className={`object-contain transition-all duration-500 ${isScrolled ? 'brightness-0' : 'brightness-0 invert'}`}
+                  priority
+                />
+              )}
             </Link>
           </div>
 
           {/* Sağ menü */}
           <div className="hidden md:flex items-center justify-start space-x-3 lg:space-x-6 xl:space-x-8 flex-1 pl-4 lg:pl-8 xl:pl-16">
-            <NavLink href="/yatirim" label="Yatırım" />
+            <NavLink href="/blog" label="Blog" />
             <NavLink href="/kariyer" label="Kariyer" />
             <NavLink href="/iletisim" label="İletişim" />
           </div>
@@ -221,94 +240,110 @@ export default function Navbar() {
       >
         <div className="relative h-full w-full overflow-y-auto overflow-x-hidden">
           {/* Menü İçeriği */}
-          <div className="flex flex-col min-h-full pt-20 pb-8 px-6">
-            {/* Logo - Sol tarafa hizalı */}
-            <div className="mb-12 flex justify-start">
-              <Image
-                src="/dovec.webp"
-                alt="DOVEC Logo"
-                width={100}
-                height={40}
-                className="object-contain brightness-0"
-              />
+          <div className="flex flex-col min-h-full pb-8">
+            {/* Logo - Navbar ile aynı pozisyonda */}
+            <div className="flex items-center h-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+              <div className="flex items-center mx-4">
+                {logoUrl && (
+                  <div className="relative w-32 h-12">
+                    <Image
+                      src={logoUrl}
+                      alt="DOVEC Logo"
+                      fill
+                      className="object-contain brightness-0"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="flex justify-center w-full">
+              <div className="w-[calc(100%-2rem)] sm:w-[calc(100%-3rem)] md:w-[calc(100%-4rem)] lg:w-[calc(100%-6rem)] xl:w-[calc(100%-8rem)]">
+                <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-black/[0.02] to-transparent scale-95" />
+              </div>
             </div>
 
             {/* Menü Linkleri */}
-            <div className="flex-1 flex flex-col space-y-7 items-start w-full">
-              <MobileNavLink href="/hakkimizda" label="Biz Kimiz" setIsOpen={setIsOpen} />
-              <MobileNavLink href="/projeler" label="Projeler" setIsOpen={setIsOpen} />
-              <MobileNavLink href="/medya" label="Medya" setIsOpen={setIsOpen} />
-              <MobileNavLink href="/blog" label="Blog" setIsOpen={setIsOpen} />
-              <MobileNavLink href="/yatirim" label="Haberler" setIsOpen={setIsOpen} />
-              <MobileNavLink href="/iletisim" label="İletişim" setIsOpen={setIsOpen} />
+            <div className="flex-1 flex flex-col space-y-7 items-start w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-12">
+              <div className="w-full mx-4">
+                <div className="flex flex-col space-y-7">
+                  <MobileNavLink href="/hakkimizda" label="Biz Kimiz" setIsOpen={setIsOpen} />
+                  <MobileNavLink href="/projeler" label="Projeler" setIsOpen={setIsOpen} />
+                  <MobileNavLink href="/medya" label="Medya" setIsOpen={setIsOpen} />
+                  <MobileNavLink href="/blog" label="Blog" setIsOpen={setIsOpen} />
+                  <MobileNavLink href="/iletisim" label="İletişim" setIsOpen={setIsOpen} />
 
-              {/* Dil Seçenekleri */}
-              <div className="w-full pt-4 border-t border-zinc-100">
-                <div className="flex items-center space-x-4">
-                  <button
-                    onClick={() => setCurrentLang('TR')}
-                    className={`px-4 py-2 rounded-lg text-lg font-light tracking-wider transition-all duration-300 ${
-                      currentLang === 'TR' 
-                        ? 'bg-zinc-100 text-zinc-900' 
-                        : 'text-zinc-500 hover:text-zinc-900'
-                    }`}
+                  {/* Dil Seçenekleri */}
+                  <div className="w-full pt-4 border-t border-zinc-100">
+                    <div className="flex items-center space-x-4">
+                      <button
+                        onClick={() => setCurrentLang('TR')}
+                        className={`px-4 py-2 rounded-lg text-lg font-light tracking-wider transition-all duration-300 ${
+                          currentLang === 'TR' 
+                            ? 'bg-zinc-100 text-zinc-900' 
+                            : 'text-zinc-500 hover:text-zinc-900'
+                        }`}
+                      >
+                        TR
+                      </button>
+                      <div className="w-px h-6 bg-zinc-200" />
+                      <button
+                        onClick={() => setCurrentLang('EN')}
+                        className={`px-4 py-2 rounded-lg text-lg font-light tracking-wider transition-all duration-300 ${
+                          currentLang === 'EN' 
+                            ? 'bg-zinc-100 text-zinc-900' 
+                            : 'text-zinc-500 hover:text-zinc-900'
+                        }`}
+                      >
+                        EN
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 360 Linki */}
+                  <a 
+                    href="https://360.dovecconstruction.com/" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative overflow-hidden w-full flex items-center space-x-2"
+                    onClick={() => setIsOpen(false)}
                   >
-                    TR
-                  </button>
-                  <div className="w-px h-6 bg-zinc-200" />
-                  <button
-                    onClick={() => setCurrentLang('EN')}
-                    className={`px-4 py-2 rounded-lg text-lg font-light tracking-wider transition-all duration-300 ${
-                      currentLang === 'EN' 
-                        ? 'bg-zinc-100 text-zinc-900' 
-                        : 'text-zinc-500 hover:text-zinc-900'
-                    }`}
-                  >
-                    EN
-                  </button>
+                    <span className="relative inline-block text-xl font-light text-zinc-800/90 tracking-wider transition-transform duration-300 group-hover:translate-x-2">
+                      360°
+                    </span>
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      className="w-5 h-5 text-zinc-800/90 transition-all duration-500 group-hover:rotate-[360deg]"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth="1.5" 
+                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                      />
+                    </svg>
+                  </a>
                 </div>
               </div>
-
-              {/* 360 Linki */}
-              <a 
-                href="https://360.dovecconstruction.com/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative overflow-hidden w-full flex items-center space-x-2"
-                onClick={() => setIsOpen(false)}
-              >
-                <span className="relative inline-block text-xl font-light text-zinc-800/90 tracking-wider transition-transform duration-300 group-hover:translate-x-2">
-                  360°
-                </span>
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  className="w-5 h-5 text-zinc-800/90 transition-all duration-500 group-hover:rotate-[360deg]"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth="1.5" 
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                  />
-                </svg>
-              </a>
             </div>
 
             {/* Alt Bilgi */}
-            <div className="mt-auto pt-8 border-t border-zinc-200">
-              <div className="flex flex-col space-y-4">
-                <a href="tel:+90123456789" className="text-zinc-800/90 hover:text-zinc-900 text-sm font-light tracking-wider transition-colors duration-300">
-                  +90 123 456 789
-                </a>
-                <a href="mailto:info@dovec.com" className="text-zinc-800/90 hover:text-zinc-900 text-sm font-light tracking-wider transition-colors duration-300">
-                  info@dovec.com
-                </a>
-                <p className="text-zinc-600 text-xs font-light tracking-wider">
-                  © 2024 DOVEC İnşaat. Tüm hakları saklıdır.
-                </p>
+            <div className="mt-auto pt-8 border-t border-zinc-200 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+              <div className="mx-4">
+                <div className="flex flex-col space-y-4">
+                  <a href="tel:+90123456789" className="text-zinc-800/90 hover:text-zinc-900 text-sm font-light tracking-wider transition-colors duration-300">
+                    +90 123 456 789
+                  </a>
+                  <a href="mailto:info@dovec.com" className="text-zinc-800/90 hover:text-zinc-900 text-sm font-light tracking-wider transition-colors duration-300">
+                    info@dovec.com
+                  </a>
+                  <p className="text-zinc-600 text-xs font-light tracking-wider">
+                    © 2024 DOVEC İnşaat. Tüm hakları saklıdır.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

@@ -1,4 +1,9 @@
+'use client'
+
 import Image from 'next/image';
+import { useState, useEffect } from 'react'
+import { storage } from '@/firebase/config'
+import { ref, getDownloadURL } from 'firebase/storage'
 
 // Ekip üyeleri verisi
 const teamMembers = [
@@ -27,44 +32,67 @@ const teamMembers = [
 // Şirket değerleri
 const values = [
   {
-    title: 'Yenilikçilik',
-    description: 'Sürekli gelişim ve inovasyona odaklanarak, sektörde öncü çözümler üretiyoruz.',
+    title: 'Dayanıklılık',
+    description: 'Sağlam temeller üzerine inşa edilmiş, uzun ömürlü ve kaliteli yapılar sunuyoruz.',
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
       </svg>
     ),
   },
   {
-    title: 'Sürdürülebilirlik',
-    description: 'Çevresel ve sosyal sorumluluklarımızı göz önünde bulundurarak, sürdürülebilir çözümler sunuyoruz.',
+    title: 'Denge',
+    description: 'Estetik ve fonksiyonellik arasında mükemmel dengeyi yakalıyoruz.',
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
       </svg>
     ),
   },
   {
-    title: 'Kalite',
-    description: 'En yüksek kalite standartlarını benimseyerek, müşterilerimize mükemmel hizmet sunuyoruz.',
+    title: 'Düzen',
+    description: 'Planlı, sistematik ve organize çalışma prensibiyle hareket ediyoruz.',
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Deneyim',
+    description: 'Uzun yılların getirdiği bilgi ve tecrübeyle, en iyi hizmeti sunuyoruz.',
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
       </svg>
     ),
   },
-  {
-    title: 'Güven',
-    description: 'Şeffaf ve dürüst iş ilişkileri kurarak, paydaşlarımızın güvenini kazanıyoruz.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
-  },
 ];
 
 export default function AboutPage() {
+  const [chairmanImage, setChairmanImage] = useState('')
+  const [signatureImage, setSignatureImage] = useState('')
+
+  useEffect(() => {
+    const loadImages = async () => {
+      try {
+        // Başkan resmi
+        const imageRef = ref(storage, 'bd.webp')
+        const url = await getDownloadURL(imageRef)
+        setChairmanImage(url)
+
+        // İmza resmi
+        const signatureRef = ref(storage, 'bdsign.webp')
+        const signatureUrl = await getDownloadURL(signatureRef)
+        setSignatureImage(signatureUrl)
+      } catch (error) {
+        console.error('Resimler yüklenemedi:', error)
+      }
+    }
+
+    loadImages()
+  }, [])
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
       {/* Hero Bölümü */}
@@ -87,20 +115,7 @@ export default function AboutPage() {
       {/* Direktör Mesajı */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
-            <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="/consultant.jpg"
-                alt="Yönetim Kurulu Başkanı"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
-            <div className="absolute -top-8 -left-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
-          </div>
-
-          <div className="space-y-8">
+          <div className="space-y-8 order-2 lg:order-1">
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
                 <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
@@ -109,10 +124,43 @@ export default function AboutPage() {
               <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
                 Yönetim Kurulu Başkanı
               </h2>
-              <p className="text-xl font-light leading-relaxed text-gray-600">
-                "DOVEC olarak, inşaat sektöründe sadece yapılar değil, yaşamlar inşa ediyoruz. Her projemizde mükemmelliği arıyor, her detayda zarafeti yakalıyoruz."
+              <p className="text-xl font-light leading-relaxed text-gray-600 space-y-8">
+                <span className="block">"Değerli Müşterilerimiz ve İş Ortaklarımız,</span>
+
+                <span className="block">Döveç İnşaat olarak, kurulduğumuz günden bu yana her projede kalite, güven ve müşteri memnuniyetini en üst düzeyde tutmayı amaçladık. Her adımımızda, modern ve sürdürülebilir yaşam alanları yaratmayı, topluma ve çevreye duyarlı projeler geliştirmeyi ilke edindik.</span>
+
+                <span className="block">İnşaat sektöründe öncü olmanın getirdiği sorumluluğun bilincindeyiz. Bu sorumlulukla, yenilikçi ve estetik açıdan üstün yapılar inşa ederken, aynı zamanda fonksiyonelliği ve dayanıklılığı da ön planda tutuyoruz. Her projemizde, yüksek kaliteli malzemeler ve en son teknolojileri kullanarak, siz değerli müşterilerimize güvenli ve konforlu yaşam alanları sunmayı hedefliyoruz.</span>
+
+                <span className="block">Döveç İnşaat ailesi olarak, sizlerin desteği ve güveni ile her geçen gün daha da büyüyerek, sadece Kuzey Kıbrıs'ta değil, uluslararası arenada da ses getiren projelere imza atıyoruz. Müşteri odaklı yaklaşımımızla, sizlere en iyi hizmeti sunmak için var gücümüzle çalışmaya devam edeceğiz.</span>
+
+                <span className="block">Bize olan güveniniz ve desteğiniz için teşekkür eder, sizlerle birlikte daha nice başarılı projelere imza atmayı temenni ederim.</span>
+
+                <span className="block">Saygılarımla,"</span>
               </p>
+              {signatureImage && (
+                <div className="relative w-48 h-24 mt-4">
+                  <Image
+                    src={signatureImage}
+                    alt="Yönetim Kurulu Başkanı İmzası"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              )}
             </div>
+          </div>
+
+          <div className="relative order-1 lg:order-2">
+            <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src={chairmanImage || '/consultant.jpg'}
+                alt="Yönetim Kurulu Başkanı"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
+            <div className="absolute -top-8 -left-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
           </div>
         </div>
       </div>

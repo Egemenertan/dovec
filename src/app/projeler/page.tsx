@@ -8,15 +8,17 @@ import { ref, getDownloadURL } from 'firebase/storage';
 
 export default function ProjectsPage() {
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeFilter, setActiveFilter] = useState('devam-eden');
   const [projects, setProjects] = useState([
     {
       name: 'La Casalia',
       type: 'KONUT PROJESİ',
       description: 'Modern mimari ve lüks yaşamın buluştuğu özel bir proje.',
       image: '',
-      storagePath: 'laisla/tatlisu_35 copy 2-1_11zon.webp',
+      storagePath: 'lacasalia/tatlisu_23 copy_11zon.webp',
       location: 'İSKELE, KKTC',
-      slug: 'la-casalia'
+      slug: 'la-casalia',
+      status: 'devam-eden'
     },
     {
       name: 'Natulux',
@@ -25,16 +27,18 @@ export default function ProjectsPage() {
       image: '',
       storagePath: 'natulux/Natulux Out View 1 (1)_11zon.webp',
       location: 'TATLISU, KKTC',
-      slug: 'natulux'
+      slug: 'natulux',
+      status: 'devam-eden'
     },
     {
       name: 'La Isla',
       type: 'KONUT PROJESİ',
       description: 'Ada yaşamının tüm ayrıcalıklarını sunan özel proje.',
       image: '',
-      storagePath: 'laisla/tatlisu_35 copy 2-1_11zon.webp',
+      storagePath: 'laisla/DRONE01E.webp',
       location: 'GAZİMAĞUSA, KKTC',
-      slug: 'la-isla'
+      slug: 'la-isla',
+      status: 'devam-eden'
     },
     {
       name: 'Querencia',
@@ -43,7 +47,8 @@ export default function ProjectsPage() {
       image: '',
       storagePath: 'querencia/r imaj_3 kopya_11_11zon.webp',
       location: 'GİRNE, KKTC',
-      slug: 'querencia'
+      slug: 'querencia',
+      status: 'devam-eden'
     },
     {
       name: 'Four Seasons Life',
@@ -52,7 +57,8 @@ export default function ProjectsPage() {
       image: '',
       storagePath: 'fsl/7.webp',
       location: 'LEFKOŞA, KKTC',
-      slug: 'four-seasons-life'
+      slug: 'four-seasons-life',
+      status: 'devam-eden'
     },
     {
       name: 'Courtyard Platinum',
@@ -61,7 +67,38 @@ export default function ProjectsPage() {
       image: '',
       storagePath: 'platinum/7.webp',
       location: 'GİRNE, KKTC',
-      slug: 'courtyard-platinum'
+      slug: 'courtyard-platinum',
+      status: 'devam-eden'
+    },
+    {
+      name: 'Sky Sakarya',
+      type: 'KONUT PROJESİ',
+      description: 'Gökyüzüyle buluşan modern yaşam alanları.',
+      image: '',
+      storagePath: 'skysakarya/WhatsApp Image 2021-08-24 at 11.08.54 (1).webp',
+      location: 'SAKARYA, TÜRKİYE',
+      slug: 'sky-sakarya',
+      status: 'tamamlanan'
+    },
+    {
+      name: 'Courtyard',
+      type: 'KONUT PROJESİ',
+      description: 'Şehrin merkezinde huzurlu bir yaşam.',
+      image: '',
+      storagePath: 'courtyard/1.webp',
+      location: 'GİRNE, KKTC',
+      slug: 'courtyard',
+      status: 'tamamlanan'
+    },
+    {
+      name: 'Panorama',
+      type: 'KONUT PROJESİ',
+      description: 'Eşsiz manzarasıyla öne çıkan yaşam projesi.',
+      image: '',
+      storagePath: 'panorama/1_50 - Foto (1).webp',
+      location: 'GİRNE, KKTC',
+      slug: 'panorama',
+      status: 'tamamlanan'
     }
   ]);
 
@@ -150,6 +187,30 @@ export default function ProjectsPage() {
               <br className="hidden md:block" />
               yaşam standartlarınızı yükseltiyoruz
             </p>
+            
+            {/* Filtre Butonları */}
+            <div className="flex items-center justify-center space-x-4 pt-8">
+              <button
+                onClick={() => setActiveFilter('devam-eden')}
+                className={`px-6 py-2.5 text-sm tracking-wider transition-all duration-300 border ${
+                  activeFilter === 'devam-eden'
+                    ? 'bg-white text-[#061E4F] border-white'
+                    : 'bg-transparent text-white border-white/30 hover:border-white'
+                }`}
+              >
+                DEVAM EDEN
+              </button>
+              <button
+                onClick={() => setActiveFilter('tamamlanan')}
+                className={`px-6 py-2.5 text-sm tracking-wider transition-all duration-300 border ${
+                  activeFilter === 'tamamlanan'
+                    ? 'bg-white text-[#061E4F] border-white'
+                    : 'bg-transparent text-white border-white/30 hover:border-white'
+                }`}
+              >
+                TAMAMLANAN
+              </button>
+            </div>
           </div>
         </div>
 
@@ -178,7 +239,9 @@ export default function ProjectsPage() {
 
       {/* Proje Sectionları */}
       <div className="relative">
-        {projects.map((project, index) => (
+        {projects
+          .filter(project => project.status === activeFilter)
+          .map((project, index) => (
           <Link 
             key={index} 
             href={`/projeler/${project.slug}`}
