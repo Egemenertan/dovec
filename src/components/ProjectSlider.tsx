@@ -21,7 +21,7 @@ export const ProjectSlider = () => {
       description: 'Modern mimari ve lüks yaşamın buluştuğu özel bir proje.',
       image: '',
       slug: 'la-casalia',
-      storagePath: 'lacasalia/tatlisu_23 copy_11zon.webp'
+      storagePath: 'lacasalia/tatlisu_12 copy.webp'
     },
     {
       name: 'Natulux',
@@ -63,6 +63,14 @@ export const ProjectSlider = () => {
       image: '',
       slug: 'courtyard-platinum',
       storagePath: 'platinum/7.webp'
+    },
+    {
+      name: 'Grand Studio',
+      type: 'KONUT PROJESİ',
+      description: 'Modern ve kompakt yaşam alanları.',
+      image: '',
+      slug: 'grand-studio',
+      storagePath: 'grandstudio/hero.webp'
     }
   ]);
 
@@ -163,7 +171,14 @@ export const ProjectSlider = () => {
               prevEl: '.swiper-prev',
               nextEl: '.swiper-next',
             }}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            autoplay={{ 
+              delay: 5000, 
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true 
+            }}
+            speed={1000}
+            watchSlidesProgress={true}
+            preventInteractionOnTransition={true}
             className="project-swiper !overflow-visible !pt-12 !pb-20"
           >
             {projects.map((project, index) => (
@@ -176,8 +191,11 @@ export const ProjectSlider = () => {
                           src={project.image}
                           alt={project.name}
                           fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="object-cover will-change-transform"
                           priority={index === 0}
+                          sizes="(max-width: 640px) 300px, (max-width: 768px) 600px, (max-width: 1024px) 800px, 1000px"
+                          loading={index === 0 ? 'eager' : 'lazy'}
+                          quality={85}
                         />
                         {/* Overlay gradient */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

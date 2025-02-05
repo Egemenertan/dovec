@@ -9,7 +9,7 @@ export const useLaCasaliaImage = () => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const imageRef = ref(storage, 'laisla/tatlisu_35 copy 2-1_11zon.webp');
+        const imageRef = ref(storage, 'lacasalia/tatlisu_10 - Photo copy.webp');
         const url = await getDownloadURL(imageRef);
         setImageUrl(url);
         setLoading(false);

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
 
-interface BlogPost {
+interface MediaPost {
   id: string
   title: string
   excerpt: string
@@ -13,35 +13,39 @@ interface BlogPost {
   coverImage: string
   category: string
   createdAt: any
+  author: {
+    name: string
+    image: string
+  }
 }
 
-export default function BlogDetailPage({ params }: { params: { id: string } }) {
-  const [blogPost, setBlogPost] = useState<BlogPost | null>(null)
+export default function MediaDetailPage({ params }: { params: { id: string } }) {
+  const [mediaPost, setMediaPost] = useState<MediaPost | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchBlogPost = async () => {
+    const fetchMediaPost = async () => {
       try {
         const db = getFirestore()
-        const docRef = doc(db, 'blogs', params.id)
+        const docRef = doc(db, 'media', params.id)
         const docSnap = await getDoc(docRef)
 
         if (docSnap.exists()) {
-          setBlogPost({
+          setMediaPost({
             id: docSnap.id,
             ...docSnap.data()
-          } as BlogPost)
+          } as MediaPost)
         } else {
-          console.log('Blog yazısı bulunamadı')
+          console.log('Medya içeriği bulunamadı')
         }
       } catch (error) {
-        console.error('Blog yazısı yüklenirken hata:', error)
+        console.error('Medya içeriği yüklenirken hata:', error)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchBlogPost()
+    fetchMediaPost()
   }, [params.id])
 
   if (loading) {
@@ -52,10 +56,10 @@ export default function BlogDetailPage({ params }: { params: { id: string } }) {
     )
   }
 
-  if (!blogPost) {
+  if (!mediaPost) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white flex items-center justify-center">
-        <div className="text-2xl text-gray-600">Blog yazısı bulunamadı</div>
+        <div className="text-2xl text-gray-600">Medya içeriği bulunamadı</div>
       </div>
     )
   }
@@ -65,8 +69,8 @@ export default function BlogDetailPage({ params }: { params: { id: string } }) {
       {/* Hero Bölümü */}
       <div className="relative h-[60vh] lg:h-[70vh]">
         <Image
-          src={blogPost.coverImage}
-          alt={blogPost.title}
+          src={mediaPost.coverImage}
+          alt={mediaPost.title}
           fill
           className="object-cover"
           priority
@@ -76,20 +80,20 @@ export default function BlogDetailPage({ params }: { params: { id: string } }) {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="max-w-5xl mx-auto px-4 text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight tracking-wider text-white mb-6 leading-tight">
-              {blogPost.title}
+              {mediaPost.title}
             </h1>
             <div className="flex items-center justify-center space-x-6 text-white/90 text-lg tracking-wide">
               <span>
-                {new Date(blogPost.createdAt.toDate()).toLocaleDateString('tr-TR', {
+                {new Date(mediaPost.createdAt.toDate()).toLocaleDateString('tr-TR', {
                   day: 'numeric',
                   month: 'long',
                   year: 'numeric'
                 })}
               </span>
               <span>•</span>
-              <span>{Math.ceil(blogPost.content.split(' ').length / 200)} dk okuma süresi</span>
+              <span>{Math.ceil(mediaPost.content.split(' ').length / 200)} dk okuma süresi</span>
               <span>•</span>
-              <span>{blogPost.category}</span>
+              <span>{mediaPost.category}</span>
             </div>
           </div>
         </div>
@@ -97,7 +101,7 @@ export default function BlogDetailPage({ params }: { params: { id: string } }) {
 
       {/* İçerik */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        {/* Blog İçeriği */}
+        {/* Medya İçeriği */}
         <article className="prose prose-lg max-w-none">
           <div 
             className="blog-content font-['Times_New_Roman'] 
@@ -112,14 +116,14 @@ export default function BlogDetailPage({ params }: { params: { id: string } }) {
                        [&>*:first-child]:mt-0
                        [&>*:last-child]:mb-0
                        selection:bg-[#061E4F]/10"
-            dangerouslySetInnerHTML={{ __html: blogPost.content }}
+            dangerouslySetInnerHTML={{ __html: mediaPost.content }}
           />
         </article>
 
         {/* Geri Dön Butonu */}
         <div className="mt-16">
           <Link
-            href="/blog"
+            href="/medya"
             className="inline-flex items-center space-x-3 text-[#061E4F] hover:text-[#061E4F]/80 transition-colors text-lg group font-['Times_New_Roman']"
           >
             <svg
@@ -135,7 +139,7 @@ export default function BlogDetailPage({ params }: { params: { id: string } }) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            <span>Tüm Yazılar</span>
+            <span>Tüm Medya İçerikleri</span>
           </Link>
         </div>
       </div>

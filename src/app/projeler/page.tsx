@@ -15,7 +15,7 @@ export default function ProjectsPage() {
       type: 'KONUT PROJESİ',
       description: 'Modern mimari ve lüks yaşamın buluştuğu özel bir proje.',
       image: '',
-      storagePath: 'lacasalia/tatlisu_23 copy_11zon.webp',
+      storagePath: 'lacasalia/tatlisu_12 copy.webp',
       location: 'İSKELE, KKTC',
       slug: 'la-casalia',
       status: 'devam-eden'
@@ -85,7 +85,7 @@ export default function ProjectsPage() {
       type: 'KONUT PROJESİ',
       description: 'Şehrin merkezinde huzurlu bir yaşam.',
       image: '',
-      storagePath: 'courtyard/1.webp',
+      storagePath: 'courtyard/2 (1).webp',
       location: 'GİRNE, KKTC',
       slug: 'courtyard',
       status: 'tamamlanan'

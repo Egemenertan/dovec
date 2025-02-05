@@ -60,7 +60,7 @@ export default function Navbar() {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-700 ${
       isScrolled 
-        ? 'backdrop-blur-sm bg-white/30 after:absolute after:inset-0 after:bg-[radial-gradient(800px_circle_at_var(--mouse-x,50%)_var(--mouse-y,50%),rgba(255,255,255,0.04),transparent_45%)] after:transition-opacity after:duration-500' 
+        ? 'backdrop-blur-sm bg-white shadow-sm after:absolute after:inset-0 after:bg-[radial-gradient(800px_circle_at_var(--mouse-x,50%)_var(--mouse-y,50%),rgba(255,255,255,0.04),transparent_45%)] after:transition-opacity after:duration-500' 
         : 'bg-black/10 backdrop-blur-sm'
     }`}>
       <div className={`relative w-screen max-w-[100vw] ${isScrolled ? 'after:absolute after:inset-0 after:bg-gradient-to-b after:from-white/5 after:to-transparent' : ''}`}>
@@ -194,7 +194,24 @@ export default function Navbar() {
           {/* Sağ menü */}
           <div className="hidden md:flex items-center justify-start space-x-3 lg:space-x-6 xl:space-x-8 flex-1 pl-4 lg:pl-8 xl:pl-16">
             <NavLink href="/blog" label="Blog" />
-            <NavLink href="/kariyer" label="Kariyer" />
+            <a 
+              href="https://www.linkedin.com/company/dovecgroup/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`relative font-light tracking-wider group py-2 transition-all duration-300 ${
+                isScrolled ? 'text-zinc-700 hover:text-black' : 'text-white hover:text-white'
+              }`}
+            >
+              <span className="relative z-10 text-sm uppercase">Kariyer</span>
+              <div className={`absolute bottom-0 left-0 w-full h-[1px] ${
+                isScrolled 
+                  ? 'bg-gradient-to-r from-transparent via-zinc-600 to-transparent' 
+                  : 'bg-gradient-to-r from-transparent via-white to-transparent'
+              } scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center`}></div>
+              <div className={`absolute bottom-0 left-0 w-full h-1 ${
+                isScrolled ? 'bg-zinc-800/10' : 'bg-white/20'
+              } scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center blur-sm`}></div>
+            </a>
             <NavLink href="/iletisim" label="İletişim" />
           </div>
 
@@ -271,6 +288,7 @@ export default function Navbar() {
                   <MobileNavLink href="/projeler" label="Projeler" setIsOpen={setIsOpen} />
                   <MobileNavLink href="/medya" label="Medya" setIsOpen={setIsOpen} />
                   <MobileNavLink href="/blog" label="Blog" setIsOpen={setIsOpen} />
+                  <MobileNavLink href="https://www.linkedin.com/company/dovecgroup/" label="Kariyer" setIsOpen={setIsOpen} />
                   <MobileNavLink href="/iletisim" label="İletişim" setIsOpen={setIsOpen} />
 
                   {/* Dil Seçenekleri */}
@@ -334,8 +352,8 @@ export default function Navbar() {
             <div className="mt-auto pt-8 border-t border-zinc-200 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
               <div className="mx-4">
                 <div className="flex flex-col space-y-4">
-                  <a href="tel:+90123456789" className="text-zinc-800/90 hover:text-zinc-900 text-sm font-light tracking-wider transition-colors duration-300">
-                    +90 123 456 789
+                  <a href="tel:+90 548 837 0015" className="text-zinc-800/90 hover:text-zinc-900 text-sm font-light tracking-wider transition-colors duration-300">
+                  +90 548 837 0015
                   </a>
                   <a href="mailto:info@dovec.com" className="text-zinc-800/90 hover:text-zinc-900 text-sm font-light tracking-wider transition-colors duration-300">
                     info@dovec.com

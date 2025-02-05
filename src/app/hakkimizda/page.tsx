@@ -72,10 +72,16 @@ const values = [
 export default function AboutPage() {
   const [chairmanImage, setChairmanImage] = useState('')
   const [signatureImage, setSignatureImage] = useState('')
+  const [heroImage, setHeroImage] = useState('')
 
   useEffect(() => {
     const loadImages = async () => {
       try {
+        // Hero görseli
+        const heroRef = ref(storage, 'bizkimiz/DSC04004_11zon.webp')
+        const heroUrl = await getDownloadURL(heroRef)
+        setHeroImage(heroUrl)
+
         // Başkan resmi
         const imageRef = ref(storage, 'bd.webp')
         const url = await getDownloadURL(imageRef)
@@ -97,16 +103,37 @@ export default function AboutPage() {
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
       {/* Hero Bölümü */}
       <div className="relative h-[40vh] lg:h-[50vh]">
-        <Image
-          src="/about-hero.jpg"
-          alt="Biz Kimiz"
-          fill
-          className="object-cover"
-          priority
-        />
+        {heroImage && (
+          <Image
+            src={heroImage}
+            alt="Biz Kimiz"
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-white uppercase">
+        
+        {/* Merkez Başlık */}
+        <div className="absolute inset-0 flex items-center justify-center translate-y-12">
+          <div className="text-center">
+            <div className="flex flex-col items-center space-y-1.5">
+              <span className="block text-[10px] tracking-[0.3em] text-white/60 uppercase">
+                Döveç Group
+              </span>
+              <span className="block text-xs font-light tracking-wider text-white/80">
+                Kurucu Başkanı
+              </span>
+              <span className="block text-xs font-light tracking-wider text-white">
+                Muharrem Döveç
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Alt Başlık */}
+        <div className="absolute bottom-12 left-0 right-0">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-white uppercase text-center">
             Biz Kimiz
           </h1>
         </div>
@@ -119,7 +146,7 @@ export default function AboutPage() {
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
                 <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Başkan</span>
+                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Direktör</span>
               </div>
               <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
                 Yönetim Kurulu Başkanı
@@ -243,13 +270,13 @@ export default function AboutPage() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#061E4F]/5 rounded-full blur-3xl"></div>
 
         {/* Başlık */}
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 text-center z-10">
+        <div className="absolute top-10 md:top-20 left-1/2 -translate-x-1/2 text-center z-10 w-full px-4">
           <div className="flex items-center space-x-4 justify-center mb-4">
             <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-            <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Dovec</span>
+            <span className="text-sm md:text-base font-light tracking-[.5em] text-[#061E4F]/80 uppercase">Dovec</span>
             <div className="w-20 h-[1px] bg-gradient-to-l from-[#061E4F] to-transparent"></div>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-[#061E4F]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-[#061E4F]">
             Değerlerimiz
           </h2>
         </div>
@@ -257,55 +284,55 @@ export default function AboutPage() {
         {/* Artı İşareti ve Değerler */}
         <div className="absolute inset-0 flex items-center justify-center">
           {/* Dikey Çizgi */}
-          <div className="absolute w-[1px] h-[70vh] bg-gradient-to-b from-transparent via-[#061E4F]/20 to-transparent">
+          <div className="absolute w-[1px] h-[80vh] md:h-[70vh] bg-gradient-to-b from-transparent via-[#061E4F]/20 to-transparent">
             <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#061E4F]/5 rounded-full blur-lg"></div>
           </div>
           
           {/* Yatay Çizgi */}
-          <div className="absolute h-[1px] w-[70vw] bg-gradient-to-r from-transparent via-[#061E4F]/20 to-transparent">
+          <div className="absolute h-[1px] w-[90vw] md:w-[70vw] bg-gradient-to-r from-transparent via-[#061E4F]/20 to-transparent">
             <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#061E4F]/5 rounded-full blur-lg"></div>
           </div>
 
           {/* Değerler */}
-          <div className="relative w-[70vw] h-[70vh]">
+          <div className="relative w-[90vw] md:w-[70vw] h-[80vh] md:h-[70vh]">
             {/* Sol Üst */}
-            <div className="absolute top-0 left-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center p-4 lg:p-8 transform lg:group-hover:scale-110 transition-all duration-500">
-                <div className="text-[#061E4F] mb-4">{values[0].icon}</div>
-                <h3 className="text-2xl font-light tracking-wider text-[#061E4F] mb-3">{values[0].title}</h3>
-                <p className="text-gray-600 font-light text-sm lg:text-base">{values[0].description}</p>
+            <div className="absolute top-0 left-0 w-[calc(50%-1rem)] h-[calc(50%-1rem)] flex items-center justify-center p-4 lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
+              <div className="text-center transform lg:group-hover:scale-110 transition-all duration-500">
+                <div className="text-[#061E4F] mb-3 md:mb-4 flex justify-center">{values[0].icon}</div>
+                <h3 className="text-lg md:text-xl font-light tracking-wider text-[#061E4F] mb-2 md:mb-3">{values[0].title}</h3>
+                <p className="text-gray-600 font-light text-xs md:text-sm lg:text-base px-2">{values[0].description}</p>
               </div>
             </div>
 
             {/* Sağ Üst */}
-            <div className="absolute top-0 right-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center p-4 lg:p-8 transform lg:group-hover:scale-110 transition-all duration-500">
-                <div className="text-[#061E4F] mb-4">{values[1].icon}</div>
-                <h3 className="text-2xl font-light tracking-wider text-[#061E4F] mb-3">{values[1].title}</h3>
-                <p className="text-gray-600 font-light text-sm lg:text-base">{values[1].description}</p>
+            <div className="absolute top-0 right-0 w-[calc(50%-1rem)] h-[calc(50%-1rem)] flex items-center justify-center p-4 lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
+              <div className="text-center transform lg:group-hover:scale-110 transition-all duration-500">
+                <div className="text-[#061E4F] mb-3 md:mb-4 flex justify-center">{values[1].icon}</div>
+                <h3 className="text-lg md:text-xl font-light tracking-wider text-[#061E4F] mb-2 md:mb-3">{values[1].title}</h3>
+                <p className="text-gray-600 font-light text-xs md:text-sm lg:text-base px-2">{values[1].description}</p>
               </div>
             </div>
 
             {/* Sol Alt */}
-            <div className="absolute bottom-0 left-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center p-4 lg:p-8 transform lg:group-hover:scale-110 transition-all duration-500">
-                <div className="text-[#061E4F] mb-4">{values[2].icon}</div>
-                <h3 className="text-2xl font-light tracking-wider text-[#061E4F] mb-3">{values[2].title}</h3>
-                <p className="text-gray-600 font-light text-sm lg:text-base">{values[2].description}</p>
+            <div className="absolute bottom-0 left-0 w-[calc(50%-1rem)] h-[calc(50%-1rem)] flex items-center justify-center p-4 lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
+              <div className="text-center transform lg:group-hover:scale-110 transition-all duration-500">
+                <div className="text-[#061E4F] mb-3 md:mb-4 flex justify-center">{values[2].icon}</div>
+                <h3 className="text-lg md:text-xl font-light tracking-wider text-[#061E4F] mb-2 md:mb-3">{values[2].title}</h3>
+                <p className="text-gray-600 font-light text-xs md:text-sm lg:text-base px-2">{values[2].description}</p>
               </div>
             </div>
 
             {/* Sağ Alt */}
-            <div className="absolute bottom-0 right-0 w-[calc(50%-2rem)] h-[calc(50%-2rem)] flex items-center justify-center lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center p-4 lg:p-8 transform lg:group-hover:scale-110 transition-all duration-500">
-                <div className="text-[#061E4F] mb-4">{values[3].icon}</div>
-                <h3 className="text-2xl font-light tracking-wider text-[#061E4F] mb-3">{values[3].title}</h3>
-                <p className="text-gray-600 font-light text-sm lg:text-base">{values[3].description}</p>
+            <div className="absolute bottom-0 right-0 w-[calc(50%-1rem)] h-[calc(50%-1rem)] flex items-center justify-center p-4 lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
+              <div className="text-center transform lg:group-hover:scale-110 transition-all duration-500">
+                <div className="text-[#061E4F] mb-3 md:mb-4 flex justify-center">{values[3].icon}</div>
+                <h3 className="text-lg md:text-xl font-light tracking-wider text-[#061E4F] mb-2 md:mb-3">{values[3].title}</h3>
+                <p className="text-gray-600 font-light text-xs md:text-sm lg:text-base px-2">{values[3].description}</p>
               </div>
             </div>
 
             {/* Merkez Kesişim Efekti */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 md:w-32 h-24 md:h-32">
               <div className="absolute inset-0 bg-[#061E4F]/5 rounded-full blur-2xl"></div>
               <div className="absolute inset-4 bg-gradient-to-br from-white/10 to-transparent rounded-full"></div>
             </div>
@@ -313,7 +340,7 @@ export default function AboutPage() {
         </div>
 
         {/* Dekoratif Çemberler */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vh] pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] md:w-[90vw] h-[85vh] md:h-[90vh] pointer-events-none">
           <div className="absolute inset-0 border border-[#061E4F]/5 rounded-full animate-pulse"></div>
           <div className="absolute inset-8 border border-[#061E4F]/5 rounded-full animate-pulse delay-150"></div>
           <div className="absolute inset-16 border border-[#061E4F]/5 rounded-full animate-pulse delay-300"></div>

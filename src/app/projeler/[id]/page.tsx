@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { Gallery } from '@/components/Gallery';
 import { storage } from '@/firebase/config';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
+import { ImageSlider } from '@/components/ImageSlider';
 
 // SVG Komponentleri
 const HospitalIcon = () => (
@@ -83,7 +84,7 @@ const MallIcon = () => (
 
 const ParkIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
   </svg>
 );
 
@@ -125,32 +126,34 @@ interface ProjectData {
 const projectsData: Record<string, ProjectData> = {
   'la-casalia': {
     title: 'La Casalia',
-    heroImage: 'lacasalia/tatlisu_23 copy_11zon.webp',
-    city: 'İSKELE',
-    region: 'Long Beach',
+    heroImage: 'lacasalia/tatlisu_10 - Photo copy.webp',
+    city: 'TATLISU',
+    region: 'Tatlısu',
     completion: '2025',
     types: '1+1 Deluxe, 1+1 Deluxe 2, 2+1 Deluxe, 2+1 Deluxe 2, 3+1 Loft, 3+1 Villa, Grand Studio',
-    startingPrice: '£ 195.000',
-    advantages: 'Plaja yürüme mesafesinde, restoranlara, süpermarkete, sağlık hizmetlerine yakın',
+    startingPrice: '£ 175.000',
+    advantages: 'Deniz manzarası, özel plaj, sosyal tesisler',
     description: 'Modern mimari ve lüks yaşamın buluştuğu özel bir proje.',
     features: [
-      'Akıllı Ev Sistemleri',
-      'Özel Peyzaj',
-      'Yüzme Havuzu',
-      'Spor Salonu',
-      'Güvenlik',
+      'Özel Plaj',
+      'Deniz Manzarası',
+      'Infinity Havuz',
+      'Fitness Merkezi',
+      'Spa & Wellness',
+      'Concierge Hizmeti',
+      'Özel Güvenlik',
       'Kapalı Otopark'
     ],
     distances: [
       {
         icon: <HospitalIcon />,
         title: 'Hastane',
-        distance: '13.7 KM'
+        distance: '12 KM'
       },
       {
         icon: <CenterIcon />,
         title: 'Merkez',
-        distance: '5.2 KM'
+        distance: '5 KM'
       },
       {
         icon: <PlaneIcon />,
@@ -160,7 +163,7 @@ const projectsData: Record<string, ProjectData> = {
       {
         icon: <BeachIcon />,
         title: 'Sahil',
-        distance: '0.2 KM'
+        distance: '0.1 KM'
       },
       {
         icon: <MarketIcon />,
@@ -171,6 +174,11 @@ const projectsData: Record<string, ProjectData> = {
         icon: <RestaurantIcon />,
         title: 'Restoran',
         distance: '0.3 KM'
+      },
+      {
+        icon: <MarinaIcon />,
+        title: 'Marina',
+        distance: '3 KM'
       }
     ]
   },
@@ -180,7 +188,7 @@ const projectsData: Record<string, ProjectData> = {
     city: 'TATLISU',
     region: 'Sahil',
     completion: '2024',
-    types: '2+1, 3+1 Rezidanslar',
+    types: '1+1, 2+1, 3+1 Garden, 3+1 Penthouse, 3+1 Villa, 4+1 Villa',
     startingPrice: '£ 245.000',
     advantages: 'Deniz manzarası, doğayla iç içe, modern yaşam',
     description: 'Doğa ile iç içe, lüks yaşam standartları.',
@@ -231,7 +239,7 @@ const projectsData: Record<string, ProjectData> = {
     city: 'GAZİMAĞUSA',
     region: 'Tatlısu',
     completion: '2025',
-    types: '1+1, 2+1, 3+1 Rezidanslar',
+    types: '2+1, 3+1 Apart, 3+1 Villa, 4+1',
     startingPrice: '£ 225.000',
     advantages: 'Deniz manzarası, özel plaj, sosyal tesisler, marina yakınlığı',
     description: 'Ada yaşamının tüm ayrıcalıklarını sunan özel proje.',
@@ -289,7 +297,7 @@ const projectsData: Record<string, ProjectData> = {
     city: 'GİRNE',
     region: 'Çatalköy',
     completion: '2024',
-    types: '1+1, 2+1, 3+1 Rezidanslar',
+    types: 'A 1+1, A 2+1, A Studio, BCD 1+1, BCD 2+1, BCD 3+1, BCD Dublex, BCD Penthouse, BCD Studio',
     startingPrice: '£ 185.000',
     advantages: 'Şehir merkezine yakın, deniz manzaralı, sosyal olanaklar',
     description: 'Huzur ve konforun buluştuğu yaşam alanları.',
@@ -352,7 +360,7 @@ const projectsData: Record<string, ProjectData> = {
     city: 'LEFKOŞA',
     region: 'Gönyeli',
     completion: '2025',
-    types: '2+1, 3+1 Rezidanslar',
+    types: '',
     startingPrice: '£ 215.000',
     advantages: 'Şehir merkezinde, üniversitelere yakın, modern yaşam',
     description: 'Dört mevsim ayrıcalıklı yaşam deneyimi.',
@@ -523,7 +531,7 @@ const projectsData: Record<string, ProjectData> = {
   },
   'courtyard': {
     title: 'Courtyard',
-    heroImage: 'courtyard/1.webp',
+    heroImage: 'courtyard/2 (1).webp',
     city: 'GİRNE',
     region: 'Merkez',
     completion: '2021',
@@ -670,6 +678,82 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           throw new Error('Storage veya klasör adı bulunamadı');
         }
 
+        // La Casalia için özel görsel yükleme
+        if (normalizedId === 'la-casalia') {
+          // Hero image yükleme
+          const heroImageRef = ref(storage, 'lacasalia/tatlisu_10 - Photo copy.webp');
+          const heroUrl = await getDownloadURL(heroImageRef);
+          setHeroImage(heroUrl);
+          console.log('Hero image yüklendi:', heroUrl);
+          
+          // Indoor klasöründeki tüm alt klasörleri listele
+          const indoorRef = ref(storage, 'lacasalia/indoor');
+          const indoorResult = await listAll(indoorRef);
+          
+          // Her bir alt klasör için resimleri yükle
+          for (const folder of indoorResult.prefixes) {
+            const folderRef = ref(storage, folder.fullPath);
+            const folderResult = await listAll(folderRef);
+            
+            // Grand klasörü için özel işlem
+            if (folder.name === 'grand') {
+              console.log('Grand klasörü bulundu:', folder.fullPath);
+              const grandUrls = await Promise.all(
+                folderResult.items.map(async (item) => {
+                  try {
+                    const url = await getDownloadURL(item);
+                    console.log(`Grand klasöründen resim yüklendi: ${item.name} ->`, url);
+                    return url;
+                  } catch (error) {
+                    console.error(`Resim yüklenirken hata: ${item.name}`, error);
+                    return null;
+                  }
+                })
+              ).then(urls => urls.filter(url => url !== null));
+              
+              // Grand resimlerini images state'ine ekle
+              if (grandUrls.length > 0) {
+                console.log(`Toplam ${grandUrls.length} adet grand resmi yüklendi`);
+                setImages(prevImages => [...prevImages, ...grandUrls]);
+              } else {
+                console.warn('Grand klasöründe resim bulunamadı');
+              }
+              continue;
+            }
+            
+            // Diğer klasörler için normal yükleme
+            const urls = await Promise.all(
+              folderResult.items.map(async (item) => {
+                const url = await getDownloadURL(item);
+                console.log(`${folder.name} klasöründen resim yüklendi:`, url);
+                return url;
+              })
+            );
+            
+            setImages(prevImages => [...prevImages, ...urls]);
+          }
+          
+          // Diğer görselleri yükle
+          const storageRef = ref(storage, folderName);
+          const result = await listAll(storageRef);
+          
+          const otherUrls = await Promise.all(
+            result.items
+              .filter(item => !item.fullPath.includes('indoor/') && item.fullPath !== 'lacasalia/tatlisu_10 - Photo copy.webp')
+              .map(async (item) => {
+                const url = await getDownloadURL(item);
+                return url;
+              })
+          );
+
+          const shuffledUrls = [...otherUrls].sort(() => Math.random() - 0.5);
+          if (shuffledUrls.length >= 4) {
+            setTypeImages([shuffledUrls[0], shuffledUrls[1], shuffledUrls[2]]);
+            setAboutImage(shuffledUrls[3]);
+          }
+          return;
+        }
+
         // Sky Sakarya ve Panorama için özel görsel yükleme
         if (normalizedId === 'sky-sakarya' || normalizedId === 'panorama') {
           const storageRef = ref(storage, normalizedId === 'sky-sakarya' ? 'skysakarya' : 'panorama');
@@ -799,8 +883,14 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
               <div className="space-y-16">
                 <div>
                   <h3 className="text-sm font-light tracking-[.3em] text-[#061E4F]/60 uppercase mb-6">Konut Tipleri</h3>
-                  <p className="text-4xl font-extralight tracking-wider text-[#061E4F]">{projectData.types}</p>
-                  <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-6"></div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {projectData.types.split(',').map((type, index) => (
+                      <div key={index} className="bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm px-6 py-4 rounded-xl group">
+                        <span className="block text-sm font-light tracking-wider text-[#061E4F]/70 group-hover:text-[#061E4F] transition-all duration-300">{type.trim()}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-8"></div>
                 </div>
                 <div>
                   <h3 className="text-sm font-light tracking-[.3em] text-[#061E4F]/60 uppercase mb-6">Başlangıç Fiyatı</h3>
@@ -916,33 +1006,19 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#061E4F]/20 to-transparent"></div>
         </div>
         
-        {/* Konut Tipleri Bölümü - La Casalia için özel düzenleme */}
-        {normalizedId === 'la-casalia' && (
+        {/* Konut Tipleri Bölümü - Proje bazlı özel düzenlemeler */}
+        {normalizedId === 'querencia' && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
             {/* 1+1 Deluxe */}
             <div className="group relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12">
-                  {typeImages[0] && (
-                    <Image
-                      src={typeImages[0]}
-                      alt="1+1 Deluxe"
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                      priority
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                    <span className="text-sm font-light tracking-[.3em] text-white/80 uppercase">Tip A</span>
-                  </div>
-                </div>
+                <ImageSlider folderPath="querencia/indoor/a1+1" alt="A 1+1" />
                 <div className="space-y-8">
                   <div className="space-y-3">
-                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">1+1 Deluxe</p>
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">A 1+1</p>
                     <div className="flex items-center space-x-3">
-                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">55m²</span>
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">65m²</span>
                     </div>
                   </div>
                 </div>
@@ -953,26 +1029,160 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <div className="group relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12">
-                  {typeImages[1] && (
-                    <Image
-                      src={typeImages[1]}
-                      alt="1+1 Deluxe 2"
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                      priority
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                    <span className="text-sm font-light tracking-[.3em] text-white/80 uppercase">Tip B</span>
+                <ImageSlider folderPath="querencia/indoor/a2+1" alt="A 2+1" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">A 2+1</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">85m²</span>
+                    </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* A Studio */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="querencia/indoor/astudio" alt="A Studio" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">A Studio</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">45m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* BCD 1+1 */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="querencia/indoor/bcd1+1" alt="BCD 1+1" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">BCD 1+1</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">70m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* BCD 2+1 */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="querencia/indoor/bcd2+1" alt="BCD 2+1" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">BCD 2+1</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">90m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* BCD 3+1 */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="querencia/indoor/bcd3+1" alt="BCD 3+1" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">BCD 3+1</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">120m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* BCD Dublex */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="querencia/indoor/bcddublex" alt="BCD Dublex" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">BCD Dublex</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">150m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* BCD Penthouse */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="querencia/indoor/bcdpenthouse" alt="BCD Penthouse" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">BCD Penthouse</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">180m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* BCD Studio */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="querencia/indoor/bcdstudio" alt="BCD Studio" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">BCD Studio</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">50m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {normalizedId === 'la-casalia' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
+            {/* 1+1 Deluxe */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="lacasalia/indoor/1+1" alt="1+1 Deluxe" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">1+1 Deluxe</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">65m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 1+1 Deluxe 2 */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="lacasalia/indoor/1+1deluxe2" alt="1+1 Deluxe 2" />
                 <div className="space-y-8">
                   <div className="space-y-3">
                     <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">1+1 Deluxe 2</p>
                     <div className="flex items-center space-x-3">
-                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">60m²</span>
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">70m²</span>
                     </div>
                   </div>
                 </div>
@@ -983,21 +1193,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <div className="group relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12">
-                  {typeImages[2] && (
-                    <Image
-                      src={typeImages[2]}
-                      alt="2+1 Deluxe"
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                      priority
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                    <span className="text-sm font-light tracking-[.3em] text-white/80 uppercase">Tip C</span>
-                  </div>
-                </div>
+                <ImageSlider folderPath="lacasalia/indoor/2+1" alt="2+1 Deluxe" />
                 <div className="space-y-8">
                   <div className="space-y-3">
                     <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">2+1 Deluxe</p>
@@ -1013,21 +1209,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <div className="group relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12">
-                  {typeImages[3] && (
-                    <Image
-                      src={typeImages[3]}
-                      alt="2+1 Deluxe 2"
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                      priority
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                    <span className="text-sm font-light tracking-[.3em] text-white/80 uppercase">Tip D</span>
-                  </div>
-                </div>
+                <ImageSlider folderPath="lacasalia/indoor/2+1deluxe2" alt="2+1 Deluxe 2" />
                 <div className="space-y-8">
                   <div className="space-y-3">
                     <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">2+1 Deluxe 2</p>
@@ -1043,21 +1225,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <div className="group relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12">
-                  {typeImages[4] && (
-                    <Image
-                      src={typeImages[4]}
-                      alt="3+1 Loft"
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                      priority
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                    <span className="text-sm font-light tracking-[.3em] text-white/80 uppercase">Tip E</span>
-                  </div>
-                </div>
+                <ImageSlider folderPath="lacasalia/indoor/3+1loft" alt="3+1 Loft" />
                 <div className="space-y-8">
                   <div className="space-y-3">
                     <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">3+1 Loft</p>
@@ -1073,21 +1241,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <div className="group relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12">
-                  {typeImages[5] && (
-                    <Image
-                      src={typeImages[5]}
-                      alt="3+1 Villa"
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                      priority
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                    <span className="text-sm font-light tracking-[.3em] text-white/80 uppercase">Tip F</span>
-                  </div>
-                </div>
+                <ImageSlider folderPath="lacasalia/indoor/3+1villa" alt="3+1 Villa" />
                 <div className="space-y-8">
                   <div className="space-y-3">
                     <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">3+1 Villa</p>
@@ -1103,26 +1257,12 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <div className="group relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12">
-                  {typeImages[6] && (
-                    <Image
-                      src={typeImages[6]}
-                      alt="Grand Studio"
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                      priority
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                    <span className="text-sm font-light tracking-[.3em] text-white/80 uppercase">Tip G</span>
-                  </div>
-                </div>
+                <ImageSlider folderPath="lacasalia/indoor/grand" alt="Grand Studio" />
                 <div className="space-y-8">
                   <div className="space-y-3">
                     <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">Grand Studio</p>
                     <div className="flex items-center space-x-3">
-                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">45m²</span>
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">55m²</span>
                     </div>
                   </div>
                 </div>
@@ -1131,58 +1271,18 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           </div>
         )}
 
-        {/* Diğer projeler için varsayılan konut tipleri */}
-        {normalizedId !== 'la-casalia' && (
+        {normalizedId === 'natulux' && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
             {/* 1+1 */}
             <div className="group relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12">
-                  {typeImages[0] && (
-                    <Image
-                      src={typeImages[0]}
-                      alt="1+1 Konut Tipi"
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                      priority
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                    <span className="text-sm font-light tracking-[.3em] text-white/80 uppercase">Tip A</span>
-                  </div>
-                </div>
+                <ImageSlider folderPath="natulux/indoor/1+1" alt="1+1" />
                 <div className="space-y-8">
                   <div className="space-y-3">
-                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">1+1 Rezidans</p>
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">1+1</p>
                     <div className="flex items-center space-x-3">
-                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">65m² - 75m²</span>
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#061E4F]/20"></div>
-                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">Bahçe Katı</span>
-                    </div>
-                  </div>
-                  <div className="h-[1px] w-full bg-gradient-to-r from-[#061E4F]/10 to-transparent"></div>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">1 Yatak Odası</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">1 Banyo</span>
-                      </div>
-                    </div>
-                    <div className="space-y-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">Amerikan Mutfak</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">Geniş Balkon</span>
-                      </div>
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">65m²</span>
                     </div>
                   </div>
                 </div>
@@ -1193,106 +1293,144 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <div className="group relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12">
-                  {typeImages[1] && (
-                    <Image
-                      src={typeImages[1]}
-                      alt="2+1 Konut Tipi"
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                      priority
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                    <span className="text-sm font-light tracking-[.3em] text-white/80 uppercase">Tip B</span>
-                  </div>
-                </div>
+                <ImageSlider folderPath="natulux/indoor/2+1" alt="2+1" />
                 <div className="space-y-8">
                   <div className="space-y-3">
-                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">2+1 Rezidans</p>
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">2+1</p>
                     <div className="flex items-center space-x-3">
-                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">85m² - 95m²</span>
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#061E4F]/20"></div>
-                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">Ara Kat</span>
-                    </div>
-                  </div>
-                  <div className="h-[1px] w-full bg-gradient-to-r from-[#061E4F]/10 to-transparent"></div>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">2 Yatak Odası</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">2 Banyo</span>
-                      </div>
-                    </div>
-                    <div className="space-y-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">Kapalı Mutfak</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">Teras</span>
-                      </div>
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">85m²</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* 3+1 */}
+            {/* 3+1 Garden */}
             <div className="group relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12">
-                  {typeImages[2] && (
-                    <Image
-                      src={typeImages[2]}
-                      alt="3+1 Konut Tipi"
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                      priority
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-8 left-8">
-                    <span className="text-sm font-light tracking-[.3em] text-white/80 uppercase">Tip C</span>
-                  </div>
-                </div>
+                <ImageSlider folderPath="natulux/indoor/3+1garden" alt="3+1 Garden" />
                 <div className="space-y-8">
                   <div className="space-y-3">
-                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">3+1 Rezidans</p>
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">3+1 Garden</p>
                     <div className="flex items-center space-x-3">
-                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">120m² - 135m²</span>
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#061E4F]/20"></div>
-                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">Üst Kat</span>
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">120m²</span>
                     </div>
                   </div>
-                  <div className="h-[1px] w-full bg-gradient-to-r from-[#061E4F]/10 to-transparent"></div>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">3 Yatak Odası</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">2 Banyo</span>
-                      </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3+1 Penthouse */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="natulux/indoor/3+1penthouse" alt="3+1 Penthouse" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">3+1 Penthouse</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">130m²</span>
                     </div>
-                    <div className="space-y-4">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">Kapalı Mutfak</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="w-1 h-1 rounded-full bg-[#061E4F]/20"></div>
-                        <span className="text-lg font-extralight text-[#061E4F]">Teras</span>
-                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3+1 Villa */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="natulux/indoor/3+1villa" alt="3+1 Villa" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">3+1 Villa</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">150m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 4+1 Villa */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="natulux/indoor/4+1villa" alt="4+1 Villa" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">4+1 Villa</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">180m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {normalizedId === 'la-isla' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
+            {/* 2+1 */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="laisla/indoor/2+1" alt="2+1" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">2+1</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">85m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3+1 Apart */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="laisla/indoor/3+1apart" alt="3+1 Apart" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">3+1 Apart</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">120m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3+1 Villa */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="laisla/indoor/3+1villa" alt="3+1 Villa" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">3+1 Villa</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">150m²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 4+1 */}
+            <div className="group relative">
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="relative">
+                <ImageSlider folderPath="laisla/indoor/4+1" alt="4+1" />
+                <div className="space-y-8">
+                  <div className="space-y-3">
+                    <p className="text-3xl font-extralight tracking-wider text-[#061E4F]">4+1</p>
+                    <div className="flex items-center space-x-3">
+                      <span className="text-lg font-extralight tracking-wider text-[#061E4F]/60">180m²</span>
                     </div>
                   </div>
                 </div>
@@ -1316,10 +1454,10 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                   <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Dovec</span>
                 </div>
                 <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
-                  1985'ten Bugüne
+                  1989'ten Bugüne
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-gray-600">
-                  Dovec, 1985 yılından bu yana kişiye özel yaşam alanları inşa eden bir aile şirketidir. Lüks villanızı portföyümüze eklemekten mutluluk duyarız!
+                Dovec Group 1989 yılından bu yana Kuzey Kıbrıs Türk Cumhuriyeti’nde yenilikçi emlak çözümleriyle öncülük etmekten gurur duyar. Her projede kalite, güven ve yeniliği ön planda tutarak, adanın her köşesine modern ve sürdürülebilir çözümler sunar. 
                 </p>
                 <p className="text-xl font-light leading-relaxed text-gray-600">
                   Her projemizde, müşterilerimizin hayallerini gerçeğe dönüştürmeyi ve onlara unutulmaz bir yaşam deneyimi sunmayı hedefliyoruz. Kalite ve güven bizim için sadece bir söz değil, bir yaşam biçimidir.
@@ -1357,13 +1495,17 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
       </div>
 
       {/* Geri Dön Butonu */}
-      <div className="mt-16 flex items-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-24 flex items-center justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link
           href="/projeler"
-          className="inline-flex items-center space-x-2 text-[#061E4F] hover:text-[#061E4F]/80 transition-colors"
+          className="group relative inline-flex items-center"
         >
-          <BackIcon />
-          <span>Tüm Projeler</span>
+          <div className="absolute -inset-4 bg-gradient-to-r from-[#061E4F]/5 via-[#061E4F]/10 to-[#061E4F]/5 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"></div>
+          <div className="relative flex items-center space-x-4">
+            <BackIcon />
+            <span className="text-base font-light tracking-[.2em] text-[#061E4F]/80 group-hover:text-[#061E4F] transition-colors duration-300">TÜM PROJELER</span>
+            <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+          </div>
         </Link>
       </div>
     </div>
