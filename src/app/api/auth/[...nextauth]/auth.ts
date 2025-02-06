@@ -52,6 +52,7 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      allowDangerousEmailAccountLinking: true,
       authorization: {
         params: {
           access_type: "offline",
@@ -92,6 +93,7 @@ export const authOptions: AuthOptions = {
         const userDoc = await db.collection('users').doc(user.email).get();
         
         if (!userDoc.exists) {
+          console.log('Yeni kullanıcı kaydı yapılıyor');
           const usersSnapshot = await db.collection('users').count().get();
           const isFirstUser = usersSnapshot.data().count === 0;
 
@@ -106,13 +108,19 @@ export const authOptions: AuthOptions = {
           };
 
           await db.collection('users').doc(user.email).set(newUser);
+          console.log('Yeni kullanıcı kaydedildi, admin durumu:', isFirstUser);
           return isFirstUser;
         }
 
         const userData = userDoc.data() as User;
+        console.log('Mevcut kullanıcı bilgileri:', {
+          email: user.email,
+          isAdmin: userData.isAdmin,
+          name: userData.name
+        });
         return userData.isAdmin === true;
       } catch (error) {
-        console.error('Kullanıcı kontrolünde hata:', error);
+        console.error('Kullanıcı kontrolünde detaylı hata:', error);
         return false;
       }
     },
@@ -125,6 +133,11 @@ export const authOptions: AuthOptions = {
       if (session?.user) {
         session.user.isAdmin = token.isAdmin;
         session.user.id = token.userId;
+        console.log('Session oluşturuldu:', {
+          email: session.user.email,
+          isAdmin: session.user.isAdmin,
+          id: session.user.id
+        });
       }
       return session;
     },
@@ -135,8 +148,13 @@ export const authOptions: AuthOptions = {
           const userData = userDoc.data() as User;
           token.isAdmin = userData.isAdmin;
           token.userId = user.id;
+          console.log('JWT token oluşturuldu:', {
+            email: user.email,
+            isAdmin: userData.isAdmin,
+            userId: user.id
+          });
         } catch (error) {
-          console.error('Token oluşturmada hata:', error);
+          console.error('Token oluşturmada detaylı hata:', error);
         }
       }
       return token;
