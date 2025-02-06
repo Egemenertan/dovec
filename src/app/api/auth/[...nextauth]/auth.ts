@@ -2,7 +2,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { FirestoreAdapter } from "@auth/firebase-adapter";
 import { cert, getApps, initializeApp } from "firebase-admin/app";
 import type { JWT } from "next-auth/jwt"
-import { Account, Profile, User as NextAuthUser, Session } from "next-auth";
+import { Account, Profile, User as NextAuthUser, Session, AuthOptions } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 import { getFirestore } from 'firebase-admin/firestore';
 import { User } from '@/types/user';
@@ -11,18 +11,38 @@ import { User } from '@/types/user';
 const apps = getApps();
 
 if (!apps.length) {
-  initializeApp({
-    credential: cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-    }),
-  });
+  const projectId = process.env.FIREBASE_PROJECT_ID;
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  let privateKey = process.env.FIREBASE_PRIVATE_KEY;
+
+  if (!projectId || !clientEmail || !privateKey) {
+    throw new Error('Firebase Admin SDK yapılandırma bilgileri eksik');
+  }
+
+  // Private key'i düzenleme
+  if (privateKey.includes('\\n')) {
+    privateKey = privateKey.replace(/\\n/g, '\n');
+  } else if (!privateKey.includes('-----BEGIN PRIVATE KEY-----')) {
+    privateKey = `-----BEGIN PRIVATE KEY-----\n${privateKey}\n-----END PRIVATE KEY-----\n`;
+  }
+
+  try {
+    initializeApp({
+      credential: cert({
+        projectId,
+        clientEmail,
+        privateKey,
+      }),
+    });
+  } catch (error) {
+    console.error('Firebase Admin başlatma hatası:', error);
+    throw error;
+  }
 }
 
 const db = getFirestore();
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -38,9 +58,9 @@ export const authOptions = {
   ],
   adapter: FirestoreAdapter({
     credential: cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      projectId: process.env.FIREBASE_PROJECT_ID!,
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL!,
+      privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
     }),
   }),
   pages: {
@@ -64,15 +84,12 @@ export const authOptions = {
       }
 
       try {
-        // Firestore'dan kullanıcıyı kontrol et
         const userDoc = await db.collection('users').doc(user.email).get();
         
         if (!userDoc.exists) {
-          // Koleksiyondaki toplam kullanıcı sayısını kontrol et
           const usersSnapshot = await db.collection('users').count().get();
           const isFirstUser = usersSnapshot.data().count === 0;
 
-          // Kullanıcı yoksa oluştur
           const newUser = {
             id: user.id,
             email: user.email,
@@ -84,72 +101,24 @@ export const authOptions = {
           };
 
           await db.collection('users').doc(user.email).set(newUser);
-          
-          console.log('Yeni kullanıcı oluşturuldu:', {
-            email: user.email,
-            isAdmin: isFirstUser
-          });
-          
           return isFirstUser;
         }
 
         const userData = userDoc.data() as User;
-        
-        // Eğer isAdmin alanı yoksa veya null ise güncelle
-        if (userData.isAdmin === undefined || userData.isAdmin === null) {
-          // Koleksiyondaki toplam kullanıcı sayısını kontrol et
-          const usersSnapshot = await db.collection('users').count().get();
-          const isFirstUser = usersSnapshot.data().count === 1;
-          
-          await db.collection('users').doc(user.email).update({
-            isAdmin: isFirstUser,
-            updatedAt: new Date()
-          });
-          
-          userData.isAdmin = isFirstUser;
-        }
-
-        console.log('Kullanıcı girişi:', {
-          email: user.email,
-          isAdmin: userData.isAdmin,
-          name: userData.name
-        });
-
-        return userData.isAdmin;
+        return userData.isAdmin === true;
       } catch (error) {
         console.error('Kullanıcı kontrolünde hata:', error);
         return false;
       }
     },
-    async session({ session, token, user }: { session: Session; token: JWT; user: AdapterUser }) {
-      try {
-        if (!session.user?.email) {
-          return session;
-        }
-        
-        // Firestore'dan güncel admin durumunu kontrol et
-        const userDoc = await db.collection('users').doc(session.user.email).get();
-        const userData = userDoc.data() as User;
-
-        return {
-          ...session,
-          user: {
-            ...session.user,
-            id: user.id,
-            isAdmin: userData.isAdmin
-          }
-        };
-      } catch (error) {
-        console.error('Oturum oluşturmada hata:', error);
-        return session;
+    async session({ session, token }: { session: Session; token: JWT }) {
+      if (session?.user) {
+        session.user.isAdmin = token.isAdmin;
+        session.user.id = token.userId;
       }
+      return session;
     },
-    async jwt({ token, user, account, profile }: { 
-      token: JWT; 
-      user?: NextAuthUser | AdapterUser; 
-      account?: Account | null; 
-      profile?: Profile 
-    }) {
+    async jwt({ token, user }: { token: JWT; user?: NextAuthUser | AdapterUser }) {
       if (user) {
         try {
           const userDoc = await db.collection('users').doc(user.email!).get();
@@ -164,8 +133,8 @@ export const authOptions = {
     }
   },
   secret: process.env.NEXTAUTH_SECRET,
-  debug: true,
   session: {
     strategy: "jwt" as const,
+    maxAge: 30 * 24 * 60 * 60, // 30 gün
   }
 }; 
