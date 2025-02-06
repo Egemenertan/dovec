@@ -172,7 +172,7 @@ export default function BlogPage() {
             {blogPosts.map((post) => (
               <article
                 key={post.id}
-                className="group bg-white overflow-hidden transform transition-all duration-500 hover:-translate-y-2 relative"
+                className="group bg-white overflow-hidden relative"
               >
                 {isAdmin && (
                   <div className="absolute top-4 right-4 z-20">
@@ -263,8 +263,8 @@ export default function BlogPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       unoptimized
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                       <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm text-sm mb-3">
                         {post.category}
                       </span>

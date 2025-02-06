@@ -7,6 +7,7 @@ import { Hero } from '@/components/Hero'
 import { ProjectSlider } from '@/components/ProjectSlider'
 import { storage } from '@/firebase/config'
 import { ref, getDownloadURL } from 'firebase/storage'
+import { motion } from 'framer-motion'
 
 // Swiper stilleri
 import 'swiper/css'
@@ -127,22 +128,91 @@ export default function Home() {
             </div>
             
             {/* Çalışan Sayısı */}
-            <div className="col-span-12 sm:col-span-6 md:col-span-4 bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-lg group hover:bg-[#061E4F] transition-all duration-500">
-              <div className="text-5xl sm:text-6xl lg:text-7xl font-extralight text-[#061E4F] mb-2 sm:mb-3 lg:mb-4 group-hover:text-white tracking-tight transition-colors">550+</div>
-              <div className="text-[#061E4F] text-lg sm:text-xl font-light tracking-wider group-hover:text-white/90 transition-colors">Çalışan Sayısı</div>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              whileHover={{ scale: 1.02 }}
+              className="col-span-12 sm:col-span-6 md:col-span-4 bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-lg group hover:bg-[#061E4F] transition-all duration-500"
+            >
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-5xl sm:text-6xl lg:text-7xl font-extralight text-[#061E4F] mb-2 sm:mb-3 lg:mb-4 group-hover:text-white tracking-tight transition-colors"
+              >
+                550+
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-[#061E4F] text-lg sm:text-xl font-light tracking-wider group-hover:text-white/90 transition-colors"
+              >
+                Çalışan Sayısı
+              </motion.div>
+            </motion.div>
             
             {/* Çalışan Çeşitliliği */}
-            <div className="col-span-12 sm:col-span-6 md:col-span-4 bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-lg group hover:bg-[#061E4F] transition-all duration-500">
-              <div className="text-5xl sm:text-6xl lg:text-7xl font-extralight text-[#061E4F] mb-2 sm:mb-3 lg:mb-4 group-hover:text-white tracking-tight transition-colors">24</div>
-              <div className="text-[#061E4F] text-lg sm:text-xl font-light tracking-wider group-hover:text-white/90 transition-colors">Milletten Çalışan Çeşitliliği</div>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              whileHover={{ scale: 1.02 }}
+              className="col-span-12 sm:col-span-6 md:col-span-4 bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-lg group hover:bg-[#061E4F] transition-all duration-500"
+            >
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-5xl sm:text-6xl lg:text-7xl font-extralight text-[#061E4F] mb-2 sm:mb-3 lg:mb-4 group-hover:text-white tracking-tight transition-colors"
+              >
+                24
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="text-[#061E4F] text-lg sm:text-xl font-light tracking-wider group-hover:text-white/90 transition-colors"
+              >
+                Milletten Çalışan Çeşitliliği
+              </motion.div>
+            </motion.div>
             
             {/* Ciro */}
-            <div className="col-span-12 sm:col-span-6 md:col-span-6 bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-lg group hover:bg-[#061E4F] transition-all duration-500">
-              <div className="text-5xl sm:text-6xl lg:text-7xl font-extralight text-[#061E4F] mb-2 sm:mb-3 lg:mb-4 group-hover:text-white tracking-tight transition-colors">5 Milyar €</div>
-              <div className="text-[#061E4F] text-lg sm:text-xl font-light tracking-wider group-hover:text-white/90 transition-colors">İştirakler ve bağlı ortaklıklar dahildir.</div>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              className="col-span-12 sm:col-span-6 md:col-span-6 bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-lg group hover:bg-[#061E4F] transition-all duration-500"
+            >
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="text-5xl sm:text-6xl lg:text-7xl font-extralight text-[#061E4F] mb-2 sm:mb-3 lg:mb-4 group-hover:text-white tracking-tight transition-colors"
+              >
+                5 Milyar €
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="text-[#061E4F] text-lg sm:text-xl font-light tracking-wider group-hover:text-white/90 transition-colors"
+              >
+                İştirakler ve bağlı ortaklıklar dahildir.
+              </motion.div>
+            </motion.div>
             
             {/* Hastane İstatistikleri */}
             <div className="col-span-12 sm:col-span-6 md:col-span-6 bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-lg group hover:bg-[#061E4F] transition-all duration-500">
@@ -168,22 +238,51 @@ export default function Home() {
             {/* Sol Taraf - Başlık ve Metin */}
             <div className="space-y-8 sm:space-y-12">
               <div className="space-y-4">
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extralight leading-tight tracking-[.2em] text-[#061E4F] animate-fade-in uppercase">
-                  <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+                <motion.h2 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extralight leading-tight tracking-[.2em] text-[#061E4F] animate-fade-in uppercase"
+                >
+                  <motion.span 
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent block"
+                  >
                     Kuzey Kıbrıs yalnızca 
-                  </span>
-                  <br />
-                  <span className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-clip-text text-transparent">
-                   bir yatırım alanı
-                  </span>
-                  <br />
-                  <span className="bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 bg-clip-text text-transparent">
+                  </motion.span>
+                  <motion.span 
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-clip-text text-transparent block"
+                  >
+                    bir yatırım alanı
+                  </motion.span>
+                  <motion.span 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    className="bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 bg-clip-text text-transparent block"
+                  >
                     değildir
-                  </span>
-                </h2>
+                  </motion.span>
+                </motion.h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                <div className="relative h-[200px] sm:h-[250px] md:h-[300px] rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-[1.02]">
+                <motion.div 
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="relative h-[200px] sm:h-[250px] md:h-[300px] rounded-2xl overflow-hidden shadow-2xl"
+                >
                   <Image
                     src={investmentImages.image1}
                     alt="Kuzey Kıbrıs Yatırım"
@@ -192,8 +291,22 @@ export default function Home() {
                     priority
                     unoptimized
                   />
-                </div>
-                <div className="relative h-[200px] sm:h-[250px] md:h-[300px] rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-[1.02]">
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 1 }}
+                    className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
+                  />
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 1 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="relative h-[200px] sm:h-[250px] md:h-[300px] rounded-2xl overflow-hidden shadow-2xl"
+                >
                   <Image
                     src={investmentImages.image2}
                     alt="Kuzey Kıbrıs Yatırım"
@@ -202,12 +315,26 @@ export default function Home() {
                     priority
                     unoptimized
                   />
-                </div>
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 1.2 }}
+                    className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
+                  />
+                </motion.div>
               </div>
             </div>
 
             {/* Sağ Taraf - Görsel */}
-            <div className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-[1.02]">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 1.2 }}
+              whileHover={{ scale: 1.02 }}
+              className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl"
+            >
               <Image
                 src={investmentImages.image3}
                 alt="Kuzey Kıbrıs Yatırım"
@@ -216,10 +343,23 @@ export default function Home() {
                 priority
                 unoptimized
               />
-              <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 1.4 }}
+                className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"
+              />
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 1.6 }}
+                className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg"
+              >
                 <span className="text-sm sm:text-base font-medium text-gray-900">• Kuzey Kıbrıs</span>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>

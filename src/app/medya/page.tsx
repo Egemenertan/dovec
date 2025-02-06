@@ -7,6 +7,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { getFirestore, collection, getDocs, orderBy, query, doc, deleteDoc } from 'firebase/firestore'
 import { storage } from '@/firebase/config'
 import { ref, getDownloadURL } from 'firebase/storage'
+import { motion } from 'framer-motion'
 
 interface MediaPost {
   id: string
@@ -214,11 +215,15 @@ export default function MediaPage() {
 
           {activeTab === 'medya' ? (
             // Medya Grid
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {mediaPosts.map((post) => (
-                <article
+                <motion.div
                   key={post.id}
-                  className="group bg-white overflow-hidden transform transition-all duration-500 hover:-translate-x-2 relative w-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="relative group overflow-hidden shadow-lg"
                 >
                   {isAdmin && (
                     <div className="absolute top-4 right-4 z-20">
@@ -301,34 +306,44 @@ export default function MediaPage() {
                   )}
 
                   <Link href={`/medya/${post.id}`} className="block w-full">
-                    <div className="relative h-[300px] md:h-[220px] lg:h-[280px]">
+                    <div className="relative aspect-[4/3]">
                       <Image
                         src={post.coverImage}
                         alt={post.title}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        unoptimized
+                        className="object-cover transform transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                        <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm text-sm mb-3">
+                      {/* Gradient overlay her zaman görünür */}
+                      
+                      
+                      {/* İçerik her zaman görünür */}
+                      <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                        <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm text-sm text-white mb-3 w-fit">
                           {post.category}
                         </span>
-                        <h3 className="text-xl font-medium mb-2">{post.title}</h3>
-                        <p className="text-sm text-white/80 line-clamp-2">{post.excerpt}</p>
+                        <h3 className="text-xl sm:text-2xl font-light text-white mb-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-white/80 text-sm line-clamp-2 font-light">
+                          {post.excerpt}
+                        </p>
                       </div>
                     </div>
                   </Link>
-                </article>
+                </motion.div>
               ))}
             </div>
           ) : (
             // Video Grid
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {videoPosts.map((video) => (
-                <article
+                <motion.div
                   key={video.id}
-                  className="group bg-white overflow-hidden transform transition-all duration-500 hover:-translate-x-2 relative w-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="relative group overflow-hidden shadow-lg"
                 >
                   {isAdmin && (
                     <div className="absolute top-4 right-4 z-20">
@@ -410,42 +425,57 @@ export default function MediaPage() {
                   )}
 
                   <Link href={`/medya/video/${video.id}`} className="block w-full">
-                    <div className="relative h-[300px] md:h-[220px] lg:h-[280px]">
+                    <div className="relative aspect-[4/3]">
                       <Image
-                        src={video.thumbnail}
+                        src={video.thumbnail || '/placeholders/video-placeholder.jpg'}
                         alt={video.title}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        unoptimized
+                        className="object-cover transform transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2}
-                            stroke="currentColor"
-                            className="w-8 h-8 text-white"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347c-.75.412-1.667-.13-1.667-.986V5.653z"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                        <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm text-sm mb-3">
+                      {/* Gradient overlay her zaman görünür */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                      
+                      {/* İçerik her zaman görünür */}
+                      <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                        <h3 className="text-xl sm:text-2xl font-light text-white mb-2">
+                          {video.title}
+                        </h3>
+                        <p className="text-white/80 text-sm line-clamp-2 font-light">
                           {video.category}
-                        </span>
-                        <h3 className="text-xl font-medium mb-2">{video.title}</h3>
+                        </p>
+                        <div className="flex items-center gap-4 mt-4">
+                          <span className="text-white/60 text-sm font-light">
+                            {new Date(video.createdAt).toLocaleDateString('tr-TR', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
+                          </span>
+                          <Link
+                            href={`/medya/${video.id}`}
+                            className="inline-flex items-center gap-2 text-white hover:text-white/80 transition-colors text-sm font-light"
+                          >
+                            Devamını Oku
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-4 h-4"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                              />
+                            </svg>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </Link>
-                </article>
+                </motion.div>
               ))}
             </div>
           )}
