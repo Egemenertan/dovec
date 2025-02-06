@@ -10,20 +10,25 @@ import { User } from '@/types/user';
 // Firebase Admin başlatma
 const apps = getApps();
 
+const getPrivateKey = () => {
+  const key = process.env.FIREBASE_PRIVATE_KEY;
+  if (!key) return undefined;
+  try {
+    // Eğer JSON string olarak kaydedildiyse
+    return JSON.parse(key);
+  } catch {
+    // Eğer düz string olarak kaydedildiyse
+    return key.replace(/\\n/g, '\n');
+  }
+};
+
 if (!apps.length) {
   const projectId = process.env.FIREBASE_PROJECT_ID;
   const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
-  let privateKey = process.env.FIREBASE_PRIVATE_KEY;
+  const privateKey = getPrivateKey();
 
   if (!projectId || !clientEmail || !privateKey) {
     throw new Error('Firebase Admin SDK yapılandırma bilgileri eksik');
-  }
-
-  // Private key'i düzenleme
-  if (privateKey.includes('\\n')) {
-    privateKey = privateKey.replace(/\\n/g, '\n');
-  } else if (!privateKey.includes('-----BEGIN PRIVATE KEY-----')) {
-    privateKey = `-----BEGIN PRIVATE KEY-----\n${privateKey}\n-----END PRIVATE KEY-----\n`;
   }
 
   try {
@@ -49,9 +54,9 @@ export const authOptions: AuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       authorization: {
         params: {
-          prompt: "consent",
           access_type: "offline",
-          response_type: "code"
+          response_type: "code",
+          prompt: "select_account"
         }
       }
     }),
@@ -60,7 +65,7 @@ export const authOptions: AuthOptions = {
     credential: cert({
       projectId: process.env.FIREBASE_PROJECT_ID!,
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL!,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
+      privateKey: getPrivateKey()!,
     }),
   }),
   pages: {
@@ -110,6 +115,11 @@ export const authOptions: AuthOptions = {
         console.error('Kullanıcı kontrolünde hata:', error);
         return false;
       }
+    },
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith('/')) return `${baseUrl}${url}`
+      else if (new URL(url).origin === baseUrl) return url
+      return baseUrl
     },
     async session({ session, token }: { session: Session; token: JWT }) {
       if (session?.user) {

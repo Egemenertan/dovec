@@ -11,10 +11,20 @@ export default function AdminPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (status === 'authenticated') {
+    if (status === 'authenticated' && session?.user?.isAdmin) {
       router.push('/blog');
     }
-  }, [status, router]);
+  }, [status, session, router]);
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signIn('google', {
+        callbackUrl: '/blog'
+      });
+    } catch (error) {
+      console.error('Giriş hatası:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
@@ -30,7 +40,7 @@ export default function AdminPage() {
         <div className="mt-8 space-y-6">
           {status === 'unauthenticated' && (
             <button
-              onClick={() => signIn('google')}
+              onClick={handleGoogleSignIn}
               className="group relative w-full flex items-center justify-center py-3 px-4 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#061E4F] transform transition duration-150 hover:scale-[1.02]"
             >
               <FcGoogle className="h-5 w-5 mr-2" />
@@ -39,7 +49,7 @@ export default function AdminPage() {
           )}
           {status === 'authenticated' && (
             <button
-              onClick={() => signOut()}
+              onClick={() => signOut({ callbackUrl: '/admin' })}
               className="group relative w-full flex items-center justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transform transition duration-150 hover:scale-[1.02]"
             >
               <FiLogOut className="h-5 w-5 mr-2" />
