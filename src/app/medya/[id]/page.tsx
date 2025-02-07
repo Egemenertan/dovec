@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { getFirestore, doc, getDoc } from 'firebase/firestore'
+import { useRouter } from 'next/navigation'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 interface MediaPost {
   id: string
@@ -50,8 +52,8 @@ export default function MediaDetailPage({ params }: { params: { id: string } }) 
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white flex items-center justify-center">
-        <div className="text-2xl text-gray-600">Yükleniyor...</div>
+      <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
+        <LoadingSpinner />
       </div>
     )
   }

@@ -8,6 +8,7 @@ import { getFirestore, collection, getDocs, orderBy, query, doc, deleteDoc } fro
 import { storage } from '@/firebase/config'
 import { ref, getDownloadURL } from 'firebase/storage'
 import { motion } from 'framer-motion'
+import LoadingSpinner from '@/components/LoadingSpinner'
 
 interface MediaPost {
   id: string
@@ -125,8 +126,8 @@ export default function MediaPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white flex items-center justify-center">
-        <div className="text-2xl text-gray-600">Yükleniyor...</div>
+      <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
+        <LoadingSpinner />
       </div>
     )
   }

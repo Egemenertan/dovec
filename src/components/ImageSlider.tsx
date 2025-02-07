@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { storage } from '@/firebase/config';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 interface ImageSliderProps {
   folderPath: string;
@@ -48,7 +49,9 @@ export const ImageSlider = ({ folderPath, alt }: ImageSliderProps) => {
 
   if (loading) {
     return (
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12 bg-gray-100 animate-pulse" />
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12 bg-gradient-to-b from-white via-gray-50 to-white">
+        <LoadingSpinner />
+      </div>
     );
   }
 

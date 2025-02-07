@@ -102,7 +102,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
       {/* Hero Bölümü */}
-      <div className="relative h-[40vh] lg:h-[50vh]">
+      <div className="relative h-[50vh] sm:h-[40vh] lg:h-[50vh]">
         {heroImage && (
           <Image
             src={heroImage}
@@ -115,16 +115,16 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
         
         {/* Merkez Başlık */}
-        <div className="absolute inset-0 flex items-center justify-center translate-y-12">
+        <div className="absolute bottom-32 sm:bottom-36 left-0 right-0 flex justify-center">
           <div className="text-center">
-            <div className="flex flex-col items-center space-y-1.5">
-              <span className="block text-[10px] tracking-[0.3em] text-white/60 uppercase">
-                Döveç Group
-              </span>
-              <span className="block text-xs font-light tracking-wider text-white/80">
+            <span className="block text-[10px] tracking-[0.3em] text-white/60 uppercase mb-2">
+              Döveç Group
+            </span>
+            <div className="flex flex-row sm:flex-col items-center justify-center">
+              <span className="text-xs font-light tracking-wider text-white/80 pr-2 sm:pr-0 sm:mb-1.5 border-r sm:border-r-0 border-white/20">
                 Kurucu Başkanı
               </span>
-              <span className="block text-xs font-light tracking-wider text-white">
+              <span className="text-xs font-light tracking-wider text-white pl-2 sm:pl-0">
                 Muharrem Döveç
               </span>
             </div>
@@ -132,8 +132,8 @@ export default function AboutPage() {
         </div>
 
         {/* Alt Başlık */}
-        <div className="absolute bottom-12 left-0 right-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-white uppercase text-center">
+        <div className="absolute bottom-12 sm:bottom-12 left-0 right-0">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-white uppercase text-center">
             Biz Kimiz
           </h1>
         </div>

@@ -8,20 +8,71 @@ import { ref, getDownloadURL } from 'firebase/storage';
 
 export default function ContactPage() {
   const [heroImage, setHeroImage] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [logoUrl, setLogoUrl] = useState('');
 
   useEffect(() => {
-    const loadHeroImage = async () => {
+    const loadImages = async () => {
+      setLoading(true);
       try {
+        // Hero görseli
         const imageRef = ref(storage, 'querencia/r imaj_9 kopya_16_11zon.webp');
         const url = await getDownloadURL(imageRef);
         setHeroImage(url);
+
+        // Logo
+        const logoRef = ref(storage, 'logo/dovec.webp');
+        const logoUrl = await getDownloadURL(logoRef);
+        setLogoUrl(logoUrl);
       } catch (error) {
-        console.error('Hero resmi yüklenemedi:', error);
+        console.error('Resimler yüklenemedi:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    loadHeroImage();
+    loadImages();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
+        {/* Arka plan desenleri */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-30">
+            <div className="absolute inset-0 animate-[spin_4s_linear_infinite] rounded-full border border-[#061E4F]/10"></div>
+            <div className="absolute inset-10 animate-[spin_5s_linear_infinite] rounded-full border border-[#061E4F]/10"></div>
+            <div className="absolute inset-20 animate-[spin_6s_linear_infinite] rounded-full border border-[#061E4F]/10"></div>
+          </div>
+        </div>
+
+        {/* Logo ve yükleniyor animasyonu */}
+        <div className="relative flex flex-col items-center">
+          <div className="w-32 h-32 relative mb-8">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#061E4F]/20 via-[#061E4F]/10 to-transparent animate-pulse"></div>
+            <div className="absolute inset-1 rounded-full bg-white flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full bg-[#061E4F]/10 animate-pulse" />
+            </div>
+          </div>
+          
+          {/* Yükleniyor animasyonu */}
+          <div className="flex space-x-2">
+            <div className="w-2 h-2 rounded-full bg-[#061E4F]/60 animate-[bounce_0.9s_infinite]"></div>
+            <div className="w-2 h-2 rounded-full bg-[#061E4F]/60 animate-[bounce_0.9s_0.3s_infinite]"></div>
+            <div className="w-2 h-2 rounded-full bg-[#061E4F]/60 animate-[bounce_0.9s_0.6s_infinite]"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!heroImage) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-white">
+        <div className="text-[#061E4F] text-lg font-light tracking-wider">Görsel yüklenemedi</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
@@ -69,7 +120,14 @@ export default function ContactPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-lg font-medium text-[#061E4F] mb-2 tracking-wide">Adres</h3>
-                  <p className="text-gray-600 font-light leading-relaxed">Döveç Head Quaters Uluçam yolu, No.2, Sakarya, Gazimağusa, KKTC</p>
+                  <a 
+                    href="https://www.google.com/maps/dir//D%C3%B6ve%C3%A7+Head+Quaters+Ulu%C3%A7am+yolu,+No.2,+Sakarya,+Gazima%C4%9Fusa,+KKTC"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 font-light leading-relaxed hover:text-[#061E4F] transition-colors"
+                  >
+                    Döveç Head Quaters Uluçam yolu, No.2, Sakarya, Gazimağusa, KKTC
+                  </a>
                 </div>
               </div>
 
@@ -82,7 +140,14 @@ export default function ContactPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-lg font-medium text-[#061E4F] mb-2 tracking-wide">Telefon</h3>
-                  <p className="text-gray-600 font-light leading-relaxed">+90 548 837 0015</p>
+                  <a 
+                    href="tel:+905488370015"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 font-light leading-relaxed hover:text-[#061E4F] transition-colors"
+                  >
+                    +90 548 837 0015
+                  </a>
                 </div>
               </div>
 
@@ -96,9 +161,30 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="text-lg font-medium text-[#061E4F] mb-2 tracking-wide">E-posta</h3>
                   <div className="space-y-2">
-                    <p className="text-gray-600 font-light leading-relaxed hover:text-[#061E4F] transition-colors cursor-pointer">info@dovecconstruction.com</p>
-                    <p className="text-gray-600 font-light leading-relaxed hover:text-[#061E4F] transition-colors cursor-pointer">info@dovecgroup.com</p>
-                    <p className="text-gray-600 font-light leading-relaxed hover:text-[#061E4F] transition-colors cursor-pointer">ik@dovecgroup.com</p>
+                    <a 
+                      href="mailto:info@dovecconstruction.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-gray-600 font-light leading-relaxed hover:text-[#061E4F] transition-colors"
+                    >
+                      info@dovecconstruction.com
+                    </a>
+                    <a 
+                      href="mailto:info@dovecgroup.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-gray-600 font-light leading-relaxed hover:text-[#061E4F] transition-colors"
+                    >
+                      info@dovecgroup.com
+                    </a>
+                    <a 
+                      href="mailto:ik@dovecgroup.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-gray-600 font-light leading-relaxed hover:text-[#061E4F] transition-colors"
+                    >
+                      ik@dovecgroup.com
+                    </a>
                   </div>
                 </div>
               </div>

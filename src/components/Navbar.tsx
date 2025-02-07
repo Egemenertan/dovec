@@ -184,7 +184,7 @@ export default function Navbar() {
                   src={logoUrl}
                   alt="DOVEC Logo"
                   fill
-                  className={`object-contain transition-all duration-500 ${isScrolled ? 'brightness-0' : 'brightness-0 invert'}`}
+                  className={`object-contain transition-all duration-500 ${isScrolled ? '' : 'brightness-0 invert'}`}
                   priority
                 />
               )}
@@ -261,16 +261,16 @@ export default function Navbar() {
             {/* Logo - Navbar ile aynı pozisyonda */}
             <div className="flex items-center h-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
               <div className="flex items-center mx-4">
-                {logoUrl && (
-                  <div className="relative w-32 h-12">
+                <Link href="/" className="relative w-32 h-12">
+                  {logoUrl && (
                     <Image
                       src={logoUrl}
                       alt="DOVEC Logo"
                       fill
-                      className="object-contain brightness-0"
+                      className="object-contain"
                     />
-                  </div>
-                )}
+                  )}
+                </Link>
               </div>
             </div>
 
@@ -298,19 +298,19 @@ export default function Navbar() {
                         onClick={() => setCurrentLang('TR')}
                         className={`px-4 py-2 rounded-lg text-lg font-light tracking-wider transition-all duration-300 ${
                           currentLang === 'TR' 
-                            ? 'bg-zinc-100 text-zinc-900' 
-                            : 'text-zinc-500 hover:text-zinc-900'
+                            ? 'bg-[#061E4F]/10 text-[#061E4F]' 
+                            : 'text-[#061E4F]/60 hover:text-[#061E4F]'
                         }`}
                       >
                         TR
                       </button>
-                      <div className="w-px h-6 bg-zinc-200" />
+                      <div className="w-px h-6 bg-[#061E4F]/10" />
                       <button
                         onClick={() => setCurrentLang('EN')}
                         className={`px-4 py-2 rounded-lg text-lg font-light tracking-wider transition-all duration-300 ${
                           currentLang === 'EN' 
-                            ? 'bg-zinc-100 text-zinc-900' 
-                            : 'text-zinc-500 hover:text-zinc-900'
+                            ? 'bg-[#061E4F]/10 text-[#061E4F]' 
+                            : 'text-[#061E4F]/60 hover:text-[#061E4F]'
                         }`}
                       >
                         EN
@@ -326,7 +326,7 @@ export default function Navbar() {
                     className="group relative overflow-hidden w-full flex items-center space-x-2"
                     onClick={() => setIsOpen(false)}
                   >
-                    <span className="relative inline-block text-xl font-light text-zinc-800/90 tracking-wider transition-transform duration-300 group-hover:translate-x-2">
+                    <span className="relative inline-block text-xl font-light text-[#061E4F] tracking-wider transition-transform duration-300 group-hover:translate-x-2">
                       360°
                     </span>
                     <svg 
@@ -334,7 +334,7 @@ export default function Navbar() {
                       viewBox="0 0 24 24" 
                       fill="none" 
                       stroke="currentColor" 
-                      className="w-5 h-5 text-zinc-800/90 transition-all duration-500 group-hover:rotate-[360deg]"
+                      className="w-5 h-5 text-[#061E4F] transition-all duration-500 group-hover:rotate-[360deg]"
                     >
                       <path 
                         strokeLinecap="round" 
@@ -349,18 +349,43 @@ export default function Navbar() {
             </div>
 
             {/* Alt Bilgi */}
-            <div className="mt-auto pt-8 border-t border-zinc-200 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="mt-auto pt-8 border-t border-[#061E4F]/10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
               <div className="mx-4">
                 <div className="flex flex-col space-y-4">
-                  <a href="tel:+90 548 837 0015" className="text-zinc-800/90 hover:text-zinc-900 text-sm font-light tracking-wider transition-colors duration-300">
-                  +90 548 837 0015
+                  <a href="tel:+90 548 837 0015" className="text-[#061E4F] hover:text-[#061E4F]/80 text-sm font-light tracking-wider transition-colors duration-300 flex items-center space-x-2">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      className="w-4 h-4"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth="1.5" 
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
+                    </svg>
+                    <span>+90 548 837 0015</span>
                   </a>
-                  <a href="mailto:info@dovec.com" className="text-zinc-800/90 hover:text-zinc-900 text-sm font-light tracking-wider transition-colors duration-300">
-                    info@dovec.com
+                  <a href="mailto:info@dovec.com" className="text-[#061E4F] hover:text-[#061E4F]/80 text-sm font-light tracking-wider transition-colors duration-300 flex items-center space-x-2">
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      className="w-4 h-4"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth="1.5" 
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <span>info@dovec.com</span>
                   </a>
-                  <p className="text-zinc-600 text-xs font-light tracking-wider">
-                    © 2024 DOVEC İnşaat. Tüm hakları saklıdır.
-                  </p>
                 </div>
               </div>
             </div>
@@ -451,10 +476,10 @@ function MobileNavLink({ href, label, setIsOpen }: { href: string; label: string
       className="group relative overflow-hidden w-full"
       onClick={() => setIsOpen(false)}
     >
-      <span className="relative inline-block text-xl font-light text-zinc-800/90 tracking-wider transition-transform duration-300 group-hover:translate-x-2">
+      <span className="relative inline-block text-xl font-light text-[#061E4F] tracking-wider transition-transform duration-300 group-hover:translate-x-2">
         {label}
       </span>
-      <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-zinc-600/60 to-transparent transition-all duration-300 group-hover:w-full"></span>
+      <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#061E4F]/60 to-transparent transition-all duration-300 group-hover:w-full"></span>
     </Link>
   )
 } 

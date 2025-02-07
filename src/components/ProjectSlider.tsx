@@ -71,15 +71,7 @@ export const ProjectSlider = () => {
       slug: 'courtyard-platinum',
       storagePath: 'platinum/7.webp'
     },
-    {
-      name: 'Grand Studio',
-      type: 'KONUT PROJESİ',
-      description: 'Modern ve kompakt yaşam alanları.',
-      price: '£155,000\'den başlayan',
-      image: '',
-      slug: 'grand-studio',
-      storagePath: 'grandstudio/hero.webp'
-    }
+    
   ]);
 
   const [activeAward, setActiveAward] = useState(0);
@@ -280,11 +272,15 @@ export const ProjectSlider = () => {
             slidesPerView="auto"
             coverflowEffect={{
               rotate: 0,
-              stretch: 0,
-              depth: 100,
-              modifier: 2,
+              stretch: window.innerWidth < 768 ? 0 : 0,
+              depth: window.innerWidth < 768 ? 50 : 100,
+              modifier: window.innerWidth < 768 ? 1 : 2,
               slideShadows: false,
             }}
+            resistance={true}
+            resistanceRatio={0.5}
+            touchRatio={2}
+            threshold={5}
             navigation={{
               prevEl: '.swiper-prev',
               nextEl: '.swiper-next',
@@ -297,11 +293,11 @@ export const ProjectSlider = () => {
             speed={1000}
             watchSlidesProgress={true}
             preventInteractionOnTransition={true}
-            className="project-swiper !overflow-visible !pt-12 !pb-20 [&_.swiper-slide-prev]:opacity-50 [&_.swiper-slide-next]:opacity-50 [&_.swiper-slide-prev]:blur-sm [&_.swiper-slide-next]:blur-sm [&_.swiper-slide-prev]:scale-90 [&_.swiper-slide-next]:scale-90 [&_.swiper-slide]:transition-all [&_.swiper-slide]:duration-500 relative z-[50]"
+            className="project-swiper !overflow-visible !pt-12 !pb-20 [&_.swiper-slide-prev]:md:opacity-50 [&_.swiper-slide-next]:md:opacity-50 [&_.swiper-slide-prev]:md:blur-sm [&_.swiper-slide-next]:md:blur-sm [&_.swiper-slide-prev]:md:scale-90 [&_.swiper-slide-next]:md:scale-90 [&_.swiper-slide]:transition-all [&_.swiper-slide]:duration-500 relative z-[50]"
           >
             {projects.map((project, index) => (
               project.image ? (
-                <SwiperSlide key={index} className="!w-[500px] sm:!w-[800px] md:!w-[1100px] lg:!w-[1400px]">
+                <SwiperSlide key={index} className="!w-[calc(100vw-32px)] sm:!w-[800px] md:!w-[1100px] lg:!w-[1400px]">
                   <Link href={`/projeler/${project.slug}`}>
                     <motion.div 
                       whileHover={{ scale: 1.02 }}
@@ -351,7 +347,7 @@ export const ProjectSlider = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="space-y-8 mb-16"
+                            className="space-y-8 mb-8 md:mb-16 pt-16 md:pt-0"
                           >
                             <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
                               <span className="inline-block text-sm font-light tracking-[0.2em] text-zinc-500 bg-zinc-100/50 backdrop-blur-sm px-6 py-2 rounded-full">{project.type}</span>
@@ -361,7 +357,7 @@ export const ProjectSlider = () => {
                               whileInView={{ opacity: 1, y: 0 }}
                               viewport={{ once: true }}
                               transition={{ duration: 0.6, delay: 0.4 }}
-                              className="text-4xl sm:text-5xl md:text-6xl font-extralight tracking-wide text-zinc-800 leading-tight"
+                              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight tracking-wide text-zinc-800 leading-tight"
                             >
                               {project.name}
                             </motion.h3>
@@ -373,9 +369,9 @@ export const ProjectSlider = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.6 }}
-                            className="mb-16"
+                            className="mb-8 md:mb-16"
                           >
-                            <p className="text-xl sm:text-2xl text-zinc-600 leading-relaxed font-light">{project.description}</p>
+                            <p className="text-lg sm:text-xl md:text-2xl text-zinc-600 leading-relaxed font-light">{project.description}</p>
                           </motion.div>
 
                           {/* Alt Kısım */}
@@ -384,7 +380,7 @@ export const ProjectSlider = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.8 }}
-                            className="relative space-y-10"
+                            className="relative space-y-6 md:space-y-10"
                           >
                             {/* Fiyat */}
                             <motion.div 
@@ -394,8 +390,8 @@ export const ProjectSlider = () => {
                             >
                               <span className="block text-sm font-light tracking-wider text-zinc-400 mb-3">Başlangıç Fiyatı</span>
                               <div className="flex items-baseline gap-1">
-                                <span className="text-3xl md:text-4xl font-light text-zinc-800">{project.price.split("'")[0]}</span>
-                                <span className="text-lg text-zinc-500 font-light">ve üzeri</span>
+                                <span className="text-2xl sm:text-3xl md:text-4xl font-light text-zinc-800">{project.price.split("'")[0]}</span>
+                                <span className="text-base sm:text-lg text-zinc-500 font-light">ve üzeri</span>
                               </div>
                             </motion.div>
 
@@ -406,7 +402,7 @@ export const ProjectSlider = () => {
                               className="flex items-center gap-8"
                             >
                               <div className="group/link inline-flex items-center gap-6 relative">
-                                <span className="text-xl text-zinc-800 font-light tracking-wide">Detayları Gör</span>
+                                <span className="text-lg sm:text-xl text-zinc-800 font-light tracking-wide">Detayları Gör</span>
                                 <motion.div 
                                   whileHover={{ scale: 1.1 }}
                                   whileTap={{ scale: 0.95 }}
@@ -460,7 +456,7 @@ export const ProjectSlider = () => {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1 }}
-                            className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-transparent md:bg-none"
+                            className="absolute inset-0 hidden md:block bg-gradient-to-r from-white via-transparent to-transparent"
                           />
                         </motion.div>
                       </div>
@@ -494,14 +490,14 @@ export const ProjectSlider = () => {
             className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#061E4F] rounded-full blur-[100px] -z-10"
           />
 
-          <div className="flex flex-col md:flex-row justify-between items-start gap-16">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-16">
             {/* Sol Başlık Alanı */}
             <motion.div 
               initial={{ x: -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="md:w-1/2 flex flex-col h-full"
+              className="md:w-1/2 flex flex-col h-full text-center md:text-left"
             >
               {/* Başlık - Modern ve Sofistike */}
               <motion.div 
@@ -554,15 +550,15 @@ export const ProjectSlider = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
-                className="flex-grow flex items-end -mt-8"
+                className="flex-grow flex items-end"
               >
                 {awardImage && (
-                  <div className="relative w-full aspect-square max-w-[600px]">
+                  <div className="relative w-full aspect-square md:max-w-[600px]">
                     <Image
                       src={awardImage}
                       alt="Döveç Group Ödülleri"
                       fill
-                      className="object-contain"
+                      className="object-contain w-full"
                       priority
                     />
                   </div>
@@ -576,7 +572,7 @@ export const ProjectSlider = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="md:w-1/2 space-y-4"
+              className="md:w-1/2 space-y-4 w-full text-center md:text-left"
             >
               {awards.map((award, index) => (
                 <motion.div 

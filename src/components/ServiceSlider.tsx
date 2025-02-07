@@ -74,7 +74,7 @@ export const ServiceSlider = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-24">
           <span className="block text-sm font-light tracking-[0.4em] text-zinc-400 mb-4">
-            DOVEC GROUP
+            DÖVEÇ GROUP
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-wider text-zinc-800 mb-6 relative inline-block">
             Faaliyet Alanlarımız
