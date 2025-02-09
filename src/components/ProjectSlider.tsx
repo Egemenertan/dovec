@@ -80,38 +80,48 @@ export const ProjectSlider = () => {
   const awards = [
     {
       id: 0,
-      name: "European Property Awards",
-      description: "2023 - 2024 Yılının En İyi Konut Geliştirme Projesi",
+      name: "Construction Company of the Year in Northern Cyprus",
+      description: "Kuzey Kıbrıs'ta Yılın İnşaat Firması",
     },
     {
       id: 1,
-      name: "International Property Awards",
-      description: "2023 Yılı En İyi Mimari Tasarım Ödülü",
+      name: "Best Construction Company Platinum Award",
+      description: "Yılın En İyi İnşaat Şirketi Platinum Ödülü",
     },
     {
       id: 2,
-      name: "Luxury Lifestyle Awards",
-      description: "2023 Yılının En Lüks Konut Projesi",
+      name: "Best New Project Design Award",
+      description: "Courtyard Longbeach En İyi Yeni Proje Tasarımı",
     },
     {
       id: 3,
-      name: "Best Design Award",
-      description: "2023 En İyi Tasarım ve Yaşam Alanı Ödülü",
+      name: "Best Apartment Complex Platinum Award",
+      description: "Terrace Park En İyi Apartman Dalında Platinum Ödülü",
     },
     {
       id: 4,
-      name: "Sustainable Architecture Award",
-      description: "2023 Sürdürülebilir Mimari Ödülü",
+      name: "Best Residence Project Award",
+      description: "Golden Residence En İyi Rezidans Projesi",
     },
     {
       id: 5,
-      name: "Quality Excellence Award",
-      description: "2023 Kalite Mükemmellik Ödülü",
+      name: "Best Building Renovation Award",
+      description: "Döveç Group Long Beach Office En İyi Yapı Renovasyonu",
     },
     {
       id: 6,
-      name: "Innovation in Construction Award",
-      description: "2023 İnşaat Sektöründe İnovasyon Ödülü",
+      name: "Best Kitchen & Industrial Design Award",
+      description: "Arredo Design, Yılın En İyi Mutfağı ve En İyi Endüstriyel Yapı Tasarımı",
+    },
+    {
+      id: 7,
+      name: "Best Investment Project Award",
+      description: "Alfam Dormitories En İyi Yatırım Projesi",
+    },
+    {
+      id: 8,
+      name: "Best Beach Houses Complex Award",
+      description: "Four Seasons Life En İyi Sahil Evleri Sitesi",
     }
   ];
 
@@ -490,98 +500,128 @@ export const ProjectSlider = () => {
             className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#061E4F] rounded-full blur-[100px] -z-10"
           />
 
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-16">
-            {/* Sol Başlık Alanı */}
+          {/* Başlık Alanı - Full Genişlik */}
+          <motion.div 
+            initial={{ x: -50, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full text-center mb-16"
+          >
             <motion.div 
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="md:w-1/2 flex flex-col h-full text-center md:text-left"
+              transition={{ duration: 0.8 }}
+              className="relative"
             >
-              {/* Başlık - Modern ve Sofistike */}
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="relative mb-8"
-              >
-                <motion.span 
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "100%" }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="absolute -top-6 left-0 h-[1px] bg-gradient-to-r from-zinc-300 via-zinc-500 to-transparent"
-                />
+              <motion.span 
+                initial={{ width: 0 }}
+                whileInView={{ width: "100%" }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="absolute -top-6 left-0 h-[1px] bg-gradient-to-r from-zinc-300 via-zinc-500 to-transparent"
+              />
+              <div className="relative">
+                <span className="block text-sm font-light tracking-[0.4em] text-zinc-400 mb-6 relative">
+                  BAŞARILARIMIZ
+                  <motion.span 
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "2rem" }}
+                    transition={{ duration: 0.6, delay: 1 }}
+                    className="absolute left-1/2 -translate-x-1/2 -bottom-2 h-[1px] bg-zinc-400"
+                  />
+                </span>
                 <div className="relative">
-                  <span className="block text-sm font-light tracking-[0.4em] text-zinc-400 mb-6 relative">
-                    BAŞARILARIMIZ
-                    <motion.span 
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "2rem" }}
-                      transition={{ duration: 0.6, delay: 1 }}
-                      className="absolute left-0 -bottom-2 h-[1px] bg-zinc-400"
-                    />
-                  </span>
-                  <div className="relative">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 0.05, y: 0 }}
-                      transition={{ duration: 1, delay: 0.3 }}
-                      className="absolute -left-6 -right-6 top-1/2 -translate-y-1/2 h-full bg-[#061E4F] blur-2xl"
-                    />
-                    <h3 className="text-5xl md:text-6xl lg:text-7xl font-extralight tracking-wider text-zinc-800 max-w-xl leading-tight relative">
-                      Döveç Group 
-                      <span className="block mt-2">Ödülleri</span>
-                    </h3>
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 0.05, y: 0 }}
+                    transition={{ duration: 1, delay: 0.3 }}
+                    className="absolute -left-6 -right-6 top-1/2 -translate-y-1/2 h-full bg-[#061E4F] blur-2xl"
+                  />
+                  <h3 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extralight tracking-wider text-zinc-800 leading-tight text-left">
+                    DÖVEÇ GROUP
+                    <span className="block mt-8 md:mt-10 lg:mt-12">ÖDÜLLERİ</span>
+                  </h3>
                 </div>
-                <motion.span 
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "100%" }}
-                  transition={{ duration: 1, delay: 0.7 }}
-                  className="absolute -bottom-6 right-0 h-[1px] bg-gradient-to-l from-zinc-300 via-zinc-500 to-transparent"
-                />
-              </motion.div>
+              </div>
+              <motion.span 
+                initial={{ width: 0 }}
+                whileInView={{ width: "100%" }}
+                transition={{ duration: 1, delay: 0.7 }}
+                className="absolute -bottom-6 right-0 h-[1px] bg-gradient-to-l from-zinc-300 via-zinc-500 to-transparent"
+              />
+            </motion.div>
+          </motion.div>
 
-              {/* Ödül Görseli */}
+          {/* İçerik Grid - Görsel ve Ödüller Listesi */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Sol Taraf - Büyük Görsel ve Alt Ödüller */}
+            <div className="space-y-20">
               <motion.div 
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
-                className="flex-grow flex items-end"
+                className="relative aspect-square w-full"
               >
                 {awardImage && (
-                  <div className="relative w-full aspect-square md:max-w-[600px]">
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
                     <Image
                       src={awardImage}
                       alt="Döveç Group Ödülleri"
                       fill
-                      className="object-contain w-full"
+                      className="object-cover"
                       priority
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
                   </div>
                 )}
               </motion.div>
-            </motion.div>
 
-            {/* Sağ Ödüller Listesi */}
+              {/* Görsel Altındaki Son İki Ödül */}
+              <div className="space-y-6">
+                {awards.slice(-2).map((award, index) => (
+                  <motion.div 
+                    key={award.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 * index }}
+                    className="group/award border-b border-zinc-200 pb-5 cursor-pointer hover:border-zinc-400 transition-all duration-500"
+                  >
+                    <div className="overflow-hidden">
+                      <motion.h4 
+                        whileHover={{ x: 20 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="text-2xl md:text-3xl font-extralight text-zinc-800 group-hover/award:text-zinc-600 transition-colors"
+                      >
+                        {award.name}
+                      </motion.h4>
+                    </div>
+                    <p className="text-zinc-500 font-light mt-2 text-base group-hover/award:text-zinc-700 transition-colors">
+                      {award.description}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Sağ Taraf - Ödüller Listesi (İlk 7 Ödül) */}
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="md:w-1/2 space-y-4 w-full text-center md:text-left"
+              className="space-y-6"
             >
-              {awards.map((award, index) => (
+              {awards.slice(0, -2).map((award, index) => (
                 <motion.div 
                   key={award.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 * index }}
-                  className="group/award border-b border-zinc-200 pb-4 cursor-pointer hover:border-zinc-400 transition-all duration-500"
+                  className="group/award border-b border-zinc-200 pb-6 cursor-pointer hover:border-zinc-400 transition-all duration-500"
                 >
                   <div className="overflow-hidden">
                     <motion.h4 

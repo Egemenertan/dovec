@@ -9,6 +9,7 @@ import { ref, getDownloadURL } from 'firebase/storage';
 export default function ProjectsPage() {
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [activeFilter, setActiveFilter] = useState('devam-eden');
+  const [mobileVideoUrl, setMobileVideoUrl] = useState('');
   const [projects, setProjects] = useState([
     {
       name: 'La Casalia',
@@ -127,6 +128,20 @@ export default function ProjectsPage() {
   }, []);
 
   useEffect(() => {
+    const loadMobileVideo = async () => {
+      try {
+        const videoRef = ref(storage, 'skyfall.mp4');
+        const url = await getDownloadURL(videoRef);
+        setMobileVideoUrl(url);
+      } catch (error) {
+        console.error('Mobil video yüklenirken hata oluştu:', error);
+      }
+    };
+
+    loadMobileVideo();
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       sectionsRef.current.forEach((section) => {
         if (!section) return;
@@ -153,19 +168,35 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Bölümü */}
-      <div className="relative w-full aspect-video md:h-screen overflow-hidden">
+      <div className="relative w-full h-screen overflow-hidden">
         {/* Video Arkaplan */}
         <div className="absolute inset-0">
           <div className="relative w-full h-full">
-            <iframe
-              src="https://www.youtube.com/embed/KWXpYwfkWbA?autoplay=1&mute=1&loop=1&playlist=KWXpYwfkWbA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=0&end=89"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              className="absolute w-full h-full md:w-[120%] md:h-[120%] md:-top-[10%] md:-left-[10%] object-cover"
-              style={{ 
-                pointerEvents: 'none',
-                border: 'none'
-              }}
-            />
+            {/* Mobil Video */}
+            <div className="block md:hidden w-full h-full">
+              <iframe
+                src="https://www.youtube.com/embed/QfqJdJokpa4?autoplay=1&mute=1&loop=1&playlist=QfqJdJokpa4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=6"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                className="absolute w-[300%] h-full -left-[100%] object-cover"
+                style={{ 
+                  pointerEvents: 'none',
+                  border: 'none'
+                }}
+              />
+            </div>
+            
+            {/* Desktop Video */}
+            <div className="hidden md:block w-full h-full">
+              <iframe
+                src="https://www.youtube.com/embed/KWXpYwfkWbA?autoplay=1&mute=1&loop=1&playlist=KWXpYwfkWbA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=0&end=89"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                className="absolute w-[300%] h-full -left-[100%] object-cover"
+                style={{ 
+                  pointerEvents: 'none',
+                  border: 'none'
+                }}
+              />
+            </div>
             <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
           </div>
         </div>
@@ -242,53 +273,53 @@ export default function ProjectsPage() {
         {projects
           .filter(project => project.status === activeFilter)
           .map((project, index) => (
-          <Link 
-            key={index} 
-            href={`/projeler/${project.slug}`}
-            className="block cursor-pointer"
-          >
-            <div
-              ref={(el) => {
-                sectionsRef.current[index] = el;
-              }}
-              className="relative h-screen transition-opacity duration-1000 group"
+            <Link 
+              key={index} 
+              href={`/projeler/${project.slug}`}
+              className="block cursor-pointer"
             >
-              <Image
-                src={project.image}
-                alt={project.name}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                priority={index === 0}
-              />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="max-w-4xl mx-auto px-4 text-center transform transition-transform duration-500 group-hover:scale-[1.02]">
-                  <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full mb-4">
-                    {project.type}
-                  </span>
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">
-                    {project.name}
-                  </h2>
-                  <p className="text-lg md:text-xl text-white/80 mb-6">
-                    {project.description}
-                  </p>
-                  <div className="flex items-center justify-center space-x-2 text-white/90">
-                    <span>{project.location}</span>
-                    <svg 
-                      className="w-5 h-5 transform transition-transform duration-500 group-hover:translate-x-1" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+              <div
+                ref={(el) => {
+                  sectionsRef.current[index] = el;
+                }}
+                className="relative h-screen transition-opacity duration-1000 group"
+              >
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  priority={index === 0}
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="max-w-4xl mx-auto px-4 text-center transform transition-transform duration-500 group-hover:scale-[1.02]">
+                    <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full mb-4">
+                      {project.type}
+                    </span>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">
+                      {project.name}
+                    </h2>
+                    <p className="text-lg md:text-xl text-white/80 mb-6">
+                      {project.description}
+                    </p>
+                    <div className="flex items-center justify-center space-x-2 text-white/90">
+                      <span>{project.location}</span>
+                      <svg 
+                        className="w-5 h-5 transform transition-transform duration-500 group-hover:translate-x-1" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
       </div>
     </div>
   );
-} 
+}

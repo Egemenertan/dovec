@@ -112,7 +112,8 @@ export default function AboutPage() {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
+        {/* Navbar'dan başlayan hilal şeklinde gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-black/10 via-transparent to-transparent"></div>
         
         {/* Merkez Başlık */}
         <div className="absolute bottom-32 sm:bottom-36 left-0 right-0 flex justify-center">
@@ -423,46 +424,46 @@ export default function AboutPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
                 <div className="space-y-8">
-                  <div className="group">
+                  <div>
                     <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full group-hover:w-4 transition-all duration-300"></div>
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
                       <h3 className="text-xl font-light">Yenilikçi düşünüyoruz</h3>
                     </div>
                     <p className="text-white/70 pl-6">Sektörde öncü ve yenilikçi çözümler üretiyoruz</p>
                   </div>
-                  <div className="group">
+                  <div>
                     <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full group-hover:w-4 transition-all duration-300"></div>
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
                       <h3 className="text-xl font-light">Sürdürülebilir üretiyoruz</h3>
                     </div>
                     <p className="text-white/70 pl-6">Çevreye duyarlı ve sürdürülebilir projeler geliştiriyoruz</p>
                   </div>
-                  <div className="group">
+                  <div>
                     <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full group-hover:w-4 transition-all duration-300"></div>
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
                       <h3 className="text-xl font-light">Kaliteden ödün vermiyoruz</h3>
                     </div>
                     <p className="text-white/70 pl-6">En yüksek kalite standartlarını benimsiyoruz</p>
                   </div>
                 </div>
                 <div className="space-y-8">
-                  <div className="group">
+                  <div>
                     <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full group-hover:w-4 transition-all duration-300"></div>
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
                       <h3 className="text-xl font-light">Çevreye saygı duyuyoruz</h3>
                     </div>
                     <p className="text-white/70 pl-6">Doğal kaynakları koruyarak gelecek nesillere aktarıyoruz</p>
                   </div>
-                  <div className="group">
+                  <div>
                     <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full group-hover:w-4 transition-all duration-300"></div>
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
                       <h3 className="text-xl font-light">Güvenle inşa ediyoruz</h3>
                     </div>
                     <p className="text-white/70 pl-6">En yüksek güvenlik standartlarını uyguluyoruz</p>
                   </div>
-                  <div className="group">
+                  <div>
                     <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full group-hover:w-4 transition-all duration-300"></div>
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
                       <h3 className="text-xl font-light">Geleceği planlıyoruz</h3>
                     </div>
                     <p className="text-white/70 pl-6">Uzun vadeli ve sürdürülebilir çözümler sunuyoruz</p>

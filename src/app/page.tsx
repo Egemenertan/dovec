@@ -247,70 +247,43 @@ export default function Home() {
       </div>
 
       {/* Yatırım Fırsatları Bölümü */}
-      <div className="py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
+      <div className="py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Sol Taraf - Başlık ve Metin */}
-            <div className="space-y-16 sm:space-y-20 lg:pr-12 relative z-50">
-              <div className="relative w-[180%] overflow-visible">
+            <div className="space-y-8 sm:space-y-12">
+              <div className="space-y-4 relative">
                 <motion.h2 
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extralight leading-tight tracking-[.2em] text-[#061E4F] animate-fade-in uppercase"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extralight leading-tight tracking-[.2em] text-[#061E4F] animate-fade-in uppercase relative"
                 >
                   <motion.div 
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="bg-gradient-to-r from-[#061E4F] via-[#061E4F] to-[#061E4F] bg-clip-text text-transparent font-medium whitespace-nowrap mb-8"
+                    className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900 bg-clip-text text-transparent"
                   >
-                    KUZEY KIBRIS
+                    Kuzey Kıbrıs yalnızca
                   </motion.div>
                   <motion.div 
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="bg-gradient-to-r from-[#061E4F] via-[#061E4F] to-[#061E4F] bg-clip-text text-transparent text-5xl sm:text-8xl md:text-7xl lg:text-7xl xl:text-7xl mt-6"
+                    className="bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 bg-clip-text text-transparent mt-4"
                   >
-                    yalnızca
+                    bir yatırım alanı
                   </motion.div>
                   <motion.div 
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 bg-clip-text text-transparent text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-7xl mt-4"
-                  >
-                    bir 
-                  </motion.div>
-                  <motion.div 
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                    className="bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 bg-clip-text text-transparent text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-7xl mt-4"
-                  >
-                    yatırım
-                  </motion.div>
-                  <motion.div 
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                    className="bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 bg-clip-text text-transparent text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-7xl mt-4"
-                  >
-                    alanı
-                  </motion.div>
-                   <motion.div 
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                    className="bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 bg-clip-text text-transparent text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-7xl mt-4"
+                    className="bg-gradient-to-r from-gray-600 via-gray-500 to-gray-700 bg-clip-text text-transparent mt-4"
                   >
                     değildir
                   </motion.div>
@@ -376,7 +349,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 1.2 }}
               whileHover={{ scale: 1.02 }}
-              className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl lg:mt-32 z-10"
+              className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-2xl overflow-hidden shadow-2xl"
             >
               <Image
                 src={investmentImages.image3}

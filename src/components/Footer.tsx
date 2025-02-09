@@ -258,7 +258,7 @@ export function Footer() {
         <div className="border-t border-[#061E4F]/10 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-[#061E4F] tracking-wide">
-              © 2024 DOVEC. Tüm hakları saklıdır.
+              © 2025 DOVEC. Tüm hakları saklıdır.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link href="/gizlilik" className="text-sm text-[#061E4F] relative group/link tracking-wide">
