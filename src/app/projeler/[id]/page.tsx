@@ -8,6 +8,7 @@ import { Gallery } from '@/components/Gallery';
 import { storage } from '@/firebase/config';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { ImageSlider } from '@/components/ImageSlider';
+import ProjectMap from '@/components/ProjectMap';
 
 // SVG Komponentleri
 const HospitalIcon = () => (
@@ -120,6 +121,10 @@ interface ProjectData {
   description: string;
   features: string[];
   distances: Distance[];
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
 }
 
 // Proje verileri
@@ -129,9 +134,9 @@ const projectsData: Record<string, ProjectData> = {
     heroImage: 'lacasalia/tatlisu_10 - Photo copy.webp',
     city: 'TATLISU',
     region: 'Tatlısu',
-    completion: '2025',
+    completion: 'Aralık 2027',
     types: '1+1 Deluxe, 1+1 Deluxe 2, 2+1 Deluxe, 2+1 Deluxe 2, 3+1 Loft, 3+1 Villa, Grand Studio',
-    startingPrice: '£ 175.000',
+    startingPrice: '£ 195.000',
     advantages: 'Deniz manzarası, özel plaj, sosyal tesisler',
     description: 'Modern mimari ve lüks yaşamın buluştuğu özel bir proje.',
     features: [
@@ -148,7 +153,7 @@ const projectsData: Record<string, ProjectData> = {
       {
         icon: <HospitalIcon />,
         title: 'Hastane',
-        distance: '12 KM'
+        distance: '13.7 KM'
       },
       {
         icon: <CenterIcon />,
@@ -158,29 +163,33 @@ const projectsData: Record<string, ProjectData> = {
       {
         icon: <PlaneIcon />,
         title: 'Havalimanı',
-        distance: '45 KM'
+        distance: '52.2 KM'
       },
       {
         icon: <BeachIcon />,
         title: 'Sahil',
-        distance: '0.1 KM'
+        distance: 'Sitede'
       },
       {
         icon: <MarketIcon />,
         title: 'Market',
-        distance: '0.5 KM'
+        distance: '2 KM'
       },
       {
         icon: <RestaurantIcon />,
         title: 'Restoran',
-        distance: '0.3 KM'
+        distance: 'Sitede'
       },
       {
         icon: <MarinaIcon />,
         title: 'Marina',
         distance: '3 KM'
       }
-    ]
+    ],
+    coordinates: {
+      lat: 35.3297,
+      lng: 33.9039
+    }
   },
   'natulux': {
     title: 'Natulux',
@@ -231,7 +240,11 @@ const projectsData: Record<string, ProjectData> = {
         title: 'Restoran',
         distance: '0.4 KM'
       }
-    ]
+    ],
+    coordinates: {
+      lat: 35.3297,
+      lng: 33.9039
+    }
   },
   'la-isla': {
     title: 'La Isla',
@@ -289,7 +302,11 @@ const projectsData: Record<string, ProjectData> = {
         title: 'Marina',
         distance: '2.5 KM'
       }
-    ]
+    ],
+    coordinates: {
+      lat: 35.3297,
+      lng: 33.9039
+    }
   },
   'querencia': {
     title: 'Querencia',
@@ -352,7 +369,135 @@ const projectsData: Record<string, ProjectData> = {
         title: 'Marina',
         distance: '3.2 KM'
       }
-    ]
+    ],
+    coordinates: {
+      lat: 35.3297,
+      lng: 33.9039
+    }
+  },
+  'la-perla': {
+    title: 'La Perla',
+    heroImage: 'laperala/DRONE01E.webp',
+    city: 'GAZİMAĞUSA',
+    region: 'Tatlısu',
+    completion: '2025',
+    types: '2+1, 3+1 Apart, 3+1 Villa, 4+1',
+    startingPrice: '£ 225.000',
+    advantages: 'Deniz manzarası, özel plaj, sosyal tesisler, marina yakınlığı',
+    description: 'Ada yaşamının tüm ayrıcalıklarını sunan özel proje.',
+    features: [
+      'Özel Plaj',
+      'Deniz Manzarası',
+      'Infinity Havuz',
+      'Fitness Merkezi',
+      'Spa & Wellness',
+      'Concierge Hizmeti',
+      'Özel Güvenlik',
+      'Kapalı Otopark'
+    ],
+    distances: [
+      {
+        icon: <HospitalIcon />,
+        title: 'Hastane',
+        distance: '10.5 KM'
+      },
+      {
+        icon: <CenterIcon />,
+        title: 'Merkez',
+        distance: '4.8 KM'
+      },
+      {
+        icon: <PlaneIcon />,
+        title: 'Havalimanı',
+        distance: '40 KM'
+      },
+      {
+        icon: <BeachIcon />,
+        title: 'Sahil',
+        distance: '0.1 KM'
+      },
+      {
+        icon: <MarketIcon />,
+        title: 'Market',
+        distance: '0.4 KM'
+      },
+      {
+        icon: <RestaurantIcon />,
+        title: 'Restoran',
+        distance: '0.3 KM'
+      },
+      {
+        icon: <MarinaIcon />,
+        title: 'Marina',
+        distance: '2.5 KM'
+      }
+    ],
+    coordinates: {
+      lat: 35.3297,
+      lng: 33.9039
+    }
+  },
+  'la-marina': {
+    title: 'La Marina',
+    heroImage: 'lamarina/DRONE01E.webp',
+    city: 'GAZİMAĞUSA',
+    region: 'Tatlısu',
+    completion: '2025',
+    types: '2+1, 3+1 Apart, 3+1 Villa, 4+1',
+    startingPrice: '£ 225.000',
+    advantages: 'Deniz manzarası, özel plaj, sosyal tesisler, marina yakınlığı',
+    description: 'Ada yaşamının tüm ayrıcalıklarını sunan özel proje.',
+    features: [
+      'Özel Plaj',
+      'Deniz Manzarası',
+      'Infinity Havuz',
+      'Fitness Merkezi',
+      'Spa & Wellness',
+      'Concierge Hizmeti',
+      'Özel Güvenlik',
+      'Kapalı Otopark'
+    ],
+    distances: [
+      {
+        icon: <HospitalIcon />,
+        title: 'Hastane',
+        distance: '10.5 KM'
+      },
+      {
+        icon: <CenterIcon />,
+        title: 'Merkez',
+        distance: '4.8 KM'
+      },
+      {
+        icon: <PlaneIcon />,
+        title: 'Havalimanı',
+        distance: '40 KM'
+      },
+      {
+        icon: <BeachIcon />,
+        title: 'Sahil',
+        distance: '0.1 KM'
+      },
+      {
+        icon: <MarketIcon />,
+        title: 'Market',
+        distance: '0.4 KM'
+      },
+      {
+        icon: <RestaurantIcon />,
+        title: 'Restoran',
+        distance: '0.3 KM'
+      },
+      {
+        icon: <MarinaIcon />,
+        title: 'Marina',
+        distance: '2.5 KM'
+      }
+    ],
+    coordinates: {
+      lat: 35.3297,
+      lng: 33.9039
+    }
   },
   'four-seasons-life': {
     title: 'Four Seasons Life',
@@ -413,7 +558,11 @@ const projectsData: Record<string, ProjectData> = {
         title: 'Park',
         distance: '0.4 KM'
       }
-    ]
+    ],
+    coordinates: {
+      lat: 35.2288,
+      lng: 33.3222
+    }
   },
   'courtyard-platinum': {
     title: 'Courtyard Platinum',
@@ -474,7 +623,11 @@ const projectsData: Record<string, ProjectData> = {
         title: 'Spor Tesisi',
         distance: '1.2 KM'
       }
-    ]
+    ],
+    coordinates: {
+      lat: 35.3384,
+      lng: 33.3173
+    }
   },
   'sky-sakarya': {
     title: 'Sky Sakarya',
@@ -527,7 +680,11 @@ const projectsData: Record<string, ProjectData> = {
         title: 'Park',
         distance: '0.3 KM'
       }
-    ]
+    ],
+    coordinates: {
+      lat: 40.7568,
+      lng: 30.3785
+    }
   },
   'courtyard': {
     title: 'Courtyard',
@@ -580,7 +737,11 @@ const projectsData: Record<string, ProjectData> = {
         title: 'Restoran',
         distance: '0.2 KM'
       }
-    ]
+    ],
+    coordinates: {
+      lat: 35.3384,
+      lng: 33.3173
+    }
   },
   'panorama': {
     title: 'Panorama',
@@ -633,7 +794,11 @@ const projectsData: Record<string, ProjectData> = {
         title: 'Restoran',
         distance: '1.0 KM'
       }
-    ]
+    ],
+    coordinates: {
+      lat: 35.3384,
+      lng: 33.3173
+    }
   }
 };
 
@@ -837,7 +1002,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
+    <div className="min-h-screen bg-white">
       {/* Hero Bölümü */}
       <div className="relative h-[40vh] lg:h-[50vh]">
         {heroImage && (
@@ -879,6 +1044,11 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                   <p className="text-4xl font-extralight tracking-wider text-[#061E4F]">{projectData.completion}</p>
                   <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-6"></div>
                 </div>
+                <div>
+                  <h3 className="text-sm font-light tracking-[.3em] text-[#061E4F]/60 uppercase mb-6">Başlangıç Fiyatı</h3>
+                  <p className="text-4xl font-extralight tracking-wider text-[#061E4F]">{projectData.startingPrice}</p>
+                  <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-6"></div>
+                </div>
               </div>
               <div className="space-y-16">
                 <div>
@@ -891,11 +1061,6 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                     ))}
                   </div>
                   <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-8"></div>
-                </div>
-                <div>
-                  <h3 className="text-sm font-light tracking-[.3em] text-[#061E4F]/60 uppercase mb-6">Başlangıç Fiyatı</h3>
-                  <p className="text-4xl font-extralight tracking-wider text-[#061E4F]">{projectData.startingPrice}</p>
-                  <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-6"></div>
                 </div>
               </div>
             </div>
@@ -965,7 +1130,6 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
       {/* Proje Görselleri Bölümü */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-        <h2 className="text-3xl font-semibold text-[#061E4F] mb-8">Proje Görselleri</h2>
         <Gallery projectId={folderName} />
       </section>
 
@@ -1457,7 +1621,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                   1989'ten Bugüne
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-gray-600">
-                Dovec Group 1989 yılından bu yana Kuzey Kıbrıs Türk Cumhuriyeti’nde yenilikçi emlak çözümleriyle öncülük etmekten gurur duyar. Her projede kalite, güven ve yeniliği ön planda tutarak, adanın her köşesine modern ve sürdürülebilir çözümler sunar. 
+                Dovec Group 1989 yılından bu yana Kuzey Kıbrıs Türk Cumhuriyeti'nde yenilikçi emlak çözümleriyle öncülük etmekten gurur duyar. Her projede kalite, güven ve yeniliği ön planda tutarak, adanın her köşesine modern ve sürdürülebilir çözümler sunar. 
                 </p>
                 <p className="text-xl font-light leading-relaxed text-gray-600">
                   Her projemizde, müşterilerimizin hayallerini gerçeğe dönüştürmeyi ve onlara unutulmaz bir yaşam deneyimi sunmayı hedefliyoruz. Kalite ve güven bizim için sadece bir söz değil, bir yaşam biçimidir.
@@ -1507,6 +1671,17 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
           </div>
         </Link>
+      </div>
+
+      {/* Konut Tipleri bölümünden sonra haritayı ekleyin */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-3xl font-semibold text-gray-900 mb-8">Konum</h2>
+        <div className="w-full">
+          <ProjectMap 
+            lat={projectData.coordinates.lat} 
+            lng={projectData.coordinates.lng} 
+          />
+        </div>
       </div>
     </div>
   );

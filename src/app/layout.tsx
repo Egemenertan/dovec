@@ -11,8 +11,8 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "DOVEC İnşaat",
-  description: "Modern yaşam alanları tasarlıyor, geleceği inşa ediyoruz.",
+  title: 'Dovec Group',
+  description: 'Dovec Group - İnşaat ve Gayrimenkul Geliştirme',
 }
 
 export default function RootLayout({

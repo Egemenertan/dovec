@@ -155,16 +155,35 @@ export function Gallery({ projectId }: { projectId: string }) {
             </svg>
           </button>
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center space-x-2">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentSlide ? 'bg-white w-4' : 'bg-white/50'
-                }`}
-              />
-            ))}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center space-x-3">
+            {(() => {
+              // Her zaman 5 nokta göster
+              let dots = [];
+              let start = Math.max(0, Math.min(currentSlide - 2, images.length - 5));
+              let end = Math.min(start + 5, images.length);
+              
+              // Başlangıç noktasını ayarla
+              if (end - start < 5 && start > 0) {
+                start = Math.max(0, end - 5);
+              }
+
+              for (let i = start; i < end; i++) {
+                dots.push(
+                  <button
+                    key={i}
+                    onClick={() => setCurrentSlide(i)}
+                    className={`h-1 transition-all duration-300 rounded-full ${
+                      i === currentSlide 
+                        ? 'w-8 bg-white' 
+                        : 'w-4 bg-white/50'
+                    }`}
+                    aria-label={`Görsel ${i + 1}`}
+                  />
+                );
+              }
+
+              return dots;
+            })()}
           </div>
         </div>
       </div>

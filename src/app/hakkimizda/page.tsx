@@ -73,6 +73,9 @@ export default function AboutPage() {
   const [chairmanImage, setChairmanImage] = useState('')
   const [signatureImage, setSignatureImage] = useState('')
   const [heroImage, setHeroImage] = useState('')
+  const [visionImage, setVisionImage] = useState('')
+  const [missionImage, setMissionImage] = useState('')
+  const [manifestoImage, setManifestoImage] = useState('')
 
   useEffect(() => {
     const loadImages = async () => {
@@ -91,6 +94,21 @@ export default function AboutPage() {
         const signatureRef = ref(storage, 'bdsign.webp')
         const signatureUrl = await getDownloadURL(signatureRef)
         setSignatureImage(signatureUrl)
+
+        // Vizyon görseli
+        const visionRef = ref(storage, 'bizkimiz/r imaj_5 kopya_11zon.webp')
+        const visionUrl = await getDownloadURL(visionRef)
+        setVisionImage(visionUrl)
+
+        // Misyon görseli
+        const missionRef = ref(storage, 'bizkimiz/DJI_0266.00_00_01_23.Still001_11zon.webp')
+        const missionUrl = await getDownloadURL(missionRef)
+        setMissionImage(missionUrl)
+
+        // Manifesto görseli
+        const manifestoRef = ref(storage, 'bizkimiz/33.webp')
+        const manifestoUrl = await getDownloadURL(manifestoRef)
+        setManifestoImage(manifestoUrl)
       } catch (error) {
         console.error('Resimler yüklenemedi:', error)
       }
@@ -217,12 +235,14 @@ export default function AboutPage() {
               </div>
 
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl group">
-                <Image
-                  src="/interior-1.jpg"
-                  alt="Vizyon Görüntüsü"
-                  fill
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                />
+                {visionImage && (
+                  <Image
+                    src={visionImage}
+                    alt="Vizyon Görüntüsü"
+                    fill
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
               </div>
             </div>
@@ -230,12 +250,14 @@ export default function AboutPage() {
             {/* Sağ Taraf - Misyon */}
             <div className="space-y-16 lg:mt-32">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl group lg:order-first order-last">
-                <Image
-                  src="/exterior-1.jpg"
-                  alt="Misyon Görüntüsü"
-                  fill
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
-                />
+                {missionImage && (
+                  <Image
+                    src={missionImage}
+                    alt="Misyon Görüntüsü"
+                    fill
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-1000"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
               </div>
 
@@ -474,25 +496,19 @@ export default function AboutPage() {
 
             <div className="relative">
               <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/exterior-1.jpg"
-                  alt="DOVEC Manifesto"
-                  fill
-                  className="object-cover transform hover:scale-105 transition-transform duration-1000"
-                />
+                {manifestoImage && (
+                  <Image
+                    src={manifestoImage}
+                    alt="DOVEC Manifesto"
+                    fill
+                    className="object-cover transform hover:scale-105 transition-transform duration-1000"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F] via-transparent to-transparent"></div>
               </div>
               <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
               <div className="absolute -top-8 -left-8 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
             </div>
-          </div>
-
-          {/* Scroll İndikatörü */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
-            <span className="text-sm font-light tracking-wider mb-2">Aşağı Kaydır</span>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
           </div>
         </div>
       </div>

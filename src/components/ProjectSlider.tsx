@@ -538,9 +538,9 @@ export const ProjectSlider = () => {
                     transition={{ duration: 1, delay: 0.3 }}
                     className="absolute -left-6 -right-6 top-1/2 -translate-y-1/2 h-full bg-[#061E4F] blur-2xl"
                   />
-                  <h3 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extralight tracking-wider text-zinc-800 leading-tight text-left">
-                    DÖVEÇ GROUP
-                    <span className="block mt-8 md:mt-10 lg:mt-12">ÖDÜLLERİ</span>
+                  <h3 className="text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-extralight tracking-wider text-zinc-800 leading-tight">
+                    DÖVEÇ GROUP ÖDÜLLERİ
+                   
                   </h3>
                 </div>
               </div>

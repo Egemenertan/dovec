@@ -107,55 +107,39 @@ export const ImageSlider = ({ folderPath, alt }: ImageSliderProps) => {
           </svg>
         </button>
 
-        {/* Dots Indicator - Maximum 5 dots */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-          {images.length <= 5 ? (
-            // Eğer 5 veya daha az resim varsa hepsini göster
-            images.map((_, index) => (
-              <button
-                key={index}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setCurrentIndex(index);
-                }}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? 'bg-white' : 'bg-white/50'
-                }`}
-                aria-label={`${index + 1}. resme git`}
-              />
-            ))
-          ) : (
-            // 5'ten fazla resim varsa ilk 2, aktif ve son 2 resmi göster
-            <>
-              {[0, 1].map((index) => (
+        {/* Dots Indicator */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3">
+          {(() => {
+            // Her zaman 5 nokta göster
+            let dots = [];
+            let start = Math.max(0, Math.min(currentIndex - 2, images.length - 5));
+            let end = Math.min(start + 5, images.length);
+            
+            // Başlangıç noktasını ayarla
+            if (end - start < 5 && start > 0) {
+              start = Math.max(0, end - 5);
+            }
+
+            for (let i = start; i < end; i++) {
+              dots.push(
                 <button
-                  key={index}
+                  key={i}
                   onClick={(e) => {
                     e.stopPropagation();
-                    setCurrentIndex(index);
+                    setCurrentIndex(i);
                   }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? 'bg-white' : 'bg-white/50'
+                  className={`h-1 transition-all duration-300 rounded-full ${
+                    i === currentIndex 
+                      ? 'w-8 bg-white' 
+                      : 'w-4 bg-white/50'
                   }`}
-                  aria-label={`${index + 1}. resme git`}
+                  aria-label={`Görsel ${i + 1}`}
                 />
-              ))}
-              <div className="w-2 h-2 rounded-full bg-white/30" />
-              {[images.length - 2, images.length - 1].map((index) => (
-                <button
-                  key={index}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setCurrentIndex(index);
-                  }}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? 'bg-white' : 'bg-white/50'
-                  }`}
-                  aria-label={`${index + 1}. resme git`}
-                />
-              ))}
-            </>
-          )}
+              );
+            }
+
+            return dots;
+          })()}
         </div>
       </div>
 
