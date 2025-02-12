@@ -63,11 +63,11 @@ export const Hero = () => {
       {/* Sol Alt Başlık */}
       <div className="absolute bottom-20 sm:bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-20 w-[calc(100%-2rem)] sm:w-auto">
         <div className="flex flex-col items-center">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white mb-3 sm:mb-4 tracking-[.15em] font-manrope leading-tight text-center whitespace-nowrap">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-normal text-white mb-3 sm:mb-4 tracking-[.15em] font-manrope leading-tight text-center px-4 sm:px-0 sm:whitespace-nowrap">
             Geleceği İnşa Ediyoruz
           </h2>
           <div className="h-[2px] bg-white w-full opacity-50" />
-          <p className="max-w-[90%] sm:max-w-md md:max-w-lg lg:max-w-2xl text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed font-light tracking-wider mt-4 sm:mt-4 md:mt-6 text-center">
+          <p className="max-w-[95%] sm:max-w-md md:max-w-lg lg:max-w-2xl text-sm sm:text-base md:text-lg lg:text-2xl text-white/90 leading-relaxed font-light tracking-wider mt-4 sm:mt-4 md:mt-6 text-center px-2 sm:px-0">
             Modern mimari anlayışı ve yenilikçi yaklaşımlarla, Kuzey Kıbrıs'ın en prestijli yaşam alanlarını inşa ediyoruz.
           </p>
           
