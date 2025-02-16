@@ -210,11 +210,11 @@ export default function ProjectsPage() {
                 <div className="absolute -bottom-2 left-1/2 w-8 h-[1px] bg-white/40 transform -translate-x-1/2"></div>
               </span>
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extralight tracking-[.15em] text-white uppercase">
-                Projelerimiz
+                Koleksiyonlarımız
               </h1>
             </div>
             <p className="text-white/70 text-sm sm:text-base md:text-xl font-extralight tracking-wider max-w-3xl mx-auto leading-relaxed">
-              Modern mimari ve lüks yaşamın buluştuğu özel projelerimiz ile 
+              Modern mimari ve lüks yaşamın buluştuğu özel koleksiyonlarımız ile 
               <br className="hidden md:block" />
               yaşam standartlarınızı yükseltiyoruz
             </p>
@@ -303,6 +303,9 @@ export default function ProjectsPage() {
                     <p className="text-lg md:text-xl text-white/80 mb-6">
                       {project.description}
                     </p>
+                    <button className="px-8 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:border-white/60 rounded-full transition-all duration-300 mb-6 group">
+                      <span className="text-sm tracking-[0.2em] group-hover:tracking-[0.25em] transition-all duration-300">KOLEKSİYONU KEŞFET</span>
+                    </button>
                     <div className="flex items-center justify-center space-x-2 text-white/90">
                       <span>{project.location}</span>
                       <svg 

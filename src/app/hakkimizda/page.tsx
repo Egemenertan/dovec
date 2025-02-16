@@ -211,6 +211,82 @@ export default function AboutPage() {
         </div>
       </div>
 
+      {/* İkinci Direktör Mesajı */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-gray-50">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="relative order-1">
+            <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src={chairmanImage || '/consultant.jpg'}
+                alt="Yönetim Kurulu Başkan Yardımcısı"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
+            <div className="absolute -top-8 -left-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="space-y-8 order-2">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
+                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Direktör</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
+                Yönetim Kurulu Başkan Yardımcısı
+              </h2>
+              <p className="text-xl font-light leading-relaxed text-gray-600 space-y-8">
+                <span className="block">"Değerli Paydaşlarımız,</span>
+
+                <span className="block">Döveç İnşaat'ın yenilikçi vizyonu ve sürdürülebilir yaklaşımı ile sektörde öncü olmaya devam ediyoruz. Müşterilerimizin beklentilerini aşan projeler geliştirirken, çevreye ve topluma olan sorumluluğumuzu da unutmuyoruz.</span>
+
+                <span className="block">Saygılarımla,"</span>
+              </p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Üçüncü Direktör Mesajı */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8 order-2 lg:order-1">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
+                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Direktör</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
+              Yönetim Kurulu Başkan Yardımcısı
+              </h2>
+              <p className="text-xl font-light leading-relaxed text-gray-600 space-y-8">
+                <span className="block">"Sevgili Müşterilerimiz,</span>
+
+                <span className="block">Döveç İnşaat olarak, her projemizde mükemmelliği hedefliyor ve müşterilerimizin hayallerini gerçeğe dönüştürüyoruz. Operasyonel mükemmellik ve müşteri memnuniyeti odaklı yaklaşımımızla, sektörde fark yaratmaya devam ediyoruz.</span>
+
+                <span className="block">Saygılarımla,"</span>
+              </p>
+             
+            </div>
+          </div>
+
+          <div className="relative order-1 lg:order-2">
+            <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src={chairmanImage || '/consultant.jpg'}
+                alt="Genel Müdür"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
+            <div className="absolute -top-8 -left-8 w-48 h-48 bg-[#061E4F]/10 rounded-full blur-3xl"></div>
+          </div>
+        </div>
+      </div>
+
       {/* Vizyon ve Misyon */}
       <div className="relative py-32">
         <div className="absolute top-0 left-0 w-96 h-96 bg-[#061E4F]/5 rounded-full blur-3xl"></div>
@@ -287,13 +363,13 @@ export default function AboutPage() {
       </div>
 
       {/* Değerlerimiz */}
-      <div className="relative min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 overflow-hidden">
+      <div className="relative py-20 md:py-32 bg-gradient-to-br from-gray-50 via-white to-gray-50 overflow-hidden">
         {/* Dekoratif elementler */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-[#061E4F]/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#061E4F]/5 rounded-full blur-3xl"></div>
 
         {/* Başlık */}
-        <div className="absolute top-10 md:top-20 left-1/2 -translate-x-1/2 text-center z-10 w-full px-4">
+        <div className="relative text-center z-10 w-full px-4 mb-16 md:mb-24">
           <div className="flex items-center space-x-4 justify-center mb-4">
             <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
             <span className="text-sm md:text-base font-light tracking-[.5em] text-[#061E4F]/80 uppercase">Dovec</span>
@@ -305,53 +381,29 @@ export default function AboutPage() {
         </div>
 
         {/* Artı İşareti ve Değerler */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          {/* Dikey Çizgi */}
-          <div className="absolute w-[1px] h-[80vh] md:h-[70vh] bg-gradient-to-b from-transparent via-[#061E4F]/20 to-transparent">
-            <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#061E4F]/5 rounded-full blur-lg"></div>
-          </div>
-          
-          {/* Yatay Çizgi */}
-          <div className="absolute h-[1px] w-[90vw] md:w-[70vw] bg-gradient-to-r from-transparent via-[#061E4F]/20 to-transparent">
-            <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#061E4F]/5 rounded-full blur-lg"></div>
-          </div>
-
-          {/* Değerler */}
-          <div className="relative w-[90vw] md:w-[70vw] h-[80vh] md:h-[70vh]">
-            {/* Sol Üst */}
-            <div className="absolute top-0 left-0 w-[calc(50%-1rem)] h-[calc(50%-1rem)] flex items-center justify-center p-4 lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center transform lg:group-hover:scale-110 transition-all duration-500">
-                <div className="text-[#061E4F] mb-3 md:mb-4 flex justify-center">{values[0].icon}</div>
-                <h3 className="text-lg md:text-xl font-light tracking-wider text-[#061E4F] mb-2 md:mb-3">{values[0].title}</h3>
-                <p className="text-gray-600 font-light text-xs md:text-sm lg:text-base px-2">{values[0].description}</p>
-              </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative">
+            {/* Dikey Çizgi */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-[#061E4F]/20 to-transparent">
+              <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#061E4F]/5 rounded-full blur-lg"></div>
+            </div>
+            
+            {/* Yatay Çizgi */}
+            <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#061E4F]/20 to-transparent">
+              <div className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#061E4F]/5 rounded-full blur-lg"></div>
             </div>
 
-            {/* Sağ Üst */}
-            <div className="absolute top-0 right-0 w-[calc(50%-1rem)] h-[calc(50%-1rem)] flex items-center justify-center p-4 lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center transform lg:group-hover:scale-110 transition-all duration-500">
-                <div className="text-[#061E4F] mb-3 md:mb-4 flex justify-center">{values[1].icon}</div>
-                <h3 className="text-lg md:text-xl font-light tracking-wider text-[#061E4F] mb-2 md:mb-3">{values[1].title}</h3>
-                <p className="text-gray-600 font-light text-xs md:text-sm lg:text-base px-2">{values[1].description}</p>
-              </div>
-            </div>
-
-            {/* Sol Alt */}
-            <div className="absolute bottom-0 left-0 w-[calc(50%-1rem)] h-[calc(50%-1rem)] flex items-center justify-center p-4 lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center transform lg:group-hover:scale-110 transition-all duration-500">
-                <div className="text-[#061E4F] mb-3 md:mb-4 flex justify-center">{values[2].icon}</div>
-                <h3 className="text-lg md:text-xl font-light tracking-wider text-[#061E4F] mb-2 md:mb-3">{values[2].title}</h3>
-                <p className="text-gray-600 font-light text-xs md:text-sm lg:text-base px-2">{values[2].description}</p>
-              </div>
-            </div>
-
-            {/* Sağ Alt */}
-            <div className="absolute bottom-0 right-0 w-[calc(50%-1rem)] h-[calc(50%-1rem)] flex items-center justify-center p-4 lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
-              <div className="text-center transform lg:group-hover:scale-110 transition-all duration-500">
-                <div className="text-[#061E4F] mb-3 md:mb-4 flex justify-center">{values[3].icon}</div>
-                <h3 className="text-lg md:text-xl font-light tracking-wider text-[#061E4F] mb-2 md:mb-3">{values[3].title}</h3>
-                <p className="text-gray-600 font-light text-xs md:text-sm lg:text-base px-2">{values[3].description}</p>
-              </div>
+            {/* Değerler Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
+              {values.map((value, index) => (
+                <div key={index} className="p-6 lg:p-8 lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
+                  <div className="text-center transform lg:group-hover:scale-110 transition-all duration-500">
+                    <div className="text-[#061E4F] mb-3 md:mb-4 flex justify-center">{value.icon}</div>
+                    <h3 className="text-lg md:text-xl font-light tracking-wider text-[#061E4F] mb-2 md:mb-3">{value.title}</h3>
+                    <p className="text-gray-600 font-light text-sm md:text-base lg:text-lg">{value.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Merkez Kesişim Efekti */}
@@ -363,7 +415,7 @@ export default function AboutPage() {
         </div>
 
         {/* Dekoratif Çemberler */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] md:w-[90vw] h-[85vh] md:h-[90vh] pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
           <div className="absolute inset-0 border border-[#061E4F]/5 rounded-full animate-pulse"></div>
           <div className="absolute inset-8 border border-[#061E4F]/5 rounded-full animate-pulse delay-150"></div>
           <div className="absolute inset-16 border border-[#061E4F]/5 rounded-full animate-pulse delay-300"></div>

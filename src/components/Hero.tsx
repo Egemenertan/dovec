@@ -48,9 +48,16 @@ export const Hero = () => {
                 src={imageUrl}
                 alt={`Hero Image ${index + 1}`}
                 fill
-                className="object-cover"
                 priority={index === 0}
-                quality={100}
+                quality={75}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4dHRsdHR4dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/2wBDAR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                sizes="100vw"
+                style={{
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+                className="transition-opacity duration-500"
               />
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/70" />
@@ -79,23 +86,23 @@ export const Hero = () => {
             >
               <div className="relative flex items-center justify-center">
                 {/* Ana buton container */}
-                <div className="relative flex items-center gap-3 bg-white/10 backdrop-blur-xl px-5 py-3 rounded-3xl border border-white/20 overflow-hidden transition-all duration-700 group-hover:border-white/40 group-hover:bg-white/15 group-hover:gap-4 group-hover:pr-7">
+                <div className="relative flex items-center gap-3 bg-gradient-to-r from-white/5 via-white/10 to-white/5 backdrop-blur-md px-6 py-3.5 rounded-full overflow-hidden transition-all duration-700 group-hover:bg-gradient-to-r group-hover:from-white/10 group-hover:via-white/15 group-hover:to-white/10 group-hover:gap-4 group-hover:pr-8 shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]">
                   {/* Arka plan efektleri */}
                   <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                    <div className="absolute -inset-[100%] animate-[spin_4s_linear_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div className="absolute -inset-[100%] animate-[spin_4s_linear_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                   </div>
 
                   {/* Metin */}
-                  <span className="relative text-md font-light tracking-[0.2em] text-white/80 transition-all duration-700 group-hover:text-white group-hover:tracking-[0.25em]">
-                    İLETİŞİME GEÇ
+                  <span className="relative text-md font-light tracking-[0.2em] text-white/90 transition-all duration-700 group-hover:text-white group-hover:tracking-[0.25em]">
+                    DÖVEÇ'E BAĞLAN
                   </span>
 
                   {/* Yeni ok tasarımı */}
                   <div className="relative flex items-center justify-center w-6">
-                    <div className="absolute inset-0 rounded-full bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-700"></div>
+                    <div className="absolute inset-0 rounded-full bg-white/20 scale-0 group-hover:scale-100 transition-transform duration-700"></div>
                     <svg 
-                      className="w-5 h-5 relative text-white/70 group-hover:text-white transition-all duration-700 transform translate-x-1 group-hover:translate-x-2" 
+                      className="w-5 h-5 relative text-white/90 group-hover:text-white transition-all duration-700 transform translate-x-1 group-hover:translate-x-2" 
                       fill="none" 
                       viewBox="0 0 24 24" 
                       stroke="currentColor"
@@ -111,8 +118,8 @@ export const Hero = () => {
                 </div>
 
                 {/* Hover efektleri */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-white/0 via-white/10 to-white/0 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                <div className="absolute -inset-3 bg-gradient-to-r from-[#061E4F]/0 via-[#061E4F]/20 to-[#061E4F]/0 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-1000"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-white/0 via-white/20 to-white/0 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/0 via-[#061E4F]/30 to-[#061E4F]/0 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-1000"></div>
               </div>
             </Link>
           </div>

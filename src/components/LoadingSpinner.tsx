@@ -1,57 +1,82 @@
-import React from 'react';
+'use client';
+
+import React, { Suspense, useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { useTexture } from '@react-three/drei';
+import * as THREE from 'three';
+
+function Earth() {
+  const earthRef = useRef<THREE.Mesh>(null);
+  const [colorMap] = useTexture(['/earth-day.jpg']);
+
+  // Texture işleme
+  const processedTexture = new THREE.TextureLoader().load('/earth-day.jpg', (texture) => {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.width = texture.image.width;
+    canvas.height = texture.image.height;
+    
+    context?.drawImage(texture.image, 0, 0);
+    const imageData = context?.getImageData(0, 0, canvas.width, canvas.height);
+    
+    if (imageData) {
+      for (let i = 0; i < imageData.data.length; i += 4) {
+        const r = imageData.data[i];
+        const g = imageData.data[i + 1];
+        const b = imageData.data[i + 2];
+        
+        // Mavi renkleri (okyanusları) tamamen şeffaf yap
+        if (b > r && b > g) {
+          imageData.data[i] = 0;
+          imageData.data[i + 1] = 0;
+          imageData.data[i + 2] = 0;
+          imageData.data[i + 3] = 0;
+        } else {
+          // Karaları beyaz yap (maske olarak kullanılacak)
+          imageData.data[i] = 255;
+          imageData.data[i + 1] = 255;
+          imageData.data[i + 2] = 255;
+          imageData.data[i + 3] = 255;
+        }
+      }
+      context?.putImageData(imageData, 0, 0);
+    }
+    
+    texture.image = canvas;
+    texture.needsUpdate = true;
+  });
+
+  useFrame(() => {
+    if (earthRef.current) {
+      earthRef.current.rotation.y += 0.002;
+    }
+  });
+
+  // Primary color: #061E4F
+  return (
+    <mesh ref={earthRef} rotation={[0, -1.5, 0]}>
+      <sphereGeometry args={[1.7, 64, 64]} />
+      <meshBasicMaterial
+        map={processedTexture}
+        transparent={true}
+        color="#061E4F"
+      />
+    </mesh>
+  );
+}
 
 const LoadingSpinner: React.FC = () => {
   return (
-    <div className="flex items-center justify-center min-h-[200px] w-full">
-      <div className="relative w-32 h-32">
-        {/* Ana dönen dış halka */}
-        <div className="absolute inset-0 animate-spin-slow">
-          <div className="w-full h-full rounded-full border-4 border-transparent border-t-primary/30 border-r-primary/10"></div>
-        </div>
-        
-        {/* İkinci halka */}
-        <div className="absolute inset-2 animate-spin-reverse">
-          <div className="w-full h-full rounded-full border-4 border-transparent border-l-primary/40 border-b-primary/10"></div>
-        </div>
-        
-        {/* Üçüncü halka */}
-        <div className="absolute inset-4 animate-spin-slower">
-          <div className="w-full h-full rounded-full border-4 border-transparent border-r-primary/50 border-t-primary/10"></div>
-        </div>
-
-        {/* Merkez efekti */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-12 h-12">
-            {/* Dış pulse efekti */}
-            <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping-slow"></div>
-            
-            {/* Gradient arka plan */}
-            <div className="absolute inset-0.5 rounded-full bg-gradient-to-tr from-primary/80 to-primary animate-pulse"></div>
-            
-            {/* İç daire */}
-            <div className="absolute inset-2 rounded-full bg-white"></div>
-            <div className="absolute inset-3 rounded-full bg-gradient-to-br from-primary to-primary/80"></div>
-          </div>
-        </div>
-
-        {/* Dekoratif noktalar */}
-        <div className="absolute inset-0 animate-spin-slower">
-          {[...Array(12)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1.5 h-1.5 rounded-full bg-primary/30"
-              style={{
-                top: '50%',
-                left: '50%',
-                transform: `rotate(${i * 30}deg) translateY(-14px)`,
-                transformOrigin: '0 0'
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Dış ışıma efekti */}
-        <div className="absolute -inset-6 rounded-full bg-primary/5 blur-xl animate-pulse"></div>
+    <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 backdrop-blur-sm flex items-center justify-center z-50">
+      <div className="w-64 h-64 relative">
+        <div className="absolute inset-0 bg-blue-500/5 rounded-full blur-xl animate-pulse"></div>
+        <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+          <Suspense fallback={null}>
+            <ambientLight intensity={2} />
+            <directionalLight intensity={5} position={[0, 0, 5]} color="#ffffff" />
+            <Earth />
+          </Suspense>
+        </Canvas>
       </div>
     </div>
   );

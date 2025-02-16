@@ -1667,7 +1667,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           <div className="absolute -inset-4 bg-gradient-to-r from-[#061E4F]/5 via-[#061E4F]/10 to-[#061E4F]/5 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"></div>
           <div className="relative flex items-center space-x-4">
             <BackIcon />
-            <span className="text-base font-light tracking-[.2em] text-[#061E4F]/80 group-hover:text-[#061E4F] transition-colors duration-300">TÜM PROJELER</span>
+            <span className="text-base font-light tracking-[.2em] text-[#061E4F]/80 group-hover:text-[#061E4F] transition-colors duration-300">TÜM KOLEKSİYONLAR</span>
             <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
           </div>
         </Link>

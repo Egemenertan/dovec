@@ -190,6 +190,18 @@ export function Footer() {
                   <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#061E4F] transition-all duration-300 group-hover/link:w-full"></span>
                 </Link>
               </li>
+              <li>
+                <Link href="/gizlilik-politikasi" className="text-base text-[#061E4F]/80 relative group/link tracking-wide">
+                  <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2">Gizlilik Politikası</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#061E4F] transition-all duration-300 group-hover/link:w-full"></span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/kullanim-kosullari" className="text-base text-[#061E4F]/80 relative group/link tracking-wide">
+                  <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2">Kullanım Koşulları</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#061E4F] transition-all duration-300 group-hover/link:w-full"></span>
+                </Link>
+              </li>
             </ul>
 
             {/* Sosyal Medya */}
@@ -261,7 +273,7 @@ export function Footer() {
               © 2025 DOVEC. Tüm hakları saklıdır.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link href="/gizlilik" className="text-sm text-[#061E4F] relative group/link tracking-wide">
+              <Link href="/gizlilik-politikasi" className="text-sm text-[#061E4F] relative group/link tracking-wide">
                 <span className="relative inline-block">Gizlilik Politikası</span>
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#061E4F] transition-all duration-300 group-hover/link:w-full"></span>
               </Link>

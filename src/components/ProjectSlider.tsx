@@ -128,29 +128,19 @@ export const ProjectSlider = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        console.log('Resimler yüklenmeye başlıyor...');
         const updatedProjects = await Promise.all(
           projects.map(async (project) => {
-            try {
-              console.log(`${project.name} için resim yükleniyor: ${project.storagePath}`);
+            if (!project.image) {
               const imageRef = ref(storage, project.storagePath);
               const url = await getDownloadURL(imageRef);
-              console.log(`${project.name} resmi başarıyla yüklendi: ${url}`);
               return { ...project, image: url };
-            } catch (error: any) {
-              console.error(`${project.name} resmi yüklenirken hata:`, error.message);
-              return { 
-                ...project, 
-                image: '/placeholders/project-placeholder.jpg'
-              };
             }
+            return project;
           })
         );
-
-        console.log('Güncellenen projeler:', updatedProjects.map(p => ({ name: p.name, image: p.image })));
         setProjects(updatedProjects);
-      } catch (error: any) {
-        console.error('Resimler yüklenirken genel hata:', error.message);
+      } catch (error) {
+        console.error('Error fetching project images:', error);
       }
     };
 
@@ -263,7 +253,7 @@ export const ProjectSlider = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg md:text-xl font-light tracking-wide text-zinc-500 max-w-2xl mx-auto mt-8"
           >
-            Tamamlanan ve devam eden projelerimiz
+            Koleksiyonları Keşfet
           </motion.p>
         </motion.div>
         
@@ -412,7 +402,7 @@ export const ProjectSlider = () => {
                               className="flex items-center gap-8"
                             >
                               <div className="group/link inline-flex items-center gap-6 relative">
-                                <span className="text-lg sm:text-xl text-zinc-800 font-light tracking-wide">Detayları Gör</span>
+                                <span className="text-lg sm:text-xl text-zinc-800 font-light tracking-wide">Koleksiyonu Keşfet</span>
                                 <motion.div 
                                   whileHover={{ scale: 1.1 }}
                                   whileTap={{ scale: 0.95 }}
@@ -459,14 +449,16 @@ export const ProjectSlider = () => {
                             priority={index === 0}
                             sizes="(max-width: 640px) 400px, (max-width: 768px) 700px, (max-width: 1024px) 900px, 1200px"
                             loading={index === 0 ? 'eager' : 'lazy'}
-                            quality={85}
+                            quality={75}
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4dHRsdHR4dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/2wBDAR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                           />
                           <motion.div 
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1 }}
-                            className="absolute inset-0 hidden md:block bg-gradient-to-r from-white via-transparent to-transparent"
+                            className="absolute inset-0 hidden md:block  via-transparent to-transparent"
                           />
                         </motion.div>
                       </div>
@@ -484,160 +476,231 @@ export const ProjectSlider = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="mt-32 relative"
+          className="relative w-screen -mx-[calc((100vw-100%)/2)] bg-gradient-to-b from-[#0A1A2F] via-[#061E4F] to-[#0A1A2F] py-24 overflow-hidden"
         >
-          {/* Dekoratif Elementler */}
-          <motion.div 
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 0.05 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
-            className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#061E4F] rounded-full blur-[100px] -z-10"
-          />
-          <motion.div 
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 0.05 }}
-            transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-            className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#061E4F] rounded-full blur-[100px] -z-10"
-          />
+          {/* 3D Animasyonlu Arkaplan Elementleri */}
+          <div className="absolute inset-0 w-full h-full overflow-hidden">
+            {/* Dönen Daireler */}
+            <motion.div
+              animate={{
+                rotate: -360,
+                scale: [1, 1.4, 1]
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              className="absolute bottom-[20%] left-[15%] w-[600px] h-[600px] rounded-full opacity-10"
+              style={{
+                background: 'linear-gradient(45deg, #061E4F, #1E3A6F)',
+                filter: 'blur(60px)'
+              }}
+            />
 
-          {/* Başlık Alanı - Full Genişlik */}
-          <motion.div 
-            initial={{ x: -50, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full text-center mb-16"
-          >
+            {/* İkinci Daire */}
+            <motion.div
+              animate={{
+                rotate: 360,
+                scale: [1, 1.3, 1]
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full opacity-10"
+              style={{
+                background: 'linear-gradient(225deg, #061E4F, #1E3A6F)',
+                filter: 'blur(50px)'
+              }}
+            />
+
+            {/* Üçüncü Daire */}
+            <motion.div
+              animate={{
+                rotate: -180,
+                scale: [1, 1.2, 1]
+              }}
+              transition={{
+                duration: 30,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              className="absolute top-[40%] left-[40%] w-[800px] h-[800px] rounded-full opacity-5"
+              style={{
+                background: 'radial-gradient(circle, #1E3A6F 0%, #061E4F 100%)',
+                filter: 'blur(80px)'
+              }}
+            />
+
+            {/* Parıldayan Noktalar */}
+            <div className="absolute inset-0">
+              {[...Array(150)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.2, 0.5, 0.2]
+                  }}
+                  transition={{
+                    duration: Math.random() * 3 + 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 2
+                  }}
+                  className="absolute w-1 h-1 bg-white rounded-full"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0A1A2F]/80 via-transparent to-[#0A1A2F]/80" />
+          </div>
+
+          {/* İçerik */}
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Başlık Alanı - Full Genişlik */}
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ x: -50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative w-full text-center mb-16 z-10"
             >
-              <motion.span 
-                initial={{ width: 0 }}
-                whileInView={{ width: "100%" }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="absolute -top-6 left-0 h-[1px] bg-gradient-to-r from-zinc-300 via-zinc-500 to-transparent"
-              />
-              <div className="relative">
-                <span className="block text-sm font-light tracking-[0.4em] text-zinc-400 mb-6 relative">
-                  BAŞARILARIMIZ
-                  <motion.span 
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "2rem" }}
-                    transition={{ duration: 0.6, delay: 1 }}
-                    className="absolute left-1/2 -translate-x-1/2 -bottom-2 h-[1px] bg-zinc-400"
-                  />
-                </span>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative"
+              >
+                <motion.span 
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100%" }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="absolute -top-6 left-0 h-[1px] bg-gradient-to-r from-white/30 via-white/50 to-transparent"
+                />
                 <div className="relative">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 0.05, y: 0 }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                    className="absolute -left-6 -right-6 top-1/2 -translate-y-1/2 h-full bg-[#061E4F] blur-2xl"
-                  />
-                  <h3 className="text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-extralight tracking-wider text-zinc-800 leading-tight">
-                    DÖVEÇ GROUP ÖDÜLLERİ
-                   
-                  </h3>
+                  <span className="block text-sm font-light tracking-[0.4em] text-white/70 mb-6 relative">
+                    BAŞARILARIMIZ
+                    <motion.span 
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "2rem" }}
+                      transition={{ duration: 0.6, delay: 1 }}
+                      className="absolute left-1/2 -translate-x-1/2 -bottom-2 h-[1px] bg-white/40"
+                    />
+                  </span>
+                  <div className="relative">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 0.1, y: 0 }}
+                      transition={{ duration: 1, delay: 0.3 }}
+                      className="absolute -left-6 -right-6 top-1/2 -translate-y-1/2 h-full bg-white blur-2xl"
+                    />
+                    <h3 className="text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-extralight tracking-wider text-white leading-tight">
+                      DÖVEÇ GROUP ÖDÜLLERİ
+                    </h3>
+                  </div>
+                </div>
+                <motion.span 
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100%" }}
+                  transition={{ duration: 1, delay: 0.7 }}
+                  className="absolute -bottom-6 right-0 h-[1px] bg-gradient-to-l from-white/30 via-white/50 to-transparent"
+                />
+              </motion.div>
+            </motion.div>
+
+            {/* İçerik Grid - Görsel ve Ödüller Listesi */}
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Sol Taraf - Büyük Görsel ve Alt Ödüller */}
+              <div className="space-y-20">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1 }}
+                  className="relative aspect-square w-full"
+                >
+                  {awardImage && (
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+                      <Image
+                        src={awardImage}
+                        alt="Döveç Group Ödülleri"
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
+                    </div>
+                  )}
+                </motion.div>
+
+                {/* Görsel Altındaki Son İki Ödül */}
+                <div className="space-y-5">
+                  {awards.slice(-2).map((award, index) => (
+                    <motion.div 
+                      key={award.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.1 * index }}
+                      className="group/award border-b border-white/10 pt-6 pb-5 cursor-pointer hover:border-white/30 transition-all duration-500"
+                    >
+                      <div className="overflow-hidden">
+                        <motion.h4 
+                          whileHover={{ x: 20 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                          className="text-2xl md:text-3xl font-extralight text-white/90 group-hover/award:text-white transition-colors"
+                        >
+                          {award.name}
+                        </motion.h4>
+                      </div>
+                      <p className="text-white/60 font-light mt-5 text-base group-hover/award:text-white/80 transition-colors">
+                        {award.description}
+                      </p>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
-              <motion.span 
-                initial={{ width: 0 }}
-                whileInView={{ width: "100%" }}
-                transition={{ duration: 1, delay: 0.7 }}
-                className="absolute -bottom-6 right-0 h-[1px] bg-gradient-to-l from-zinc-300 via-zinc-500 to-transparent"
-              />
-            </motion.div>
-          </motion.div>
 
-          {/* İçerik Grid - Görsel ve Ödüller Listesi */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Sol Taraf - Büyük Görsel ve Alt Ödüller */}
-            <div className="space-y-20">
+              {/* Sağ Taraf - Ödüller Listesi (İlk 7 Ödül) */}
               <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1 }}
-                className="relative aspect-square w-full"
+                transition={{ duration: 0.8 }}
+                className="space-y-6"
               >
-                {awardImage && (
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
-                    <Image
-                      src={awardImage}
-                      alt="Döveç Group Ödülleri"
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
-                  </div>
-                )}
-              </motion.div>
-
-              {/* Görsel Altındaki Son İki Ödül */}
-              <div className="space-y-6">
-                {awards.slice(-2).map((award, index) => (
+                {awards.slice(0, -2).map((award, index) => (
                   <motion.div 
                     key={award.id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.1 * index }}
-                    className="group/award border-b border-zinc-200 pb-5 cursor-pointer hover:border-zinc-400 transition-all duration-500"
+                    className="group/award border-b border-white/10 pb-6 cursor-pointer hover:border-white/30 transition-all duration-500"
                   >
                     <div className="overflow-hidden">
                       <motion.h4 
                         whileHover={{ x: 20 }}
                         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                        className="text-2xl md:text-3xl font-extralight text-zinc-800 group-hover/award:text-zinc-600 transition-colors"
+                        className="text-2xl md:text-3xl font-extralight text-white/90 group-hover/award:text-white transition-colors"
                       >
                         {award.name}
                       </motion.h4>
                     </div>
-                    <p className="text-zinc-500 font-light mt-2 text-base group-hover/award:text-zinc-700 transition-colors">
+                    <p className="text-white/60 font-light mt-2 text-base group-hover/award:text-white/80 transition-colors">
                       {award.description}
                     </p>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
-
-            {/* Sağ Taraf - Ödüller Listesi (İlk 7 Ödül) */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6"
-            >
-              {awards.slice(0, -2).map((award, index) => (
-                <motion.div 
-                  key={award.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 * index }}
-                  className="group/award border-b border-zinc-200 pb-6 cursor-pointer hover:border-zinc-400 transition-all duration-500"
-                >
-                  <div className="overflow-hidden">
-                    <motion.h4 
-                      whileHover={{ x: 20 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="text-2xl md:text-3xl font-extralight text-zinc-800 group-hover/award:text-zinc-600 transition-colors"
-                    >
-                      {award.name}
-                    </motion.h4>
-                  </div>
-                  <p className="text-zinc-500 font-light mt-2 text-base group-hover/award:text-zinc-700 transition-colors">
-                    {award.description}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
           </div>
         </motion.div>
       </div>

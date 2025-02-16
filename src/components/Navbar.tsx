@@ -172,7 +172,7 @@ export default function Navbar() {
           {/* Sol menü */}
           <div className="hidden md:flex items-center justify-end space-x-3 lg:space-x-6 xl:space-x-8 flex-1 pr-4 lg:pr-8 xl:pr-16">
             <NavLink href="/hakkimizda" label="Biz Kimiz" />
-            <NavLink href="/projeler" label="Projeler" />
+            <NavLink href="/projeler" label="Koleksiyonlar" />
             <NavLink href="/medya" label="Medya" />
           </div>
 

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { storage } from '@/firebase/config';
 import { ref, getDownloadURL } from 'firebase/storage';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 export default function ContactPage() {
   const [heroImage, setHeroImage] = useState('');
@@ -36,32 +37,8 @@ export default function ContactPage() {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
-        {/* Arka plan desenleri */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-30">
-            <div className="absolute inset-0 animate-[spin_4s_linear_infinite] rounded-full border border-[#061E4F]/10"></div>
-            <div className="absolute inset-10 animate-[spin_5s_linear_infinite] rounded-full border border-[#061E4F]/10"></div>
-            <div className="absolute inset-20 animate-[spin_6s_linear_infinite] rounded-full border border-[#061E4F]/10"></div>
-          </div>
-        </div>
-
-        {/* Logo ve yükleniyor animasyonu */}
-        <div className="relative flex flex-col items-center">
-          <div className="w-32 h-32 relative mb-8">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#061E4F]/20 via-[#061E4F]/10 to-transparent animate-pulse"></div>
-            <div className="absolute inset-1 rounded-full bg-white flex items-center justify-center">
-              <div className="w-20 h-20 rounded-full bg-[#061E4F]/10 animate-pulse" />
-            </div>
-          </div>
-          
-          {/* Yükleniyor animasyonu */}
-          <div className="flex space-x-2">
-            <div className="w-2 h-2 rounded-full bg-[#061E4F]/60 animate-[bounce_0.9s_infinite]"></div>
-            <div className="w-2 h-2 rounded-full bg-[#061E4F]/60 animate-[bounce_0.9s_0.3s_infinite]"></div>
-            <div className="w-2 h-2 rounded-full bg-[#061E4F]/60 animate-[bounce_0.9s_0.6s_infinite]"></div>
-          </div>
-        </div>
+      <div className="h-screen bg-gradient-to-b from-white via-gray-50 to-white flex items-center justify-center">
+        <LoadingSpinner />
       </div>
     );
   }
