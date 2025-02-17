@@ -119,6 +119,7 @@ interface ProjectData {
   startingPrice: string;
   advantages: string;
   description: string;
+  newEraDescription?: string;
   features: string[];
   distances: Distance[];
   coordinates: {
@@ -130,7 +131,7 @@ interface ProjectData {
 // Proje verileri
 const projectsData: Record<string, ProjectData> = {
   'la-casalia': {
-    title: 'La Casalia',
+    title: 'La Casalıa',
     heroImage: 'lacasalia/tatlisu_10 - Photo copy.webp',
     city: 'TATLISU',
     region: 'Tatlısu',
@@ -139,6 +140,7 @@ const projectsData: Record<string, ProjectData> = {
     startingPrice: '£ 195.000',
     advantages: 'Deniz manzarası, özel plaj, sosyal tesisler',
     description: 'Modern mimari ve lüks yaşamın buluştuğu özel bir proje.',
+    newEraDescription: 'Kıbrıs\'ın kuzeyinde, masalsı bir diyarın kalbinde, Afrodit\'in efsanesinin yankılandığı bir cennet köşesi var: La Casalia. Akdeniz\'in masmavi sularına bakan bu büyülü topraklar, tıpkı aşk ve güzelliğin tanrıçası gibi, bölgenin doğal güzelliklerini ve tarihi derinliğini modern yaşamın konforuyla harmanlıyor.',
     features: [
       'Özel Plaj',
       'Deniz Manzarası',
@@ -1004,7 +1006,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Bölümü */}
-      <div className="relative h-[40vh] lg:h-[50vh]">
+      <div className="relative h-[50vh] lg:h-[60vh]">
         {heroImage && (
           <Image
             src={heroImage}
@@ -1035,11 +1037,6 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                   <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-6"></div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-light tracking-[.3em] text-[#061E4F]/60 uppercase mb-6">Bölge</h3>
-                  <p className="text-4xl font-extralight tracking-wider text-[#061E4F]">{projectData.region}</p>
-                  <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-6"></div>
-                </div>
-                <div>
                   <h3 className="text-sm font-light tracking-[.3em] text-[#061E4F]/60 uppercase mb-6">Proje Bitiş</h3>
                   <p className="text-4xl font-extralight tracking-wider text-[#061E4F]">{projectData.completion}</p>
                   <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-6"></div>
@@ -1048,19 +1045,47 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                   <h3 className="text-sm font-light tracking-[.3em] text-[#061E4F]/60 uppercase mb-6">Başlangıç Fiyatı</h3>
                   <p className="text-4xl font-extralight tracking-wider text-[#061E4F]">{projectData.startingPrice}</p>
                   <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-6"></div>
+                  <div className="mt-8 relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#061E4F]/5 via-[#061E4F]/10 to-[#061E4F]/5 rounded-xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                    <Link 
+                      href="/katalog" 
+                      className="relative flex items-center justify-between bg-gradient-to-r from-white to-gray-50 p-6 rounded-xl border border-[#061E4F]/5 group-hover:border-[#061E4F]/20 transition-all duration-500 shadow-sm group-hover:shadow-md"
+                    >
+                      <div className="space-y-2">
+                        <span className="block text-sm tracking-[.4em] uppercase font-light text-[#061E4F]/60 group-hover:text-[#061E4F] transition-colors duration-300">Dijital Katalog</span>
+                        <div className="flex items-center space-x-3">
+                          <span className="text-lg tracking-[.2em] font-light text-[#061E4F]">İNCELE</span>
+                          <div className="h-[1px] w-8 bg-gradient-to-r from-[#061E4F]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                        </div>
+                      </div>
+                      <div className="relative">
+                        <div className="absolute -inset-2 bg-gradient-to-br from-white via-[#061E4F]/5 to-[#061E4F]/10 rounded-full opacity-0 group-hover:opacity-100 blur-md transition-all duration-500"></div>
+                        <div className="relative w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-500">
+                          <ArrowIcon />
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
               <div className="space-y-16">
                 <div>
-                  <h3 className="text-sm font-light tracking-[.3em] text-[#061E4F]/60 uppercase mb-6">Konut Tipleri</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  <h3 className="text-sm font-light tracking-[.3em] text-[#061E4F]/60 uppercase mb-12">Konut Tipleri</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                     {projectData.types.split(',').map((type, index) => (
-                      <div key={index} className="bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm px-6 py-4 rounded-xl group">
-                        <span className="block text-sm font-light tracking-wider text-[#061E4F]/70 group-hover:text-[#061E4F] transition-all duration-300">{type.trim()}</span>
+                      <div 
+                        key={index} 
+                        className="group"
+                      >
+                        <div className="relative">
+                          <p className="text-xl md:text-2xl font-extralight tracking-wide text-[#061E4F] py-1">
+                            {type.trim()}
+                          </p>
+                          <div className="h-[1px] w-full bg-gradient-to-r from-[#061E4F]/10 via-[#061E4F]/20 to-[#061E4F]/10"></div>
+                        </div>
                       </div>
                     ))}
                   </div>
-                  <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/20 to-transparent mt-8"></div>
                 </div>
               </div>
             </div>
@@ -1089,9 +1114,28 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
       </div>
 
       {/* Proje Tanıtım */}
-      <div className="relative py-32">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#061E4F]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#061E4F]/5 rounded-full blur-3xl"></div>
+      <div className="relative py-32 overflow-hidden">
+        {/* Dekoratif Arka Plan Elemanları */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Sol taraftaki Roma sütunu ve Afrodit heykeli */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[300px] h-[600px] opacity-10">
+            <div className="absolute top-0 left-10 w-[2px] h-full bg-gradient-to-b from-[#061E4F]/0 via-[#061E4F]/20 to-[#061E4F]/0"></div>
+            <div className="absolute top-0 left-20 w-[2px] h-full bg-gradient-to-b from-[#061E4F]/0 via-[#061E4F]/15 to-[#061E4F]/0"></div>
+            <div className="absolute top-0 left-30 w-[2px] h-full bg-gradient-to-b from-[#061E4F]/0 via-[#061E4F]/10 to-[#061E4F]/0"></div>
+            <div className="absolute bottom-0 left-0 w-40 h-40 bg-[url('/images/aphrodite-pattern.png')] bg-contain bg-no-repeat opacity-20"></div>
+          </div>
+          
+          {/* Antik desen ve motifler */}
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute top-10 left-1/4 w-32 h-32 border border-[#061E4F]/10 rounded-full"></div>
+            <div className="absolute bottom-20 right-1/3 w-40 h-40 border border-[#061E4F]/5 rounded-full"></div>
+            <div className="absolute top-1/3 right-20 w-24 h-24 border border-[#061E4F]/10 rounded-full"></div>
+          </div>
+
+          {/* Gradient arka plan efektleri */}
+          <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-[#061E4F]/5 via-[#061E4F]/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#061E4F]/5 via-[#061E4F]/10 to-transparent rounded-full blur-3xl"></div>
+        </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -1100,14 +1144,22 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
               <div className="space-y-8">
                 <div className="flex items-center space-x-4">
                   <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Yeni bir çağ</span>
+                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Afrodit'in İzinde Efsanevi Yeni Yaşam Sanatı</span>
                 </div>
-                <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
+                <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight relative">
                   {projectData.title}
+                  <div className="absolute -left-8 -top-8 w-16 h-16 border-t border-l border-[#061E4F]/20"></div>
+                  <div className="absolute -right-8 -bottom-8 w-16 h-16 border-b border-r border-[#061E4F]/20"></div>
                 </h2>
-                <p className="text-xl font-light leading-relaxed text-gray-600">
+                <p className="text-xl font-light leading-relaxed text-gray-600 relative">
                   {projectData.description}
                 </p>
+                {projectData.newEraDescription && (
+                  <p className="text-xl font-light leading-relaxed text-gray-600 whitespace-pre-line relative">
+                    {projectData.newEraDescription}
+                    <div className="absolute -right-4 bottom-0 w-8 h-8 border-b border-r border-[#061E4F]/10"></div>
+                  </p>
+                )}
               </div>
             </div>
 
@@ -1123,6 +1175,9 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                 />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F]/50 via-transparent to-transparent"></div>
+              {/* Dekoratif çerçeve */}
+              <div className="absolute inset-0 border border-[#061E4F]/10 rounded-2xl"></div>
+              <div className="absolute inset-[2px] border border-[#061E4F]/5 rounded-2xl"></div>
             </div>
           </div>
         </div>

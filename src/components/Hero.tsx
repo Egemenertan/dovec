@@ -31,18 +31,17 @@ export const Hero = () => {
 
   return (
     <div className="relative h-screen w-full z-10 bg-black">
-      <div className="absolute top-32 w-full px-8 z-20">
+      <div className="absolute top-24 sm:top-24 md:top-32 w-full px-4 sm:px-8 z-50">
         <div className="flex flex-col items-start w-full">
           {/* Sol Başlık */}
           <div className="flex flex-col items-start">
-            <div className="flex flex-col gap-3 md:max-w-xl lg:max-w-3xl xl:max-w-4xl">
-              <h2 className="w-full text-3xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-normal text-white/90 tracking-tight leading-tight sm:px-0">
+            <div className="flex flex-col gap-2 md:gap-3 md:max-w-xl lg:max-w-3xl xl:max-w-4xl">
+              <h2 className="w-full text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-white tracking-tight leading-tight">
                 FELSEFEMİZ HAYALLER<br className="hidden md:block lg:block xl:hidden" /> İNŞA ETMEK,<br className="md:hidden" /> GELECEĞİ YAZMAK
               </h2>
-              
             </div>
-            <p className="text-white/70 text-lg mt-6 w-[220px] xs:w-[240px] sm:w-[260px] md:w-[320px] lg:w-[460px] xl:w-[720px] sm:px-0">
-            Döveç Group, Kuzey Kıbrıs'ta birçok sektöre yön veren,fonksiyonel açıdan trend ve teknolojik çözümlerle farklı tasarımlar oluşturmaktadır.
+            <p className="text-white/70 text-base sm:text-lg mt-4 sm:mt-6 w-[200px] xs:w-[220px] sm:w-[260px] md:w-[320px] lg:w-[460px] xl:w-[720px]">
+              Döveç Group, Kuzey Kıbrıs'ta birçok sektöre yön veren,fonksiyonel açıdan trend ve teknolojik çözümlerle farklı tasarımlar oluşturmaktadır.
             </p>
           </div>
         </div>
@@ -105,7 +104,7 @@ export const Hero = () => {
               disableOnInteraction: false,
             }}
             loop={true}
-            className="h-[92vh] w-full [clip-path:polygon(84%_25%,100%_25%,100%_100%,0_100%,0_70%)] sm:[clip-path:polygon(84%_15%,100%_15%,100%_100%,0_100%,0_85%)] md:[clip-path:polygon(84%_10%,100%_10%,100%_100%,0_100%,0_60%)] lg:[clip-path:polygon(84%_0,100%_0,100%_100%,0_100%,0_50%)]"
+            className="h-[92vh] w-full [clip-path:polygon(84%_25%,100%_25%,100%_100%,0_100%,0_70%)] sm:[clip-path:polygon(84%_15%,100%_15%,100%_100%,0_100%,0_85%)] md:[clip-path:polygon(84%_10%,100%_10%,100%_100%,0_100%,0_60%)] lg:[clip-path:polygon(90%_0,100%_0,100%_100%,0_100%,0_60%)]"
           >
             {images.map((imageUrl: string, index: number) => (
               <SwiperSlide key={index} className="relative h-full">
