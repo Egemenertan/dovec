@@ -25,14 +25,14 @@ function Earth() {
         const g = imageData.data[i + 1];
         const b = imageData.data[i + 2];
         
-        // Mavi renkleri (okyanusları) tamamen şeffaf yap
+        // Mavi renkleri (okyanusları) siyah yap
         if (b > r && b > g) {
           imageData.data[i] = 0;
           imageData.data[i + 1] = 0;
           imageData.data[i + 2] = 0;
-          imageData.data[i + 3] = 0;
+          imageData.data[i + 3] = 255;
         } else {
-          // Karaları beyaz yap (maske olarak kullanılacak)
+          // Karaları beyaz yap
           imageData.data[i] = 255;
           imageData.data[i + 1] = 255;
           imageData.data[i + 2] = 255;
@@ -59,7 +59,7 @@ function Earth() {
       <meshBasicMaterial
         map={processedTexture}
         transparent={true}
-        color="#061E4F"
+        color="#ffffff"
       />
     </mesh>
   );
@@ -67,9 +67,9 @@ function Earth() {
 
 const LoadingSpinner: React.FC = () => {
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 backdrop-blur-sm flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
       <div className="w-64 h-64 relative">
-        <div className="absolute inset-0 bg-blue-500/5 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute inset-0 bg-white/5 rounded-full blur-xl animate-pulse"></div>
         <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
           <Suspense fallback={null}>
             <ambientLight intensity={2} />

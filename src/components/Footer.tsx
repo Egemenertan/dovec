@@ -24,13 +24,13 @@ export function Footer() {
   }, [])
 
   return (
-    <footer className="bg-[#061E4F]/5 relative">
+    <footer className="bg-white relative">
       {/* Sofistike arka plan desenleri */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,30,79,0.03),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(6,30,79,0.03),transparent_50%)]"></div>
-        <div className="absolute inset-y-0 left-0 w-[1px] bg-gradient-to-b from-transparent via-[#061E4F]/20 to-transparent"></div>
-        <div className="absolute inset-y-0 right-0 w-[1px] bg-gradient-to-b from-transparent via-[#061E4F]/20 to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,30,79,0.02),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(6,30,79,0.02),transparent_50%)]"></div>
+        <div className="absolute inset-y-0 left-0 w-[1px] bg-gradient-to-b from-transparent via-[#061E4F]/10 to-transparent"></div>
+        <div className="absolute inset-y-0 right-0 w-[1px] bg-gradient-to-b from-transparent via-[#061E4F]/10 to-transparent"></div>
       </div>
       
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative flex flex-col">

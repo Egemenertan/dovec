@@ -258,7 +258,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extralight leading-tight tracking-[.2em] text-[#061E4F] animate-fade-in uppercase relative"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-extralight leading-tight tracking-[.2em] text-[#061E4F] animate-fade-in uppercase relative"
                 >
                   <motion.div 
                     initial={{ opacity: 0, x: -30 }}
@@ -267,26 +267,18 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-900 bg-clip-text text-transparent"
                   >
-                    Kuzey Kıbrıs yalnızca
+                    BİR YATIRIMDAN DAHA FAZLASIDIR
                   </motion.div>
                   <motion.div 
                     initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 bg-clip-text text-transparent mt-4"
+                    className="bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 bg-clip-text text-transparent"
                   >
-                    bir yatırım alanı
+                    KUZEY KIBRIS
                   </motion.div>
-                  <motion.div 
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    className="bg-gradient-to-r from-gray-600 via-gray-500 to-gray-700 bg-clip-text text-transparent mt-4"
-                  >
-                    değildir
-                  </motion.div>
+                  
                 </motion.h2>
               </div>
 
