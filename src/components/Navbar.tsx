@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { storage } from '@/firebase/config'
 import { ref, getDownloadURL } from 'firebase/storage'
+import { useRouter } from 'next/navigation'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -61,7 +62,7 @@ export default function Navbar() {
     <nav className={`fixed w-full z-50 transition-all duration-700 ${
       isScrolled 
         ? 'backdrop-blur-sm bg-white shadow-sm after:absolute after:inset-0 after:bg-[radial-gradient(800px_circle_at_var(--mouse-x,50%)_var(--mouse-y,50%),rgba(255,255,255,0.04),transparent_45%)] after:transition-opacity after:duration-500' 
-        : 'bg-black/10 backdrop-blur-sm'
+        : ''
     }`}>
       <div className={`relative w-screen max-w-[100vw] ${isScrolled ? 'after:absolute after:inset-0 after:bg-gradient-to-b after:from-white/5 after:to-transparent' : ''}`}>
         {/* Language Selection - Ekranın En Solunda */}
@@ -198,7 +199,7 @@ export default function Navbar() {
               href="https://www.linkedin.com/company/dovecgroup/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className={`relative font-light tracking-wider group py-2 transition-all duration-300 ${
+              className={`relative font-medium tracking-wider group py-2 transition-all duration-300 ${
                 isScrolled ? 'text-zinc-700 hover:text-black' : 'text-white hover:text-white'
               }`}
             >
@@ -281,9 +282,9 @@ export default function Navbar() {
             </div>
 
             {/* Menü Linkleri */}
-            <div className="flex-1 flex flex-col space-y-7 items-start w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-12">
+            <div className="flex-1 flex flex-col space-y-10 items-start w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-12">
               <div className="w-full mx-4">
-                <div className="flex flex-col space-y-7">
+                <div className="flex flex-col space-y-10">
                   <MobileNavLink href="/hakkimizda" label="Biz Kimiz" setIsOpen={setIsOpen} />
                   <MobileNavLink href="/projeler" label="Projeler" setIsOpen={setIsOpen} />
                   <MobileNavLink href="/medya" label="Medya" setIsOpen={setIsOpen} />
@@ -418,17 +419,18 @@ export default function Navbar() {
 }
 
 function NavLink({ href, label, isMobile = false }: { href: string; label: string; isMobile?: boolean }) {
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isActive, setIsActive] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setIsScrolled(true)
+        setIsActive(true)
       } else {
-        setIsScrolled(false)
+        setIsActive(false)
       }
     }
-    
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -446,24 +448,20 @@ function NavLink({ href, label, isMobile = false }: { href: string; label: strin
   }
 
   return (
-    <Link 
-      href={href} 
-      className={`relative font-light tracking-wider group py-2 transition-all duration-300 ${
-        isScrolled ? 'text-zinc-700 hover:text-black' : 'text-white hover:text-white'
+    <Link
+      href={href}
+      className={`relative font-medium tracking-wider group py-2 transition-all duration-300 ${
+        isActive ? 'text-zinc-700 hover:text-black' : 'text-white hover:text-white'
       }`}
     >
       <span className="relative z-10 text-sm uppercase">{label}</span>
-      
-      {/* Hover efekti için alt çizgi */}
       <div className={`absolute bottom-0 left-0 w-full h-[1px] ${
-        isScrolled 
+        isActive 
           ? 'bg-gradient-to-r from-transparent via-zinc-600 to-transparent' 
           : 'bg-gradient-to-r from-transparent via-white to-transparent'
       } scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center`}></div>
-      
-      {/* Hover efekti için blur */}
       <div className={`absolute bottom-0 left-0 w-full h-1 ${
-        isScrolled ? 'bg-zinc-800/10' : 'bg-white/20'
+        isActive ? 'bg-zinc-800/10' : 'bg-white/20'
       } scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center blur-sm`}></div>
     </Link>
   )
@@ -476,7 +474,7 @@ function MobileNavLink({ href, label, setIsOpen }: { href: string; label: string
       className="group relative overflow-hidden w-full"
       onClick={() => setIsOpen(false)}
     >
-      <span className="relative inline-block text-xl font-light text-[#061E4F] tracking-wider transition-transform duration-300 group-hover:translate-x-2">
+      <span className="relative inline-block text-2xl font-light text-[#061E4F] tracking-wider transition-transform duration-300 group-hover:translate-x-2">
         {label}
       </span>
       <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#061E4F]/60 to-transparent transition-all duration-300 group-hover:w-full"></span>

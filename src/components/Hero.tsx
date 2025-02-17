@@ -6,12 +6,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import Link from 'next/link';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { useState } from 'react';
 
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 
 export const Hero = () => {
   const { images, loading } = useStorage();
+  const [activeImageName, setActiveImageName] = useState('');
 
   if (loading) {
     return (
@@ -29,62 +31,103 @@ export const Hero = () => {
     );
   }
 
+  const handleSlideChange = (swiper: any) => {
+    const currentImageUrl = images[swiper.realIndex];
+    const imageName = currentImageUrl.split('/').pop() || '';
+    setActiveImageName(imageName);
+  };
+
   return (
     <div className="relative h-screen w-full z-10 bg-black">
       <div className="absolute top-24 sm:top-24 md:top-32 w-full px-4 sm:px-8 z-50">
         <div className="flex flex-col items-start w-full">
           {/* Sol Başlık */}
-          <div className="flex flex-col items-start">
-            <div className="flex flex-col gap-2 md:gap-3 md:max-w-xl lg:max-w-3xl xl:max-w-4xl">
-              <h2 className="w-full text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-normal text-white tracking-tight leading-tight">
-                FELSEFEMİZ HAYALLER<br className="hidden md:block lg:block xl:hidden" /> İNŞA ETMEK,<br className="md:hidden" /> GELECEĞİ YAZMAK
-              </h2>
-            </div>
-            <p className="text-white/70 text-base sm:text-lg mt-4 sm:mt-6 w-[200px] xs:w-[220px] sm:w-[260px] md:w-[320px] lg:w-[460px] xl:w-[720px]">
-              Döveç Group, Kuzey Kıbrıs'ta birçok sektöre yön veren,fonksiyonel açıdan trend ve teknolojik çözümlerle farklı tasarımlar oluşturmaktadır.
-            </p>
-          </div>
+          
         </div>
       </div>
 
-      {/* Sağ Alt Buton */}
-      <div className="absolute bottom-12 sm:bottom-16 right-8 sm:right-16 z-50">
-        <Link 
-          href="/iletisim" 
-          className="group inline-flex"
-        >
-          <div className="relative flex items-center justify-center">
-            {/* Ana buton container */}
-            <div className="relative flex border border-white/20 sm:border-2 items-center gap-2 sm:gap-4 bg-black/80 backdrop-blur-md px-5 sm:px-8 py-3 sm:py-5 rounded-lg overflow-hidden transition-all duration-700 hover:bg-black hover:border-white/40">
-              {/* Metin */}
-              <span className="relative text-sm sm:text-lg font-light tracking-[0.2em] text-white/80 transition-all duration-700 group-hover:text-white uppercase">
-                Döveç'e Bağlan
-              </span>
+      {/* Butonlar Container */}
+      <div className="absolute bottom-20 sm:bottom-16 w-full flex flex-col sm:flex-row sm:justify-between px-8 sm:px-16 gap-4 sm:gap-0 z-50">
+        {/* Sol Alt Keşfet Butonu */}
+        <div>
+          <Link 
+            href={activeImageName.includes('imaj_3') 
+              ? '/projeler/querencia' 
+              : activeImageName.includes('tatlisu_35') 
+              ? '/projeler/lacasalia'
+              : activeImageName.includes('Natulux Out View 1 (1)_11zon')
+              ? '/projeler/natulux'
+              : '/projeler'}
+            className="group inline-flex"
+          >
+            <div className="relative flex items-center justify-center">
+              {/* Ana buton container */}
+              <div className="relative flex border border-white/20 sm:border-2 items-center gap-2 sm:gap-4 bg-white/80 backdrop-blur-md px-5 sm:px-8 py-3 sm:py-5 rounded-full overflow-hidden transition-all duration-700 hover:bg-black hover:border-white group">
+                {/* Metin */}
+                <span className="relative text-sm sm:text-lg font-light tracking-[0.2em] text-black transition-all duration-700 group-hover:text-white uppercase">
+                  Keşfet
+                </span>
 
-              {/* Ok tasarımı */}
-              <div className="relative flex items-center justify-center w-5 sm:w-7">
-                <svg 
-                  className="w-4 h-4 sm:w-6 sm:h-6 relative text-white/80 group-hover:text-white transition-all duration-700 transform translate-x-1 group-hover:translate-x-2" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path 
-                    strokeLinecap="square" 
-                    strokeLinejoin="miter" 
-                    strokeWidth={1.5} 
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
+                {/* Ok tasarımı */}
+                <div className="relative flex items-center justify-center w-5 sm:w-7">
+                  <svg 
+                    className="w-4 h-4 sm:w-6 sm:h-6 relative text-black group-hover:text-white transition-all duration-700 transform translate-x-1 group-hover:translate-x-2" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={1.5} 
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+        </div>
+
+        {/* Sağ Alt Buton */}
+        <div>
+          <Link 
+            href="/iletisim" 
+            className="group inline-flex"
+          >
+            <div className="relative flex items-center justify-center">
+              {/* Ana buton container */}
+              <div className="relative flex border border-white/20 sm:border-2 items-center gap-2 sm:gap-4 bg-white/80 backdrop-blur-md px-5 sm:px-8 py-3 sm:py-5 rounded-full overflow-hidden transition-all duration-700 hover:bg-black hover:border-white group">
+                {/* Metin */}
+                <span className="relative text-sm sm:text-lg font-light tracking-[0.2em] text-black transition-all duration-700 group-hover:text-white uppercase">
+                  Döveç'e Bağlan
+                </span>
+
+                {/* Ok tasarımı */}
+                <div className="relative flex items-center justify-center w-5 sm:w-7">
+                  <svg 
+                    className="w-4 h-4 sm:w-6 sm:h-6 relative text-black group-hover:text-white transition-all duration-700 transform translate-x-1 group-hover:translate-x-2" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={1.5} 
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
       </div>
       
       <div className="absolute bottom-0 w-full">
         {/* Siyah Arka Plan */}
-        <div className="absolute bottom-0 left-0 w-full h-[70vh] bg-black z-10" />
+        <div className="absolute bottom-0 left-0 w-full h-screen bg-black z-10" />
         
         {/* Kırpılmış Swiper */}
         <div className="relative z-20">
@@ -104,9 +147,13 @@ export const Hero = () => {
               disableOnInteraction: false,
             }}
             loop={true}
-            className="h-[92vh] w-full [clip-path:polygon(84%_25%,100%_25%,100%_100%,0_100%,0_70%)] sm:[clip-path:polygon(84%_15%,100%_15%,100%_100%,0_100%,0_85%)] md:[clip-path:polygon(84%_10%,100%_10%,100%_100%,0_100%,0_60%)] lg:[clip-path:polygon(90%_0,100%_0,100%_100%,0_100%,0_60%)]"
+            className="h-[100vh] w-full"
+            onSlideChange={handleSlideChange}
+            onInit={handleSlideChange}
           >
-            {images.map((imageUrl: string, index: number) => (
+            {images.map((imageUrl: string, index: number) => {
+              const imageName = imageUrl.split('/').pop() || '';
+              return (
               <SwiperSlide key={index} className="relative h-full">
                 <div className="relative w-full h-full">
                   <Image
@@ -124,11 +171,43 @@ export const Hero = () => {
                     }}
                     className="transition-opacity duration-500"
                   />
-                  {/* Overlay */}
-                  
+                  {/* Karartma Gradient - Sadece Alt Kısım */}
+                  <div className="absolute bottom-0 left-0 w-full h-[50vh] bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  {/* Özel Başlıklar */}
+                  {imageName.includes('imaj_3') && (
+                    <div className="absolute bottom-56 sm:bottom-40 left-8 sm:left-16 z-50">
+                      <h2 className="text-4xl sm:text-6xl md:text-6xl lg:text-8xl font-light text-white tracking-wider">
+                        QUERENCIA
+                      </h2>
+                      <p className="text-base sm:text-lg md:text-xl text-white/80 mt-2 sm:mt-3 font-light tracking-wide">
+                        Afrodit'in İzinde Efsanevi Yeni Yaşam Sanatı
+                      </p>
+                    </div>
+                  )}
+                  {imageName.includes('tatlisu_35') && (
+                    <div className="absolute bottom-56 sm:bottom-40 left-8 sm:left-16 z-50">
+                      <h2 className="text-4xl sm:text-6xl md:text-6xl lg:text-8xl font-light text-white tracking-wider">
+                        LA CASALIA
+                      </h2>
+                      <p className="text-base sm:text-lg md:text-xl text-white/80 mt-2 sm:mt-3 font-light tracking-wide">
+                        Afrodit'in İzinde Efsanevi Yeni Yaşam Sanatı
+                      </p>
+                    </div>
+                  )}
+                  {imageName.includes('Natulux Out View 1 (1)_11zon') && (
+                    <div className="absolute bottom-56 sm:bottom-40 left-8 sm:left-16 z-50">
+                      <h2 className="text-4xl sm:text-6xl md:text-6xl lg:text-8xl font-light text-white tracking-wider">
+                        NATULUX
+                      </h2>
+                      <p className="text-base sm:text-lg md:text-xl text-white/80 mt-2 sm:mt-3 font-light tracking-wide">
+                        Doğanın Lüks ile Buluştuğu Yaşam Alanı
+                      </p>
+                    </div>
+                  )}
                 </div>
               </SwiperSlide>
-            ))}
+              );
+            })}
           </Swiper>
         </div>
       </div>
