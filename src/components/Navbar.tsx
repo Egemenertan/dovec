@@ -282,9 +282,9 @@ export default function Navbar() {
             </div>
 
             {/* Menü Linkleri */}
-            <div className="flex-1 flex flex-col space-y-10 items-start w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-12">
+            <div className="flex-1 flex flex-col space-y-7 items-start w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-12">
               <div className="w-full mx-4">
-                <div className="flex flex-col space-y-10">
+                <div className="flex flex-col space-y-7">
                   <MobileNavLink href="/hakkimizda" label="Biz Kimiz" setIsOpen={setIsOpen} />
                   <MobileNavLink href="/projeler" label="Projeler" setIsOpen={setIsOpen} />
                   <MobileNavLink href="/medya" label="Medya" setIsOpen={setIsOpen} />
@@ -474,7 +474,7 @@ function MobileNavLink({ href, label, setIsOpen }: { href: string; label: string
       className="group relative overflow-hidden w-full"
       onClick={() => setIsOpen(false)}
     >
-      <span className="relative inline-block text-2xl font-light text-[#061E4F] tracking-wider transition-transform duration-300 group-hover:translate-x-2">
+      <span className="relative inline-block text-xl font-light text-[#061E4F] tracking-wider transition-transform duration-300 group-hover:translate-x-2">
         {label}
       </span>
       <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#061E4F]/60 to-transparent transition-all duration-300 group-hover:w-full"></span>

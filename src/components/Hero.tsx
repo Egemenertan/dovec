@@ -34,6 +34,7 @@ export const Hero = () => {
   const handleSlideChange = (swiper: any) => {
     const currentImageUrl = images[swiper.realIndex];
     const imageName = currentImageUrl.split('/').pop() || '';
+    console.log("Current Image Name:", imageName);
     setActiveImageName(imageName);
   };
 
@@ -55,7 +56,7 @@ export const Hero = () => {
               ? '/projeler/querencia' 
               : activeImageName.includes('tatlisu_35') 
               ? '/projeler/lacasalia'
-              : activeImageName.includes('Natulux Out View 1 (1)_11zon')
+              : activeImageName.includes('natulux')
               ? '/projeler/natulux'
               : '/projeler'}
             className="group inline-flex"
@@ -162,13 +163,15 @@ export const Hero = () => {
                     fill
                     priority={index === 0}
                     quality={100}
+                    loading={index === 0 ? "eager" : "lazy"}
                     placeholder="blur"
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4dHRsdHR4dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/2wBDAR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                    sizes="100vw"
+                    sizes="(max-width: 768px) 100vw, 100vw"
                     style={{
                       objectFit: 'cover',
                       objectPosition: 'center',
                     }}
+                    unoptimized={true}
                     className="transition-opacity duration-500"
                   />
                   {/* Karartma Gradient - Sadece Alt Kısım */}
@@ -194,7 +197,7 @@ export const Hero = () => {
                       </p>
                     </div>
                   )}
-                  {imageName.includes('Natulux Out View 1 (1)_11zon') && (
+                  {imageName.includes('Natulux') && (
                     <div className="absolute bottom-56 sm:bottom-40 left-8 sm:left-16 z-50">
                       <h2 className="text-4xl sm:text-6xl md:text-6xl lg:text-8xl font-light text-white tracking-wider">
                         NATULUX

@@ -55,7 +55,7 @@ function Earth() {
   // Primary color: #061E4F
   return (
     <mesh ref={earthRef} rotation={[0, -1.5, 0]}>
-      <sphereGeometry args={[1.7, 64, 64]} />
+      <sphereGeometry args={[1.2, 64, 64]} />
       <meshBasicMaterial
         map={processedTexture}
         transparent={true}
@@ -68,7 +68,7 @@ function Earth() {
 const LoadingSpinner: React.FC = () => {
   return (
     <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
-      <div className="w-64 h-64 relative">
+      <div className="w-40 h-40 sm:w-64 sm:h-64 relative">
         <div className="absolute inset-0 bg-white/5 rounded-full blur-xl animate-pulse"></div>
         <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
           <Suspense fallback={null}>
