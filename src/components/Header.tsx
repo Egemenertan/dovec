@@ -35,7 +35,7 @@ export const Header = () => {
               Yatırım
             </Link>
             <Link href="/iletisim" className="text-white hover:text-gray-300 transition-colors">
-              İletişim
+              DÖVEÇ'E BAĞLAN
             </Link>
           </nav>
         </div>

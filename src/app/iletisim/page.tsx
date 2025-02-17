@@ -67,7 +67,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-white uppercase">
-            İletişim
+            DÖVEÇ'E BAĞLAN
           </h1>
         </div>
       </div>

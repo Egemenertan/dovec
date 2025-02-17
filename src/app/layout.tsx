@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Cormorant } from "next/font/google"
 import "./globals.css"
 import ClientLayout from '../components/ClientLayout'
+import FloatingContactButtons from '../components/FloatingContactButtons'
 
 const inter = Inter({ subsets: ["latin"] })
 const cormorant = Cormorant({ 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ClientLayout>
           {children}
         </ClientLayout>
+        <FloatingContactButtons />
       </body>
     </html>
   )

@@ -213,7 +213,7 @@ export default function Navbar() {
                 isScrolled ? 'bg-zinc-800/10' : 'bg-white/20'
               } scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center blur-sm`}></div>
             </a>
-            <NavLink href="/iletisim" label="İletişim" />
+            <NavLink href="/iletisim" label="DÖVEÇ'E BAĞLAN" />
           </div>
 
           {/* Mobil menü butonu */}

@@ -380,10 +380,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <span className="block text-sm font-light tracking-[0.4em] text-zinc-400 mb-4">
-              DOVEC GROUP
+              DÖVEÇ GROUP
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-wider text-[#061E4F] mb-6 relative inline-block">
-              Faaliyet Alanlarımız
+              FAALİYET ALANLARIMIZ
               <div className="absolute -bottom-4 left-1/2 w-12 h-[1px] bg-gradient-to-r from-transparent via-zinc-300 to-transparent transform -translate-x-1/2"></div>
             </h2>
           </div>

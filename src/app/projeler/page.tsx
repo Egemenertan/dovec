@@ -206,7 +206,7 @@ export default function ProjectsPage() {
           <div className="text-center space-y-6 md:space-y-12">
             <div className="space-y-4 md:space-y-6">
               <span className="inline-block text-xs md:text-sm font-light tracking-[0.5em] text-white/80 relative">
-                DOVEC GROUP
+                DÖVEÇ GROUP
                 <div className="absolute -bottom-2 left-1/2 w-8 h-[1px] bg-white/40 transform -translate-x-1/2"></div>
               </span>
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extralight tracking-[.15em] text-white uppercase">

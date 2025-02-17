@@ -228,7 +228,7 @@ export const ProjectSlider = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="block text-sm font-light tracking-[0.4em] text-zinc-400 mb-4"
           >
-            DOVEC İNŞAAT
+            DÖVEÇ İNŞAAT
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -237,7 +237,7 @@ export const ProjectSlider = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-wider text-zinc-800 mb-6 relative inline-block"
           >
-            Projelerimiz
+            PROJELERİMİZ
             <motion.div 
               initial={{ width: 0 }}
               whileInView={{ width: "100%" }}

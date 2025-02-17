@@ -48,8 +48,8 @@ export const Hero = () => {
       </div>
 
       {/* Butonlar Container */}
-      <div className="absolute bottom-20 sm:bottom-16 w-full flex flex-col sm:flex-row sm:justify-between px-8 sm:px-16 gap-4 sm:gap-0 z-50">
-        {/* Sol Alt Keşfet Butonu */}
+      <div className="absolute bottom-20 sm:bottom-16 w-full flex justify-start px-8 sm:px-16 z-50">
+        {/* Keşfet Butonu */}
         <div>
           <Link 
             href={activeImageName.includes('imaj_3') 
@@ -67,41 +67,6 @@ export const Hero = () => {
                 {/* Metin */}
                 <span className="relative text-sm sm:text-lg font-light tracking-[0.2em] text-black transition-all duration-700 group-hover:text-white uppercase">
                   Keşfet
-                </span>
-
-                {/* Ok tasarımı */}
-                <div className="relative flex items-center justify-center w-5 sm:w-7">
-                  <svg 
-                    className="w-4 h-4 sm:w-6 sm:h-6 relative text-black group-hover:text-white transition-all duration-700 transform translate-x-1 group-hover:translate-x-2" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={1.5} 
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        {/* Sağ Alt Buton */}
-        <div>
-          <Link 
-            href="/iletisim" 
-            className="group inline-flex"
-          >
-            <div className="relative flex items-center justify-center">
-              {/* Ana buton container */}
-              <div className="relative flex border border-white/20 sm:border-2 items-center gap-2 sm:gap-4 bg-white/80 backdrop-blur-md px-5 sm:px-8 py-3 sm:py-5 rounded-full overflow-hidden transition-all duration-700 hover:bg-black hover:border-white group">
-                {/* Metin */}
-                <span className="relative text-sm sm:text-lg font-light tracking-[0.2em] text-black transition-all duration-700 group-hover:text-white uppercase">
-                  Döveç'e Bağlan
                 </span>
 
                 {/* Ok tasarımı */}
@@ -178,31 +143,31 @@ export const Hero = () => {
                   <div className="absolute bottom-0 left-0 w-full h-[50vh] bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                   {/* Özel Başlıklar */}
                   {imageName.includes('imaj_3') && (
-                    <div className="absolute bottom-56 sm:bottom-40 left-8 sm:left-16 z-50">
+                    <div className="absolute bottom-40 sm:bottom-40 left-8 sm:left-16 z-[60]">
                       <h2 className="text-4xl sm:text-6xl md:text-6xl lg:text-8xl font-light text-white tracking-wider">
                         QUERENCIA
                       </h2>
-                      <p className="text-base sm:text-lg md:text-xl text-white/80 mt-2 sm:mt-3 font-light tracking-wide">
+                      <p className="text-base sm:text-lg md:text-xl text-white/80 mt-2 sm:mt-3 font-light tracking-wide max-w-[75%] sm:max-w-[600px]">
                         Afrodit'in İzinde Efsanevi Yeni Yaşam Sanatı
                       </p>
                     </div>
                   )}
                   {imageName.includes('tatlisu_35') && (
-                    <div className="absolute bottom-56 sm:bottom-40 left-8 sm:left-16 z-50">
+                    <div className="absolute bottom-40 sm:bottom-40 left-8 sm:left-16 z-[60]">
                       <h2 className="text-4xl sm:text-6xl md:text-6xl lg:text-8xl font-light text-white tracking-wider">
                         LA CASALIA
                       </h2>
-                      <p className="text-base sm:text-lg md:text-xl text-white/80 mt-2 sm:mt-3 font-light tracking-wide">
+                      <p className="text-base sm:text-lg md:text-xl text-white/80 mt-2 sm:mt-3 font-light tracking-wide max-w-[75%] sm:max-w-[600px]">
                         Afrodit'in İzinde Efsanevi Yeni Yaşam Sanatı
                       </p>
                     </div>
                   )}
                   {imageName.includes('Natulux') && (
-                    <div className="absolute bottom-56 sm:bottom-40 left-8 sm:left-16 z-50">
+                    <div className="absolute bottom-40 sm:bottom-40 left-8 sm:left-16 z-[60]">
                       <h2 className="text-4xl sm:text-6xl md:text-6xl lg:text-8xl font-light text-white tracking-wider">
                         NATULUX
                       </h2>
-                      <p className="text-base sm:text-lg md:text-xl text-white/80 mt-2 sm:mt-3 font-light tracking-wide">
+                      <p className="text-base sm:text-lg md:text-xl text-white/80 mt-2 sm:mt-3 font-light tracking-wide max-w-[75%] sm:max-w-[600px]">
                         Doğanın Lüks ile Buluştuğu Yaşam Alanı
                       </p>
                     </div>

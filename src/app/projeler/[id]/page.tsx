@@ -1676,7 +1676,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                   1989'ten Bugüne
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-gray-600">
-                Dovec Group 1989 yılından bu yana Kuzey Kıbrıs Türk Cumhuriyeti'nde yenilikçi emlak çözümleriyle öncülük etmekten gurur duyar. Her projede kalite, güven ve yeniliği ön planda tutarak, adanın her köşesine modern ve sürdürülebilir çözümler sunar. 
+                Döveç Group 1989 yılından bu yana Kuzey Kıbrıs Türk Cumhuriyeti'nde yenilikçi emlak çözümleriyle öncülük etmekten gurur duyar. Her projede kalite, güven ve yeniliği ön planda tutarak, adanın her köşesine modern ve sürdürülebilir çözümler sunar. 
                 </p>
                 <p className="text-xl font-light leading-relaxed text-gray-600">
                   Her projemizde, müşterilerimizin hayallerini gerçeğe dönüştürmeyi ve onlara unutulmaz bir yaşam deneyimi sunmayı hedefliyoruz. Kalite ve güven bizim için sadece bir söz değil, bir yaşam biçimidir.
