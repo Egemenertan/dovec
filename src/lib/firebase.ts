@@ -4,13 +4,13 @@ import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBUcmRlSzBveR3-YJLqp_e-LLmHKI4WdSg",
-  authDomain: "dovec-914b9.firebaseapp.com",
-  projectId: "dovec-914b9",
-  storageBucket: "dovec-914b9.appspot.com",
-  messagingSenderId: "955066765441",
-  appId: "1:955066765441:web:f7fb2a9c72136e6cb9fd80",
-  measurementId: "G-ECB8B1RMLQ"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 console.log('Firebase config:', {

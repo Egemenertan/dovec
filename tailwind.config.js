@@ -7,6 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-cormorant)'],
+        cormorant: ['var(--font-cormorant)'],
+        inter: ['var(--font-inter)'],
+      },
       animation: {
         'slow-spin': 'spin 20s linear infinite',
         'spin-slow': 'spin 3s linear infinite',

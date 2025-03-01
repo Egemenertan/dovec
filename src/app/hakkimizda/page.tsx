@@ -372,7 +372,7 @@ export default function AboutPage() {
         <div className="relative text-center z-10 w-full px-4 mb-16 md:mb-24">
           <div className="flex items-center space-x-4 justify-center mb-4">
             <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-            <span className="text-sm md:text-base font-light tracking-[.5em] text-[#061E4F]/80 uppercase">Dovec</span>
+            <span className="text-sm md:text-base font-light tracking-[.5em] text-[#071E51] uppercase">Dovec</span>
             <div className="w-20 h-[1px] bg-gradient-to-l from-[#061E4F] to-transparent"></div>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-[#061E4F]">
@@ -423,10 +423,10 @@ export default function AboutPage() {
       </div>
 
       {/* Manifesto */}
-      <div className="relative min-h-screen bg-[#061E4F] text-white overflow-hidden">
+      <div className="relative min-h-screen bg-[#C4C1B4] text-white overflow-hidden">
         {/* Arka plan desenleri */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[#061E4F]"></div>
+          <div className="absolute inset-0 bg-[#C4C1B4]"></div>
           
           {/* Geometrik desenler */}
           <div className="absolute inset-0 opacity-5">
@@ -436,7 +436,7 @@ export default function AboutPage() {
           </div>
 
           {/* Gradient katmanları */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0A2A6B] via-[#061E4F] to-[#03112E]"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#C4C1B4] via-[#C4C1B4] to-[#C4C1B4]"></div>
           
           {/* Işık efektleri */}
           <div className="absolute top-0 left-0 w-full h-full">
@@ -480,9 +480,9 @@ export default function AboutPage() {
               <div className="space-y-8">
                 <div className="flex items-center space-x-4">
                   <div className="w-20 h-[1px] bg-gradient-to-r from-white to-transparent"></div>
-                  <span className="text-xl font-light tracking-[.5em] uppercase text-white/80">Dovec</span>
+                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#071E51]">Dovec</span>
                 </div>
-                <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extralight tracking-[.2em] uppercase leading-tight">
+                <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extralight tracking-[.2em] uppercase leading-tight text-[#071E51]">
                   Manifesto
                 </h2>
               </div>

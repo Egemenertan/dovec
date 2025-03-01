@@ -14,7 +14,7 @@ const FloatingContactButtons = () => {
           href="https://wa.me/905488370015"
           target="_blank"
           rel="noopener noreferrer"
-          className="group bg-white/90 backdrop-blur-sm border border-neutral-200 hover:border-[#061E4F] text-[#061E4F] p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-[#061E4F]/30"
+          className="group bg-black/80 backdrop-blur-sm hover:bg-black/90 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-black/30 hover:scale-105"
           aria-label="Whatsapp ile iletişime geçin"
         >
           <FaWhatsapp className="w-6 h-6 transition-transform group-hover:scale-110" />
@@ -22,7 +22,7 @@ const FloatingContactButtons = () => {
         
         <a
           href="tel:+905488370015"
-          className="group bg-white/90 backdrop-blur-sm border border-neutral-200 hover:border-[#061E4F] text-[#061E4F] p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-[#061E4F]/30"
+          className="group bg-black/80 backdrop-blur-sm hover:bg-black/90 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-black/30 hover:scale-105"
           aria-label="Bizi arayın"
         >
           <FaPhone className="w-6 h-6 transition-transform group-hover:scale-110" />

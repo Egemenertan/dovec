@@ -1,14 +1,20 @@
 import React from 'react'
 import type { Metadata } from "next"
-import { Inter, Cormorant } from "next/font/google"
+import { Cormorant, Inter } from "next/font/google"
 import "./globals.css"
 import ClientLayout from '../components/ClientLayout'
 import FloatingContactButtons from '../components/FloatingContactButtons'
 
-const inter = Inter({ subsets: ["latin"] })
 const cormorant = Cormorant({ 
   subsets: ['latin'],
   variable: '--font-cormorant',
+  weight: ['300', '400', '500'],
+  display: 'swap',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
   display: 'swap',
 })
 
@@ -24,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className="h-full overflow-x-hidden">
-      <body className={`${inter.className} ${cormorant.variable} min-h-[100dvh] flex flex-col overflow-x-hidden`}>
+      <body className={`${cormorant.className} ${cormorant.variable} ${inter.variable} min-h-[100dvh] flex flex-col overflow-x-hidden font-light`}>
         <ClientLayout>
           {children}
         </ClientLayout>

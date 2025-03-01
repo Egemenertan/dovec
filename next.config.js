@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
 const nextConfig = {
   images: {
     domains: ['firebasestorage.googleapis.com'],
@@ -20,6 +22,33 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  // Three.js ve React Three Fiber için gerekli yapılandırma
+  webpack: (config, { dev, isServer }) => {
+    // Webpack önbellek stratejisini yapılandır
+    config.cache = {
+      type: 'filesystem',
+      buildDependencies: {
+        config: [__filename]
+      },
+      cacheDirectory: path.resolve(process.cwd(), '.next/cache'),
+      maxAge: 5184000000, // 60 gün
+      compression: false // Önbellek sıkıştırmasını devre dışı bırak
+    };
+    
+    // Three.js için gerekli modülleri dahil et
+    config.module.rules.push({
+      test: /\.(glb|gltf)$/,
+      use: {
+        loader: 'file-loader',
+        options: {
+          publicPath: '/_next/static/images',
+          outputPath: 'static/images',
+        },
+      },
+    });
+    
+    return config;
+  },
 }
 
 module.exports = nextConfig 
