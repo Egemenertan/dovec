@@ -7,6 +7,12 @@ import { useEffect, useState } from 'react'
 import { ref, getDownloadURL } from 'firebase/storage'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
+import { Raleway } from 'next/font/google'
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['300', '400'],
+})
 
 export function Footer() {
   const [logoUrl, setLogoUrl] = useState('')
@@ -43,7 +49,7 @@ export function Footer() {
   }, [])
 
   return (
-    <footer className="relative">
+    <footer className={`relative ${raleway.className}`}>
       {/* Arkaplan rengi için katmanlar */}
       <div className="absolute inset-0 w-full h-full">
         <div className="h-[20%] bg-white"></div>
@@ -284,11 +290,7 @@ export function Footer() {
         </div>
         
         {/* Alt Kısım - Telif Hakkı */}
-        <div className="py-4 border-t border-white/10 w-full">
-          <p className="text-center text-sm text-white/60">
-            © {new Date().getFullYear()} {t('footer.copyright')}
-          </p>
-        </div>
+       
       </div>
     </footer>
   )

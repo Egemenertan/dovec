@@ -87,7 +87,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", bounce: 0, duration: 0.5 }}
-            className="fixed top-0 left-0 h-screen w-full sm:w-3/4 md:w-2/3 lg:w-1/2 bg-black/90 backdrop-blur-md shadow-2xl z-[70]"
+            className="fixed top-0 left-0 h-screen w-full sm:w-3/4 md:w-2/3 lg:w-1/2 bg-black/90 backdrop-blur-md shadow-2xl z-[70] flex flex-col"
           >
             <Suspense fallback={null}>
               <SidebarContent 
@@ -162,7 +162,7 @@ function SidebarContent({
   return (
     <>
       {/* Logo */}
-      <div className="flex justify-between items-center py-8 px-12">
+      <div className="flex-shrink-0 flex justify-between items-center py-4 sm:py-6 px-2 sm:px-2 md:px-8">
         <Link href="/" onClick={onClose}>
           <div className="relative w-32 h-8">
             {logoUrl && (
@@ -185,8 +185,8 @@ function SidebarContent({
       </div>
       
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto py-12 px-12">
-        <ul className="space-y-8">
+      <nav className="flex-1 overflow-y-auto py-4 sm:py-6 md:py-8 px-6 sm:px-8 md:px-12">
+        <ul className="space-y-4 sm:space-y-6 md:space-y-8">
           {menuItems.map((item) => {
             const isActive = pathname === item.href || 
               (item.submenu && pathname.startsWith(item.href)) ||
@@ -196,20 +196,20 @@ function SidebarContent({
             const isExpanded = expandedItem === item.name;
             
             return (
-              <li key={item.href}>
+              <li key={item.href} className="py-0.5">
                 {item.submenu ? (
-                  <div className="space-y-4">
+                  <div className="space-y-4 sm:space-y-5 md:space-y-6">
                     <button
                       onClick={() => setExpandedItem(isExpanded ? null : item.name)}
-                      className={`group relative flex items-center justify-between w-full py-2 transition-all duration-300 ease-out ${
+                      className={`group relative flex items-center justify-between w-full py-1.5 sm:py-2 transition-all duration-300 ease-out ${
                         isActive 
                           ? 'text-white translate-x-1' 
                           : 'text-white/70 hover:text-white hover:translate-x-1'
                       } ${raleway.className} active:translate-x-0 active:transition-none`}
                     >
-                      <span className="text-2xl font-light tracking-wide">{item.name}</span>
+                      <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-light tracking-wide">{item.name}</span>
                       <svg
-                        className={`w-5 h-5 transform transition-all duration-300 ease-out ${isExpanded ? 'rotate-180 text-white' : 'text-white/70'}`}
+                        className={`w-4 h-4 sm:w-5 sm:h-5 transform transition-all duration-300 ease-out ${isExpanded ? 'rotate-180 text-white' : 'text-white/70'}`}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -224,7 +224,7 @@ function SidebarContent({
                           animate={{ height: 'auto', opacity: 1, x: 0 }}
                           exit={{ height: 0, opacity: 0, x: -20 }}
                           transition={{ duration: 0.3, ease: "easeOut" }}
-                          className="space-y-4 pl-4"
+                          className="space-y-3 sm:space-y-4 md:space-y-6 pl-4"
                         >
                           {item.submenu.map((subItem) => {
                             const isSubItemActive = subItem.href === pathname + (filterParam ? `?filter=${filterParam}` : '');
@@ -232,12 +232,12 @@ function SidebarContent({
                               <li key={subItem.href}>
                                 <Link
                                   href={subItem.href}
-                                  className={`group relative flex items-center py-2 transition-all duration-300 ease-out ${
+                                  className={`group relative flex items-center py-1.5 sm:py-2 transition-all duration-300 ease-out ${
                                     isSubItemActive ? 'text-white translate-x-1' : 'text-white/60 hover:text-white hover:translate-x-1'
                                   } ${raleway.className} active:translate-x-0 active:transition-none`}
                                   onClick={onClose}
                                 >
-                                  <span className="text-xl font-light tracking-wide">{subItem.name}</span>
+                                  <span className="text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide">{subItem.name}</span>
                                 </Link>
                               </li>
                             );
@@ -251,12 +251,12 @@ function SidebarContent({
                     href={item.href}
                     target={item.external ? '_blank' : undefined}
                     rel={item.external ? 'noopener noreferrer' : undefined}
-                    className={`group relative flex items-center py-2 transition-all duration-300 ease-out ${
+                    className={`group relative flex items-center py-1.5 sm:py-2 transition-all duration-300 ease-out ${
                       isActive ? 'text-white translate-x-1' : 'text-white/70 hover:text-white hover:translate-x-1'
                     } ${raleway.className} active:translate-x-0 active:transition-none`}
                     onClick={onClose}
                   >
-                    <span className="text-2xl font-light tracking-wide">{item.name}</span>
+                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-light tracking-wide">{item.name}</span>
                   </Link>
                 }
               </li>
@@ -266,13 +266,13 @@ function SidebarContent({
       </nav>
 
       {/* İletişim Bilgileri */}
-      <div className="absolute bottom-0 left-0 right-0 px-12 py-8 border-t border-white/10">
-        <div className="space-y-4">
+      <div className="flex-shrink-0 px-6 sm:px-8 md:px-12 py-4 sm:py-6 md:py-8 ">
+        <div className="space-y-4 sm:space-y-6 md:space-y-8">
           {/* Dil Seçici */}
-          <div className="flex items-center space-x-4 mb-6">
+          <div className="flex items-center space-x-4 sm:space-x-6 mb-4 sm:mb-6 md:mb-8">
             <button
               onClick={() => setLanguage('tr')}
-              className={`text-2xl font-light tracking-wide transition-colors duration-200 ${
+              className={`text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide transition-colors duration-200 ${
                 language === 'tr' ? 'text-white' : 'text-white/50 hover:text-white/70'
               } ${raleway.className}`}
             >
@@ -281,27 +281,29 @@ function SidebarContent({
             <span className="text-white/30">|</span>
             <button
               onClick={() => setLanguage('en')}
-              className={`text-2xl font-light tracking-wide transition-colors duration-200 ${
+              className={`text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide transition-colors duration-200 ${
                 language === 'en' ? 'text-white' : 'text-white/50 hover:text-white/70'
               } ${raleway.className}`}
             >
               English
             </button>
           </div>
-          <a 
-            href="tel:+902165359300" 
-            className={`flex items-center space-x-3 text-white/70 hover:text-white transition-colors ${raleway.className} group`}
-          >
-            <IconPhone size={24} className="transition-colors duration-200 group-hover:text-white text-white/70" />
-            <span className="text-xl font-light tracking-wide">+90 216 535 93 00</span>
-          </a>
-          <a 
-            href="mailto:info@dovec.com.tr" 
-            className={`flex items-center space-x-3 text-white/70 hover:text-white transition-colors ${raleway.className} group`}
-          >
-            <IconMail size={24} className="transition-colors duration-200 group-hover:text-white text-white/70" />
-            <span className="text-xl font-light tracking-wide">info@dovec.com.tr</span>
-          </a>
+          <div className="space-y-3 sm:space-y-4 md:space-y-6">
+            <a 
+              href="tel:+902165359300" 
+              className={`flex items-center space-x-2 sm:space-x-3 text-white/70 hover:text-white transition-colors ${raleway.className} group`}
+            >
+              <IconPhone size={20} className="transition-colors duration-200 group-hover:text-white text-white/70 flex-shrink-0" />
+              <span className="text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide">+90 216 535 93 00</span>
+            </a>
+            <a 
+              href="mailto:info@dovec.com.tr" 
+              className={`flex items-center space-x-2 sm:space-x-3 text-white/70 hover:text-white transition-colors ${raleway.className} group`}
+            >
+              <IconMail size={20} className="transition-colors duration-200 group-hover:text-white text-white/70 flex-shrink-0" />
+              <span className="text-sm sm:text-base md:text-lg lg:text-xl font-light tracking-wide">info@dovec.com.tr</span>
+            </a>
+          </div>
         </div>
       </div>
     </>
