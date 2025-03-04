@@ -492,6 +492,21 @@
           "location": "GİRNE, KKTC"
         }
       }
+    },
+    "sidebar": {
+      "menu": {
+        "home": "Ana Sayfa",
+        "about": "Hakkımızda",
+        "projects": {
+          "title": "Projeler",
+          "all": "Tüm Projeler",
+          "ongoing": "Devam Eden Projeler",
+          "completed": "Tamamlanan Projeler"
+        },
+        "blog": "Blog",
+        "career": "Kariyer",
+        "contact": "İletişim"
+      }
     }
   },
   "en": {
@@ -989,6 +1004,21 @@
           "description": "A living project featuring unique views.",
           "location": "KYRENIA, TRNC"
         }
+      }
+    },
+    "sidebar": {
+      "menu": {
+        "home": "Home",
+        "about": "About Us",
+        "projects": {
+          "title": "Projects",
+          "all": "All Projects",
+          "ongoing": "Ongoing Projects",
+          "completed": "Completed Projects"
+        },
+        "blog": "Blog",
+        "career": "Career",
+        "contact": "Contact"
       }
     }
   },

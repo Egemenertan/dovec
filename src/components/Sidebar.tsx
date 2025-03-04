@@ -4,11 +4,14 @@ import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IconX } from '@tabler/icons-react';
+import { IconX, IconPhone, IconMail } from '@tabler/icons-react';
 import Image from 'next/image';
 import { storage } from '@/firebase/config';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { Raleway } from 'next/font/google';
+import { useLanguage } from '@/context/LanguageContext';
+
+type Language = 'tr' | 'en';
 
 const raleway = Raleway({
   subsets: ['latin'],
@@ -20,28 +23,12 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-const menuItems = [
-  { name: 'Ana Sayfa', href: '/' },
-  { name: 'Biz Kimiz', href: '/hakkimizda' },
-  { 
-    name: 'Projeler', 
-    href: '/projeler',
-    submenu: [
-      { name: 'Tüm Projeler', href: '/projeler' },
-      { name: 'Devam Eden Projeler', href: '/projeler?filter=devam-eden' },
-      { name: 'Tamamlanan Projeler', href: '/projeler?filter=tamamlanan' }
-    ]
-  },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Kariyer', href: 'https://www.linkedin.com/company/dovecgroup/', external: true },
-  { name: 'DÖVEÇ\'E BAĞLAN', href: '/iletisim' }
-];
-
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname() || '';
   const [mounted, setMounted] = useState(false);
   const [logoUrl, setLogoUrl] = useState('');
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const fetchLogo = async () => {
@@ -79,13 +66,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     setMounted(true);
   }, []);
 
-  // Projeler sayfasında ve alt sayfalarında olup olmadığımızı kontrol et
-  useEffect(() => {
-    if (pathname.startsWith('/projeler')) {
-      setExpandedItem('Projeler');
-    }
-  }, [pathname]);
-
   if (!mounted) return null;
 
   return (
@@ -117,6 +97,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 setExpandedItem={setExpandedItem}
                 onClose={onClose}
                 mounted={mounted}
+                language={language}
+                setLanguage={setLanguage}
+                t={t}
               />
             </Suspense>
           </motion.div>
@@ -132,7 +115,10 @@ function SidebarContent({
   expandedItem, 
   setExpandedItem, 
   onClose,
-  mounted 
+  mounted,
+  language,
+  setLanguage,
+  t
 }: { 
   pathname: string;
   logoUrl: string;
@@ -140,9 +126,36 @@ function SidebarContent({
   setExpandedItem: (item: string | null) => void;
   onClose: () => void;
   mounted: boolean;
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
 }) {
   const searchParams = useSearchParams();
   const filterParam = searchParams?.get('filter');
+
+  // Projeler sayfasında ve alt sayfalarında olup olmadığımızı kontrol et
+  useEffect(() => {
+    if (pathname.startsWith('/projeler')) {
+      setExpandedItem(t('sidebar.menu.projects.title'));
+    }
+  }, [pathname, t]);
+
+  const menuItems = [
+    { name: t('sidebar.menu.home'), href: '/' },
+    { name: t('sidebar.menu.about'), href: '/hakkimizda' },
+    { 
+      name: t('sidebar.menu.projects.title'), 
+      href: '/projeler',
+      submenu: [
+        { name: t('sidebar.menu.projects.all'), href: '/projeler' },
+        { name: t('sidebar.menu.projects.ongoing'), href: '/projeler?filter=devam-eden' },
+        { name: t('sidebar.menu.projects.completed'), href: '/projeler?filter=tamamlanan' }
+      ]
+    },
+    { name: t('sidebar.menu.blog'), href: '/blog' },
+    { name: t('sidebar.menu.career'), href: 'https://www.linkedin.com/company/dovecgroup/', external: true },
+    { name: t('sidebar.menu.contact'), href: '/iletisim' }
+  ];
 
   if (!mounted) return null;
 
@@ -233,7 +246,7 @@ function SidebarContent({
                       )}
                     </AnimatePresence>
                   </div>
-                ) : (
+                ) :
                   <Link
                     href={item.href}
                     target={item.external ? '_blank' : undefined}
@@ -245,7 +258,7 @@ function SidebarContent({
                   >
                     <span className="text-2xl font-light tracking-wide">{item.name}</span>
                   </Link>
-                )}
+                }
               </li>
             );
           })}
@@ -255,17 +268,39 @@ function SidebarContent({
       {/* İletişim Bilgileri */}
       <div className="absolute bottom-0 left-0 right-0 px-12 py-8 border-t border-white/10">
         <div className="space-y-4">
+          {/* Dil Seçici */}
+          <div className="flex items-center space-x-4 mb-6">
+            <button
+              onClick={() => setLanguage('tr')}
+              className={`text-2xl font-light tracking-wide transition-colors duration-200 ${
+                language === 'tr' ? 'text-white' : 'text-white/50 hover:text-white/70'
+              } ${raleway.className}`}
+            >
+              Türkçe
+            </button>
+            <span className="text-white/30">|</span>
+            <button
+              onClick={() => setLanguage('en')}
+              className={`text-2xl font-light tracking-wide transition-colors duration-200 ${
+                language === 'en' ? 'text-white' : 'text-white/50 hover:text-white/70'
+              } ${raleway.className}`}
+            >
+              English
+            </button>
+          </div>
           <a 
             href="tel:+902165359300" 
-            className="flex items-center text-white/70 hover:text-white transition-colors"
+            className={`flex items-center space-x-3 text-white/70 hover:text-white transition-colors ${raleway.className} group`}
           >
-            <span className="text-lg font-light">+90 216 535 93 00</span>
+            <IconPhone size={24} className="transition-colors duration-200 group-hover:text-white text-white/70" />
+            <span className="text-xl font-light tracking-wide">+90 216 535 93 00</span>
           </a>
           <a 
             href="mailto:info@dovec.com.tr" 
-            className="flex items-center text-white/70 hover:text-white transition-colors"
+            className={`flex items-center space-x-3 text-white/70 hover:text-white transition-colors ${raleway.className} group`}
           >
-            <span className="text-lg font-light">info@dovec.com.tr</span>
+            <IconMail size={24} className="transition-colors duration-200 group-hover:text-white text-white/70" />
+            <span className="text-xl font-light tracking-wide">info@dovec.com.tr</span>
           </a>
         </div>
       </div>

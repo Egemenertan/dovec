@@ -219,54 +219,6 @@ export default function Navbar() {
                   : 'bg-gradient-to-r from-transparent via-white to-transparent'
               } scale-x-0 hover:scale-x-100 transition-transform duration-300 origin-center`}></div>
             </Link>
-
-            {/* Dil Seçici */}
-            <div className="relative">
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                onMouseEnter={() => setIsLangOpen(true)}
-                onMouseLeave={() => setIsLangOpen(false)}
-                className={`relative font-scandia tracking-wider py-2 px-3 rounded-full border ${
-                  isScrolled 
-                    ? 'text-zinc-800 border-zinc-300 hover:border-zinc-400' 
-                    : 'text-white border-white/30 hover:border-white/50'
-                } transition-all duration-300`}
-              >
-                <span className="text-sm uppercase">{language === 'tr' ? 'TR' : 'EN'}</span>
-              </button>
-
-              {/* Dil Dropdown Menu */}
-              <div
-                onMouseEnter={() => setIsLangOpen(true)}
-                onMouseLeave={() => setIsLangOpen(false)}
-                className={`absolute top-full right-0 mt-2 w-24 bg-white rounded-lg shadow-lg py-2 transition-all duration-300 ${
-                  isLangOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                }`}
-              >
-                <button
-                  onClick={() => {
-                    setLanguage('tr');
-                    setIsLangOpen(false);
-                  }}
-                  className={`block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 text-left ${
-                    language === 'tr' ? 'bg-gray-50' : ''
-                  }`}
-                >
-                  Türkçe
-                </button>
-                <button
-                  onClick={() => {
-                    setLanguage('en');
-                    setIsLangOpen(false);
-                  }}
-                  className={`block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 text-left ${
-                    language === 'en' ? 'bg-gray-50' : ''
-                  }`}
-                >
-                  English
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </nav>
