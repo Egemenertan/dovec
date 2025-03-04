@@ -168,13 +168,7 @@ export default function Navbar() {
                   isProjectsMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}
               >
-                <Link
-                  href="/projeler"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-                  onClick={() => setIsProjectsMenuOpen(false)}
-                >
-                  Tüm Projeler
-                </Link>
+               
                 <Link
                   href="/projeler?filter=devam-eden"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
@@ -216,7 +210,8 @@ export default function Navbar() {
                 isScrolled ? 'text-zinc-800' : 'text-white'
               }`}
             >
-              <span className="relative z-10 text-sm uppercase">DÖVEÇ'E BAĞLAN</span>
+              <span className="relative z-10 text-sm uppercase hidden md:inline">DÖVEÇ'E BAĞLAN</span>
+              <span className="relative z-10 text-sm uppercase md:hidden">BAĞLAN</span>
               <div className={`absolute bottom-0 left-0 w-full h-[1px] ${
                 isScrolled 
                   ? 'bg-gradient-to-r from-transparent via-zinc-600 to-transparent' 

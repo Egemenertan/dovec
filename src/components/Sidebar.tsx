@@ -151,7 +151,7 @@ function SidebarContent({
                 src={logoUrl}
                 alt="DÖVEÇ Logo"
                 fill
-                className="object-contain"
+                className="object-contain brightness-0 invert"
                 priority
               />
             )}
@@ -253,6 +253,24 @@ function SidebarContent({
           })}
         </ul>
       </nav>
+
+      {/* İletişim Bilgileri */}
+      <div className="absolute bottom-0 left-0 right-0 p-8 border-t border-white/10">
+        <div className="space-y-4">
+          <a 
+            href="tel:+902165359300" 
+            className="flex items-center text-white/70 hover:text-white transition-colors"
+          >
+            <span className="text-lg font-light">+90 216 535 93 00</span>
+          </a>
+          <a 
+            href="mailto:info@dovec.com.tr" 
+            className="flex items-center text-white/70 hover:text-white transition-colors"
+          >
+            <span className="text-lg font-light">info@dovec.com.tr</span>
+          </a>
+        </div>
+      </div>
     </>
   );
 } 

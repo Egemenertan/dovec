@@ -9,6 +9,7 @@ import { ProjectsShowcase } from '@/components/ProjectsShowcase'
 import ProjectSection from '@/components/ProjectSection'
 import { Facilities } from '@/components/Facilities'
 import VirtualTour from '@/components/VirtualTour'
+import { Awards } from '@/components/awards'
 import { storage } from '@/firebase/config'
 import { ref, getDownloadURL } from 'firebase/storage'
 import { motion } from 'framer-motion'
@@ -263,7 +264,10 @@ export default function Home() {
         description='"Her konut, bu muhteşem manzarayı en üst düzeye çıkaracak şekilde stratejik olarak konumlandırılmış olup, konut sakinlerinin günlük yaşamlarına büyüleyici bir fon oluşturan masmavi denizleri, yemyeşil doğayı ve parlak plajları hayranlıkla seyretmelerine olanak tanımaktadır."'
         additionalText="Tesisin her noktasından, sakinlere gökyüzünün ve mevsimlerin değişen renkleriyle sürekli gelişen doğanın güzelliğinin görsel bir senfonisi sunulmaktadır. Önünüzde uzanan hayranlık uyandırıcı manzaraların tadını çıkarırken, şehir rahatlığı ve dağ huzurunun uyumlu karışımını kucaklayın."
       />
-         {/* 360 Sanal Tur Bölümü */}
+
+    
+
+      {/* 360 Sanal Tur Bölümü */}
       <div className=" ">
         <div className=" mx-auto ">
           <div className="text-center ">
@@ -272,7 +276,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Mükemmel Olanaklar Bölümü */}
+      <Awards />
       
 
   S
