@@ -5,9 +5,11 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { storage } from '@/firebase/config'
 import { ref, getDownloadURL } from 'firebase/storage'
+import { useLanguage } from '@/context/LanguageContext'
 
 export const AboutSection = () => {
   const [aboutImage, setAboutImage] = useState('')
+  const { t } = useLanguage()
 
   useEffect(() => {
     const loadImage = async () => {
@@ -23,6 +25,9 @@ export const AboutSection = () => {
 
     loadImage()
   }, [])
+
+  const translatedContent = t('components.aboutSection.content', { returnObjects: true })
+  const content = Array.isArray(translatedContent) ? translatedContent : [translatedContent]
 
   return (
     <div className="py-16 sm:py-24 md:py-28 lg:py-32 bg-white">
@@ -44,9 +49,9 @@ export const AboutSection = () => {
               transition={{ duration: 0.8 }}
               className="text-4xl sm:text-5xl font-extralight leading-tight text-[#061E4F]"
             >
-              Hayalleri, toplulukları ve <br />
-              sürdürülebilir bir geleceği <br />
-              <span className="block italic mt-2 text-gray-700">inşa ediyoruz.</span>
+              {t('components.aboutSection.title')}
+              <br />
+              <span className="block italic mt-2 text-gray-700">{t('components.aboutSection.titleItalic')}</span>
             </motion.h2>
             
             <motion.div
@@ -56,17 +61,9 @@ export const AboutSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6 text-gray-600 font-light text-lg"
             >
-              <p>
-                Döveç Group, bugüne dek hayata geçirdiği 100'den fazla projede, 2000'den
-                fazla aileyi ev sahibi yapmıştır.
-              </p>
-              
-              <p>
-                En son 2019 yılında 6.sı düzenlenen Kuzey Kıbrıs'ın en prestijli ödül töreni
-                Property NC emlak ödüllerinde yılın en iyi inşaat şirketi ödülü başta olmak
-                üzere 13 ayrı kategoride ödüle layık görülen Döveç Group sektöründe öncü
-                olduğunu kanıtladı.
-              </p>
+              {content.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </motion.div>
           </div>
           
@@ -75,11 +72,11 @@ export const AboutSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="relative h-[500px] lg:h-[600px]  overflow-hidden shadow-2xl"
+            className="relative h-[500px] lg:h-[600px] overflow-hidden shadow-2xl"
           >
             <Image
               src={aboutImage || '/tatlisu_35 copy 2-1.webp'}
-              alt="Döveç Group Projesi"
+              alt={t('components.aboutSection.imageAlt')}
               fill
               className="object-cover"
               priority

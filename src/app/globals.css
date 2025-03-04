@@ -6,6 +6,11 @@
   .pb-safe {
     padding-bottom: env(safe-area-inset-bottom);
   }
+  .font-numeric {
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-raleway), ui-sans-serif, system-ui, -apple-system;
+  }
 }
 
 :root {

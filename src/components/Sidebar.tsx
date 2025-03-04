@@ -8,6 +8,12 @@ import { IconX } from '@tabler/icons-react';
 import Image from 'next/image';
 import { storage } from '@/firebase/config';
 import { ref, getDownloadURL } from 'firebase/storage';
+import { Raleway } from 'next/font/google';
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['300', '400'],
+});
 
 interface SidebarProps {
   isOpen: boolean;
@@ -143,7 +149,7 @@ function SidebarContent({
   return (
     <>
       {/* Logo */}
-      <div className="flex justify-between items-center p-8">
+      <div className="flex justify-between items-center py-8 px-12">
         <Link href="/" onClick={onClose}>
           <div className="relative w-32 h-8">
             {logoUrl && (
@@ -166,7 +172,7 @@ function SidebarContent({
       </div>
       
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto py-12 px-8">
+      <nav className="flex-1 overflow-y-auto py-12 px-12">
         <ul className="space-y-8">
           {menuItems.map((item) => {
             const isActive = pathname === item.href || 
@@ -182,15 +188,15 @@ function SidebarContent({
                   <div className="space-y-4">
                     <button
                       onClick={() => setExpandedItem(isExpanded ? null : item.name)}
-                      className={`group relative flex items-center justify-between w-full py-2 transition-all duration-300 ${
+                      className={`group relative flex items-center justify-between w-full py-2 transition-all duration-300 ease-out ${
                         isActive 
-                          ? 'text-white' 
-                          : 'text-white/70 hover:text-white'
-                      }`}
+                          ? 'text-white translate-x-1' 
+                          : 'text-white/70 hover:text-white hover:translate-x-1'
+                      } ${raleway.className} active:translate-x-0 active:transition-none`}
                     >
                       <span className="text-2xl font-light tracking-wide">{item.name}</span>
                       <svg
-                        className={`w-5 h-5 transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+                        className={`w-5 h-5 transform transition-all duration-300 ease-out ${isExpanded ? 'rotate-180 text-white' : 'text-white/70'}`}
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -201,10 +207,10 @@ function SidebarContent({
                     <AnimatePresence>
                       {isExpanded && (
                         <motion.ul
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
+                          initial={{ height: 0, opacity: 0, x: -20 }}
+                          animate={{ height: 'auto', opacity: 1, x: 0 }}
+                          exit={{ height: 0, opacity: 0, x: -20 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
                           className="space-y-4 pl-4"
                         >
                           {item.submenu.map((subItem) => {
@@ -213,16 +219,12 @@ function SidebarContent({
                               <li key={subItem.href}>
                                 <Link
                                   href={subItem.href}
-                                  className={`group relative flex items-center py-2 transition-all duration-300 ${
-                                    isSubItemActive ? 'text-white' : 'text-white/60 hover:text-white'
-                                  }`}
+                                  className={`group relative flex items-center py-2 transition-all duration-300 ease-out ${
+                                    isSubItemActive ? 'text-white translate-x-1' : 'text-white/60 hover:text-white hover:translate-x-1'
+                                  } ${raleway.className} active:translate-x-0 active:transition-none`}
                                   onClick={onClose}
                                 >
                                   <span className="text-xl font-light tracking-wide">{subItem.name}</span>
-                                  <motion.div 
-                                    className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white/30 group-hover:w-full transition-all duration-300"
-                                    whileHover={{ width: '100%' }}
-                                  />
                                 </Link>
                               </li>
                             );
@@ -236,16 +238,12 @@ function SidebarContent({
                     href={item.href}
                     target={item.external ? '_blank' : undefined}
                     rel={item.external ? 'noopener noreferrer' : undefined}
-                    className={`group relative flex items-center py-2 transition-all duration-300 ${
-                      isActive ? 'text-white' : 'text-white/70 hover:text-white'
-                    }`}
+                    className={`group relative flex items-center py-2 transition-all duration-300 ease-out ${
+                      isActive ? 'text-white translate-x-1' : 'text-white/70 hover:text-white hover:translate-x-1'
+                    } ${raleway.className} active:translate-x-0 active:transition-none`}
                     onClick={onClose}
                   >
                     <span className="text-2xl font-light tracking-wide">{item.name}</span>
-                    <motion.div 
-                      className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white/30 group-hover:w-full transition-all duration-300"
-                      whileHover={{ width: '100%' }}
-                    />
                   </Link>
                 )}
               </li>
@@ -255,7 +253,7 @@ function SidebarContent({
       </nav>
 
       {/* İletişim Bilgileri */}
-      <div className="absolute bottom-0 left-0 right-0 p-8 border-t border-white/10">
+      <div className="absolute bottom-0 left-0 right-0 px-12 py-8 border-t border-white/10">
         <div className="space-y-4">
           <a 
             href="tel:+902165359300" 

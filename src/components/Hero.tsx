@@ -7,13 +7,14 @@ import { Autoplay, EffectFade } from 'swiper/modules';
 import Link from 'next/link';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { useState } from 'react';
-
+import { useLanguage } from '@/context/LanguageContext';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 
 export const Hero = () => {
   const { images, loading } = useStorage();
   const [activeImageName, setActiveImageName] = useState('');
+  const { t } = useLanguage();
 
   if (loading) {
     return (
@@ -26,7 +27,7 @@ export const Hero = () => {
   if (images.length === 0) {
     return (
       <div className="h-screen flex items-center justify-center bg-gray-100">
-        <div className="text-2xl text-red-600">Görsel yüklenemedi</div>
+        <div className="text-2xl text-red-600">{t('components.hero.image_not_loaded')}</div>
       </div>
     );
   }
@@ -46,30 +47,30 @@ export const Hero = () => {
         {activeImageName.includes('imaj_3') && (
           <div className="text-center">
             <h2 className="text-3xl sm:text-5xl md:text-5xl lg:text-7xl font-light text-white tracking-wider">
-              QUERENCIA
+              {t('components.hero.projects.querencia.title')}
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-white/80 mt-2 sm:mt-3 font-light tracking-wide">
-              Afrodit'in İzinde Efsanevi Yeni Yaşam Sanatı
+              {t('components.hero.projects.querencia.description')}
             </p>
           </div>
         )}
         {activeImageName.includes('tatlisu_35') && (
           <div className="text-center">
             <h2 className="text-3xl sm:text-5xl md:text-5xl lg:text-7xl font-light text-white tracking-wider">
-              LA CASALIA
+              {t('components.hero.projects.laCasalia.title')}
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-white/80 mt-2 sm:mt-3 font-light tracking-wide">
-              Afrodit'in İzinde Efsanevi Yeni Yaşam Sanatı
+              {t('components.hero.projects.laCasalia.description')}
             </p>
           </div>
         )}
         {activeImageName.includes('Natulux') && (
           <div className="text-center">
             <h2 className="text-3xl sm:text-5xl md:text-5xl lg:text-7xl font-light text-white tracking-wider">
-              NATULUX
+              {t('components.hero.projects.natulux.title')}
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-white/80 mt-2 sm:mt-3 font-light tracking-wide">
-              Doğanın Lüks ile Buluştuğu Yaşam Alanı
+              {t('components.hero.projects.natulux.description')}
             </p>
           </div>
         )}
@@ -100,7 +101,7 @@ export const Hero = () => {
 
               {/* Metin */}
               <span className="relative text-xs sm:text-sm font-light tracking-[0.2em] text-black/90 transition-all duration-700 group-hover:text-white uppercase">
-                Keşfet
+                {t('components.hero.cta.text')}
               </span>
 
               {/* Ok tasarımı */}

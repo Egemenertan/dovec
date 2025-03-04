@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { storage } from '@/firebase/config';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { useLanguage } from '@/context/LanguageContext';
 
 // Proje tipi tanımı
 interface Project {
@@ -22,39 +23,41 @@ interface Project {
 const NAVBAR_VISIBILITY_EVENT = 'navbar-visibility-change';
 
 export const ProjectsShowcase = () => {
+  const { t } = useLanguage();
+  
   // Projeler listesi
   const [projects, setProjects] = useState<Project[]>([
     {
-      name: 'La Casalia',
+      name: t('components.projectsShowcase.projects.0.name'),
       slug: 'la-casalia',
       image: '',
       storagePath: 'lacasalia/tatlisu_12 copy.webp',
-      description: 'Akdeniz\'in kristal berraklığındaki sularına bakan, huzur ve yenilenmenin buluştuğu, Kıbrıs\'ın kuzeyinde yer alan bir cennet köşesidir.',
-      location: 'Tatlısu, KKTC'
+      description: t('components.projectsShowcase.projects.0.description'),
+      location: t('components.projectsShowcase.projects.0.location')
     },
     {
-      name: 'Four Seasons III',
+      name: t('components.projectsShowcase.projects.1.name'),
       slug: 'four-seasons-iii',
       image: '',
       storagePath: 'fsl/7.webp',
-      description: 'Dört mevsim ayrıcalıklı yaşam deneyimi sunan rezidanslar.',
-      location: 'İskele, KKTC'
+      description: t('components.projectsShowcase.projects.1.description'),
+      location: t('components.projectsShowcase.projects.1.location')
     },
     {
-      name: 'Natulux',
+      name: t('components.projectsShowcase.projects.2.name'),
       slug: 'natulux',
       image: '',
       storagePath: 'natulux/Natulux Out View 1 (1)_11zon.webp',
-      description: 'Doğa ile iç içe, lüks yaşam standartları.',
-      location: 'Esentepe, KKTC'
+      description: t('components.projectsShowcase.projects.2.description'),
+      location: t('components.projectsShowcase.projects.2.location')
     },
     {
-      name: 'Courtyard Platinum',
+      name: t('components.projectsShowcase.projects.3.name'),
       slug: 'courtyard-platinum',
       image: '',
       storagePath: 'platinum/7.webp',
-      description: 'Premium yaşam standartlarını sunan seçkin proje.',
-      location: 'Long Beach, KKTC'
+      description: t('components.projectsShowcase.projects.3.description'),
+      location: t('components.projectsShowcase.projects.3.location')
     }
   ]);
 
@@ -209,7 +212,7 @@ export const ProjectsShowcase = () => {
                   className="inline-block px-8 py-3 border border-white/30 rounded-full text-white backdrop-blur-sm
                     hover:bg-white hover:text-black transition-all duration-300"
                 >
-                  Projeyi İncele
+                  {t('components.projectsShowcase.cta.text')}
                 </motion.div>
               </motion.div>
             </Link>

@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react'
 import { storage } from '@/firebase/config'
 import { ref, getDownloadURL } from 'firebase/storage'
 import { motion } from 'framer-motion'
+import { useLanguage } from '@/context/LanguageContext'
+import { ShieldCheckIcon, LightBulbIcon, GlobeAltIcon, UserGroupIcon } from '@heroicons/react/24/outline'
 
 // Animasyon varyantları
 const fadeInUp = {
@@ -45,46 +47,6 @@ const teamMembers = [
   },
 ];
 
-// Şirket değerleri
-const values = [
-  {
-    title: 'Dayanıklılık',
-    description: 'Sağlam temeller üzerine inşa edilmiş, uzun ömürlü ve kaliteli yapılar sunuyoruz.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Denge',
-    description: 'Estetik ve fonksiyonellik arasında mükemmel dengeyi yakalıyoruz.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Düzen',
-    description: 'Planlı, sistematik ve organize çalışma prensibiyle hareket ediyoruz.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Deneyim',
-    description: 'Uzun yılların getirdiği bilgi ve tecrübeyle, en iyi hizmeti sunuyoruz.',
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-      </svg>
-    ),
-  },
-];
-
 export default function AboutPage() {
   const [chairmanImage, setChairmanImage] = useState('')
   const [signatureImage, setSignatureImage] = useState('')
@@ -92,6 +54,7 @@ export default function AboutPage() {
   const [visionImage, setVisionImage] = useState('')
   const [missionImage, setMissionImage] = useState('')
   const [manifestoImage, setManifestoImage] = useState('')
+  const { t } = useLanguage()
 
   useEffect(() => {
     const loadImages = async () => {
@@ -133,6 +96,31 @@ export default function AboutPage() {
     loadImages()
   }, [])
 
+  const values = [
+    {
+      title: t('about.values.items.0.title'),
+      description: t('about.values.items.0.description'),
+      icon: <ShieldCheckIcon className="w-12 h-12 text-[#061E4F]" />,
+    },
+    {
+      title: t('about.values.items.1.title'),
+      description: t('about.values.items.1.description'),
+      icon: <LightBulbIcon className="w-12 h-12 text-[#061E4F]" />,
+    },
+    {
+      title: t('about.values.items.2.title'),
+      description: t('about.values.items.2.description'),
+      icon: <GlobeAltIcon className="w-12 h-12 text-[#061E4F]" />,
+    },
+    {
+      title: t('about.values.items.3.title'),
+      description: t('about.values.items.3.description'),
+      icon: <UserGroupIcon className="w-12 h-12 text-[#061E4F]" />,
+    },
+  ]
+
+  const milestones = t('about.history.milestones', { returnObjects: true })
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-white">
       {/* Hero Bölümü */}
@@ -153,14 +141,14 @@ export default function AboutPage() {
         <div className="absolute bottom-32 sm:bottom-36 left-0 right-0 flex justify-center">
           <div className="text-center">
             <span className="block text-[10px] tracking-[0.3em] text-white/60 uppercase mb-2">
-              Döveç Group
+              {t('about.hero.company')}
             </span>
             <div className="flex flex-row sm:flex-col items-center justify-center">
               <span className="text-xs font-light tracking-wider text-white/80 pr-2 sm:pr-0 sm:mb-1.5 border-r sm:border-r-0 border-white/20">
-                Kurucu Başkanı
+                {t('about.hero.founderTitle')}
               </span>
               <span className="text-xs font-light tracking-wider text-white pl-2 sm:pl-0">
-                Muharrem Döveç
+                {t('about.hero.founderName')}
               </span>
             </div>
           </div>
@@ -169,7 +157,7 @@ export default function AboutPage() {
         {/* Alt Başlık */}
         <div className="absolute bottom-12 sm:bottom-12 left-0 right-0">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-white uppercase text-center">
-            Biz Kimiz
+            {t('about.hero.title')}
           </h1>
         </div>
       </div>
@@ -181,29 +169,23 @@ export default function AboutPage() {
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
                 <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Direktör</span>
+                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">
+                  {t('about.director.role')}
+                </span>
               </div>
               <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
-                Yönetim Kurulu Başkanı
+                {t('about.director.title')}
               </h2>
-              <p className="text-xl font-light leading-relaxed text-gray-600 space-y-8">
-                <span className="block">"Değerli Müşterilerimiz ve İş Ortaklarımız,</span>
-
-                <span className="block">Döveç İnşaat olarak, kurulduğumuz günden bu yana her projede kalite, güven ve müşteri memnuniyetini en üst düzeyde tutmayı amaçladık. Her adımımızda, modern ve sürdürülebilir yaşam alanları yaratmayı, topluma ve çevreye duyarlı projeler geliştirmeyi ilke edindik.</span>
-
-                <span className="block">İnşaat sektöründe öncü olmanın getirdiği sorumluluğun bilincindeyiz. Bu sorumlulukla, yenilikçi ve estetik açıdan üstün yapılar inşa ederken, aynı zamanda fonksiyonelliği ve dayanıklılığı da ön planda tutuyoruz. Her projemizde, yüksek kaliteli malzemeler ve en son teknolojileri kullanarak, siz değerli müşterilerimize güvenli ve konforlu yaşam alanları sunmayı hedefliyoruz.</span>
-
-                <span className="block">Döveç İnşaat ailesi olarak, sizlerin desteği ve güveni ile her geçen gün daha da büyüyerek, sadece Kuzey Kıbrıs'ta değil, uluslararası arenada da ses getiren projelere imza atıyoruz. Müşteri odaklı yaklaşımımızla, sizlere en iyi hizmeti sunmak için var gücümüzle çalışmaya devam edeceğiz.</span>
-
-                <span className="block">Bize olan güveniniz ve desteğiniz için teşekkür eder, sizlerle birlikte daha nice başarılı projelere imza atmayı temenni ederim.</span>
-
-                <span className="block">Saygılarımla,"</span>
-              </p>
+              <div className="text-xl font-light leading-relaxed text-gray-600 space-y-8">
+                {t('about.director.message', { returnObjects: true }).map((paragraph: string, index: number) => (
+                  <p key={index} className="block">{paragraph}</p>
+                ))}
+              </div>
               {signatureImage && (
                 <div className="relative w-48 h-24 mt-4">
                   <Image
                     src={signatureImage}
-                    alt="Yönetim Kurulu Başkanı İmzası"
+                    alt={t('about.director.signatureAlt')}
                     fill
                     className="object-contain"
                   />
@@ -234,7 +216,7 @@ export default function AboutPage() {
             <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src={chairmanImage || '/consultant.jpg'}
-                alt="Yönetim Kurulu Başkan Yardımcısı"
+                alt={t('about.vicePresident1.imageAlt')}
                 fill
                 className="object-cover"
               />
@@ -247,19 +229,18 @@ export default function AboutPage() {
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
                 <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Direktör</span>
+                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">
+                  {t('about.vicePresident1.role')}
+                </span>
               </div>
               <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
-                Yönetim Kurulu Başkan Yardımcısı
+                {t('about.vicePresident1.title')}
               </h2>
-              <p className="text-xl font-light leading-relaxed text-gray-600 space-y-8">
-                <span className="block">"Değerli Paydaşlarımız,</span>
-
-                <span className="block">Döveç İnşaat'ın yenilikçi vizyonu ve sürdürülebilir yaklaşımı ile sektörde öncü olmaya devam ediyoruz. Müşterilerimizin beklentilerini aşan projeler geliştirirken, çevreye ve topluma olan sorumluluğumuzu da unutmuyoruz.</span>
-
-                <span className="block">Saygılarımla,"</span>
-              </p>
-              
+              <div className="text-xl font-light leading-relaxed text-gray-600 space-y-8">
+                {t('about.vicePresident1.message', { returnObjects: true }).map((paragraph: string, index: number) => (
+                  <p key={index} className="block">{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -272,19 +253,18 @@ export default function AboutPage() {
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
                 <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Direktör</span>
+                <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">
+                  {t('about.vicePresident2.role')}
+                </span>
               </div>
               <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
-              Yönetim Kurulu Başkan Yardımcısı
+                {t('about.vicePresident2.title')}
               </h2>
-              <p className="text-xl font-light leading-relaxed text-gray-600 space-y-8">
-                <span className="block">"Sevgili Müşterilerimiz,</span>
-
-                <span className="block">Döveç İnşaat olarak, her projemizde mükemmelliği hedefliyor ve müşterilerimizin hayallerini gerçeğe dönüştürüyoruz. Operasyonel mükemmellik ve müşteri memnuniyeti odaklı yaklaşımımızla, sektörde fark yaratmaya devam ediyoruz.</span>
-
-                <span className="block">Saygılarımla,"</span>
-              </p>
-             
+              <div className="text-xl font-light leading-relaxed text-gray-600 space-y-8">
+                {t('about.vicePresident2.message', { returnObjects: true }).map((paragraph: string, index: number) => (
+                  <p key={index} className="block">{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -292,7 +272,7 @@ export default function AboutPage() {
             <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src={chairmanImage || '/consultant.jpg'}
-                alt="Genel Müdür"
+                alt={t('about.vicePresident2.imageAlt')}
                 fill
                 className="object-cover"
               />
@@ -315,14 +295,15 @@ export default function AboutPage() {
               <div className="space-y-8">
                 <div className="flex items-center space-x-4">
                   <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Vizyon</span>
+                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">
+                    {t('about.vision.sectionTitle')}
+                  </span>
                 </div>
                 <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
-                  Geleceği İnşa Ediyoruz
+                  {t('about.vision.title')}
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-gray-600">
-                  Sürdürülebilir ve yenilikçi çözümlerle, yaşam kalitesini artıran projelere imza atarak, 
-                  sektörde öncü bir rol üstlenmek ve global ölçekte tanınan bir marka olmak.
+                  {t('about.vision.description')}
                 </p>
               </div>
 
@@ -356,14 +337,15 @@ export default function AboutPage() {
               <div className="space-y-8">
                 <div className="flex items-center space-x-4">
                   <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">Misyon</span>
+                  <span className="text-xl font-light tracking-[.5em] uppercase text-[#061E4F]/80">
+                    {t('about.mission.sectionTitle')}
+                  </span>
                 </div>
                 <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F] leading-tight">
-                  Değer Katıyoruz
+                  {t('about.mission.title')}
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-gray-600">
-                  Müşterilerimize en yüksek kalitede hizmet sunarak, çevreye duyarlı ve sürdürülebilir 
-                  projeler geliştirmek, çalışanlarımızın gelişimine katkıda bulunmak ve topluma değer katmak.
+                  {t('about.mission.description')}
                 </p>
               </div>
             </div>
@@ -388,11 +370,13 @@ export default function AboutPage() {
         <div className="relative text-center z-10 w-full px-4 mb-16 md:mb-24">
           <div className="flex items-center space-x-4 justify-center mb-4">
             <div className="w-20 h-[1px] bg-gradient-to-r from-[#061E4F] to-transparent"></div>
-            <span className="text-sm md:text-base font-light tracking-[.5em] text-[#071E51] uppercase">Dovec</span>
+            <span className="text-sm md:text-base font-light tracking-[.5em] text-[#071E51] uppercase">
+              {t('about.values.title')}
+            </span>
             <div className="w-20 h-[1px] bg-gradient-to-l from-[#061E4F] to-transparent"></div>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight tracking-[.2em] text-[#061E4F]">
-            Değerlerimiz
+            {t('about.values.title')}
           </h2>
         </div>
 
@@ -412,13 +396,18 @@ export default function AboutPage() {
             {/* Değerler Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
               {values.map((value, index) => (
-                <div key={index} className="p-6 lg:p-8 lg:group hover:lg:bg-white/50 transition-all duration-500 rounded-3xl">
-                  <div className="text-center transform lg:group-hover:scale-110 transition-all duration-500">
-                    <div className="text-[#061E4F] mb-3 md:mb-4 flex justify-center">{value.icon}</div>
-                    <h3 className="text-lg md:text-xl font-light tracking-wider text-[#061E4F] mb-2 md:mb-3">{value.title}</h3>
-                    <p className="text-gray-600 font-light text-sm md:text-base lg:text-lg">{value.description}</p>
-                  </div>
-                </div>
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  className="bg-white p-8 rounded-lg shadow-lg space-y-4"
+                >
+                  <div className="flex justify-center">{value.icon}</div>
+                  <h3 className="text-xl font-medium text-center text-[#061E4F]">{value.title}</h3>
+                  <p className="text-gray-600 text-center font-light">{value.description}</p>
+                </motion.div>
               ))}
             </div>
 
@@ -550,21 +539,21 @@ export default function AboutPage() {
                 className="prose prose-lg"
               >
                 <p className="text-xl font-light leading-relaxed text-[#071E51]">
-                  Biz, DOVEC olarak, inşaat sektöründe sadece yapılar değil, yaşamlar inşa ediyoruz. Her projemizde mükemmelliği arıyor, her detayda zarafeti yakalıyoruz.
+                  {t('about.manifesto.description1')}
                 </p>
                 <p className="text-xl font-light leading-relaxed text-[#071E51]">
-                  İnanıyoruz ki, başarı sadece ne yaptığınızda değil, nasıl yaptığınızda gizlidir.
+                  {t('about.manifesto.description2')}
                 </p>
               </motion.div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
                 {[
-                  { title: "Yenilikçi düşünüyoruz", desc: "Sektörde öncü ve yenilikçi çözümler üretiyoruz" },
-                  { title: "Sürdürülebilir üretiyoruz", desc: "Çevreye duyarlı ve sürdürülebilir projeler geliştiriyoruz" },
-                  { title: "Kaliteden ödün vermiyoruz", desc: "En yüksek kalite standartlarını benimsiyoruz" },
-                  { title: "Çevreye saygı duyuyoruz", desc: "Doğal kaynakları koruyarak gelecek nesillere aktarıyoruz" },
-                  { title: "Güvenle inşa ediyoruz", desc: "En yüksek güvenlik standartlarını uyguluyoruz" },
-                  { title: "Geleceği planlıyoruz", desc: "Uzun vadeli ve sürdürülebilir çözümler sunuyoruz" }
+                  { title: t('about.manifesto.items.0.title'), desc: t('about.manifesto.items.0.description') },
+                  { title: t('about.manifesto.items.1.title'), desc: t('about.manifesto.items.1.description') },
+                  { title: t('about.manifesto.items.2.title'), desc: t('about.manifesto.items.2.description') },
+                  { title: t('about.manifesto.items.3.title'), desc: t('about.manifesto.items.3.description') },
+                  { title: t('about.manifesto.items.4.title'), desc: t('about.manifesto.items.4.description') },
+                  { title: t('about.manifesto.items.5.title'), desc: t('about.manifesto.items.5.description') }
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -616,6 +605,42 @@ export default function AboutPage() {
           </div>
         </div>
       </motion.div>
+
+      {/* History */}
+      <section className="py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl font-extralight tracking-[.2em] text-[#061E4F]">
+              {t('about.history.title')}
+            </h2>
+            <p className="mt-8 text-gray-600 font-light text-lg max-w-4xl mx-auto">
+              {t('about.history.description')}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {milestones.map((milestone: any, index: number) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                className="bg-white p-8 rounded-lg shadow-lg space-y-4"
+              >
+                <div className="text-3xl font-light text-[#061E4F]">{milestone.year}</div>
+                <p className="text-gray-600 font-light">{milestone.event}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 } 

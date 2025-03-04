@@ -5,20 +5,22 @@ import Image from 'next/image'
 import { storage } from '@/firebase/config'
 import { ref, getDownloadURL } from 'firebase/storage'
 import { useRouter, usePathname } from 'next/navigation'
-import { Cormorant } from 'next/font/google'
+import { Raleway } from 'next/font/google'
 import { IconMenu2 } from '@tabler/icons-react'
 import Sidebar from './Sidebar'
+import { useLanguage } from '@/context/LanguageContext'
 
 // Navbar görünürlük olayı
 const NAVBAR_VISIBILITY_EVENT = 'navbar-visibility-change';
 
-const cormorant = Cormorant({ 
+const raleway = Raleway({ 
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400'],
   display: 'swap',
 })
 
 export default function Navbar() {
+  const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isLangOpen, setIsLangOpen] = useState(false)
@@ -110,7 +112,7 @@ export default function Navbar() {
   return (
     <>
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-      <nav className={`${cormorant.className} fixed w-full z-50 transition-all duration-700 ${
+      <nav className={`${raleway.className} fixed w-full z-50 transition-all duration-700 ${
         isScrolled 
           ? 'backdrop-blur-sm bg-white shadow-sm after:absolute after:inset-0 after:bg-[radial-gradient(800px_circle_at_var(--mouse-x,50%)_var(--mouse-y,50%),rgba(255,255,255,0.04),transparent_45%)] after:transition-opacity after:duration-500' 
           : ''
@@ -138,7 +140,7 @@ export default function Navbar() {
               <span className={`text-sm uppercase tracking-wider font-light ${
                 isScrolled ? 'text-gray-700 group-hover:text-gray-900' : 'text-white'
               }`}>
-                Menü
+                {t('navigation.menu')}
               </span>
             </button>
 
@@ -152,7 +154,7 @@ export default function Navbar() {
                   isScrolled ? 'text-zinc-800' : 'text-white'
                 } group`}
               >
-                <span className="relative z-10 text-sm uppercase">Projeler</span>
+                <span className="relative z-10 text-sm uppercase">{t('navigation.projects.title')}</span>
                 <div className={`absolute bottom-0 left-0 w-full h-[1px] ${
                   isScrolled 
                     ? 'bg-gradient-to-r from-transparent via-zinc-600 to-transparent' 
@@ -168,20 +170,19 @@ export default function Navbar() {
                   isProjectsMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}
               >
-               
                 <Link
                   href="/projeler?filter=devam-eden"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
                   onClick={() => setIsProjectsMenuOpen(false)}
                 >
-                  Devam Eden Projeler
+                  {t('navigation.projects.ongoingProjects')}
                 </Link>
                 <Link
                   href="/projeler?filter=tamamlanan"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
                   onClick={() => setIsProjectsMenuOpen(false)}
                 >
-                  Tamamlanan Projeler
+                  {t('navigation.projects.completedProjects')}
                 </Link>
               </div>
             </div>
@@ -202,22 +203,70 @@ export default function Navbar() {
             </Link>
           </div>
           
-          {/* Sağ taraf - İletişim linki */}
-          <div className="flex justify-end">
+          {/* Sağ taraf - İletişim linki ve Dil Seçici */}
+          <div className="flex justify-end items-center space-x-6">
             <Link
               href="/iletisim"
               className={`relative font-scandia tracking-wider py-2 transition-all duration-300 ${
                 isScrolled ? 'text-zinc-800' : 'text-white'
               }`}
             >
-              <span className="relative z-10 text-sm uppercase hidden md:inline">DÖVEÇ'E BAĞLAN</span>
-              <span className="relative z-10 text-sm uppercase md:hidden">BAĞLAN</span>
+              <span className="relative z-10 text-sm uppercase hidden md:inline">{t('navigation.contact.desktop')}</span>
+              <span className="relative z-10 text-sm uppercase md:hidden">{t('navigation.contact.mobile')}</span>
               <div className={`absolute bottom-0 left-0 w-full h-[1px] ${
                 isScrolled 
                   ? 'bg-gradient-to-r from-transparent via-zinc-600 to-transparent' 
                   : 'bg-gradient-to-r from-transparent via-white to-transparent'
               } scale-x-0 hover:scale-x-100 transition-transform duration-300 origin-center`}></div>
             </Link>
+
+            {/* Dil Seçici */}
+            <div className="relative">
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                onMouseEnter={() => setIsLangOpen(true)}
+                onMouseLeave={() => setIsLangOpen(false)}
+                className={`relative font-scandia tracking-wider py-2 px-3 rounded-full border ${
+                  isScrolled 
+                    ? 'text-zinc-800 border-zinc-300 hover:border-zinc-400' 
+                    : 'text-white border-white/30 hover:border-white/50'
+                } transition-all duration-300`}
+              >
+                <span className="text-sm uppercase">{language === 'tr' ? 'TR' : 'EN'}</span>
+              </button>
+
+              {/* Dil Dropdown Menu */}
+              <div
+                onMouseEnter={() => setIsLangOpen(true)}
+                onMouseLeave={() => setIsLangOpen(false)}
+                className={`absolute top-full right-0 mt-2 w-24 bg-white rounded-lg shadow-lg py-2 transition-all duration-300 ${
+                  isLangOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                }`}
+              >
+                <button
+                  onClick={() => {
+                    setLanguage('tr');
+                    setIsLangOpen(false);
+                  }}
+                  className={`block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 text-left ${
+                    language === 'tr' ? 'bg-gray-50' : ''
+                  }`}
+                >
+                  Türkçe
+                </button>
+                <button
+                  onClick={() => {
+                    setLanguage('en');
+                    setIsLangOpen(false);
+                  }}
+                  className={`block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 text-left ${
+                    language === 'en' ? 'bg-gray-50' : ''
+                  }`}
+                >
+                  English
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </nav>

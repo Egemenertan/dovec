@@ -1,0 +1,1149 @@
+{
+  "tr": {
+    "about": {
+      "hero": {
+        "company": "Döveç Group",
+        "founderTitle": "Kurucu Başkanı",
+        "founderName": "Muharrem Döveç",
+        "title": "Biz Kimiz",
+        "mainTitle": "GÜVEN VE KALİTENİN ADRESİ",
+        "description": "1993 yılından bu yana, modern yaşam alanları tasarlıyor ve geleceği inşa ediyoruz. Müşteri memnuniyeti ve kalite odaklı yaklaşımımızla, sektörde öncü bir marka olmaya devam ediyoruz."
+      },
+      "vision": {
+        "sectionTitle": "Vizyon",
+        "title": "VİZYONUMUZ",
+        "description": "Uluslararası standartlarda, yenilikçi ve sürdürülebilir yaşam alanları oluşturarak, müşterilerimizin hayallerini gerçeğe dönüştürmek ve gayrimenkul sektöründe global bir marka olmak."
+      },
+      "mission": {
+        "sectionTitle": "Misyon",
+        "title": "MİSYONUMUZ",
+        "description": "Yüksek kalite standartlarında, çevreye duyarlı ve modern yaşam alanları inşa ederek, müşterilerimize değer katmak ve çalışanlarımızla birlikte sürdürülebilir büyüme sağlamak."
+      },
+      "values": {
+        "title": "DEĞERLERİMİZ",
+        "items": [
+          {
+            "title": "Güvenilirlik",
+            "description": "Tüm iş süreçlerimizde şeffaflık ve dürüstlük ilkelerini benimsiyoruz."
+          },
+          {
+            "title": "Yenilikçilik",
+            "description": "Sektördeki en son teknolojileri ve trendleri takip ederek projelerimize yansıtıyoruz."
+          },
+          {
+            "title": "Sürdürülebilirlik",
+            "description": "Çevreye duyarlı yapılar inşa ediyor, gelecek nesilleri düşünüyoruz."
+          },
+          {
+            "title": "Müşteri Odaklılık",
+            "description": "Müşterilerimizin ihtiyaç ve beklentilerini en üst düzeyde karşılamayı hedefliyoruz."
+          }
+        ]
+      },
+      "history": {
+        "title": "TARİHÇEMİZ",
+        "description": "1993 yılında Kuzey Kıbrıs'ta kurulan şirketimiz, 30 yılı aşkın tecrübesiyle inşaat sektöründe güvenilir bir marka haline gelmiştir. Bugüne kadar tamamladığımız yüzlerce proje ile binlerce ailenin yaşam kalitesini artırdık ve bölgenin gelişimine katkıda bulunduk.",
+        "milestones": [
+          {
+            "year": "1993",
+            "event": "DÖVEÇ Group'un kuruluşu"
+          },
+          {
+            "year": "2000",
+            "event": "İlk büyük ölçekli konut projesinin tamamlanması"
+          },
+          {
+            "year": "2010",
+            "event": "Uluslararası pazarlara açılma"
+          },
+          {
+            "year": "2015",
+            "event": "Sürdürülebilir yapı teknolojilerine geçiş"
+          },
+          {
+            "year": "2020",
+            "event": "Digital dönüşüm ve inovasyon yatırımları"
+          }
+        ]
+      },
+      "director": {
+        "role": "Direktör",
+        "title": "Yönetim Kurulu Başkanı",
+        "message": [
+          "\"Değerli Müşterilerimiz ve İş Ortaklarımız,",
+          "Döveç İnşaat olarak, kurulduğumuz günden bu yana her projede kalite, güven ve müşteri memnuniyetini en üst düzeyde tutmayı amaçladık. Her adımımızda, modern ve sürdürülebilir yaşam alanları yaratmayı, topluma ve çevreye duyarlı projeler geliştirmeyi ilke edindik.",
+          "İnşaat sektöründe öncü olmanın getirdiği sorumluluğun bilincindeyiz. Bu sorumlulukla, yenilikçi ve estetik açıdan üstün yapılar inşa ederken, aynı zamanda fonksiyonelliği ve dayanıklılığı da ön planda tutuyoruz. Her projemizde, yüksek kaliteli malzemeler ve en son teknolojileri kullanarak, siz değerli müşterilerimize güvenli ve konforlu yaşam alanları sunmayı hedefliyoruz.",
+          "Döveç İnşaat ailesi olarak, sizlerin desteği ve güveni ile her geçen gün daha da büyüyerek, sadece Kuzey Kıbrıs'ta değil, uluslararası arenada da ses getiren projelere imza atıyoruz. Müşteri odaklı yaklaşımımızla, sizlere en iyi hizmeti sunmak için var gücümüzle çalışmaya devam edeceğiz.",
+          "Bize olan güveniniz ve desteğiniz için teşekkür eder, sizlerle birlikte daha nice başarılı projelere imza atmayı temenni ederim.",
+          "Saygılarımla,\""
+        ],
+        "signatureAlt": "Yönetim Kurulu Başkanı İmzası",
+        "imageAlt": "Yönetim Kurulu Başkanı"
+      },
+      "vicePresident1": {
+        "role": "Direktör",
+        "title": "Yönetim Kurulu Başkan Yardımcısı",
+        "message": [
+          "\"Değerli Paydaşlarımız,",
+          "Döveç İnşaat'ın yenilikçi vizyonu ve sürdürülebilir yaklaşımı ile sektörde öncü olmaya devam ediyoruz. Müşterilerimizin beklentilerini aşan projeler geliştirirken, çevreye ve topluma olan sorumluluğumuzu da unutmuyoruz.",
+          "Saygılarımla,\""
+        ],
+        "imageAlt": "Yönetim Kurulu Başkan Yardımcısı"
+      },
+      "vicePresident2": {
+        "role": "Direktör",
+        "title": "Yönetim Kurulu Başkan Yardımcısı",
+        "message": [
+          "\"Sevgili Müşterilerimiz,",
+          "Döveç İnşaat olarak, her projemizde mükemmelliği hedefliyor ve müşterilerimizin hayallerini gerçeğe dönüştürüyoruz. Operasyonel mükemmellik ve müşteri memnuniyeti odaklı yaklaşımımızla, sektörde fark yaratmaya devam ediyoruz.",
+          "Saygılarımla,\""
+        ],
+        "imageAlt": "Yönetim Kurulu Başkan Yardımcısı"
+      },
+      "manifesto": {
+        "title": "Manifesto",
+        "description1": "Biz, DOVEC olarak, inşaat sektöründe sadece yapılar değil, yaşamlar inşa ediyoruz. Her projemizde mükemmelliği arıyor, her detayda zarafeti yakalıyoruz.",
+        "description2": "İnanıyoruz ki, başarı sadece ne yaptığınızda değil, nasıl yaptığınızda gizlidir.",
+        "items": [
+          {
+            "title": "Yenilikçi düşünüyoruz",
+            "description": "Sektörde öncü ve yenilikçi çözümler üretiyoruz"
+          },
+          {
+            "title": "Sürdürülebilir üretiyoruz",
+            "description": "Çevreye duyarlı ve sürdürülebilir projeler geliştiriyoruz"
+          },
+          {
+            "title": "Kaliteden ödün vermiyoruz",
+            "description": "En yüksek kalite standartlarını benimsiyoruz"
+          },
+          {
+            "title": "Çevreye saygı duyuyoruz",
+            "description": "Doğal kaynakları koruyarak gelecek nesillere aktarıyoruz"
+          },
+          {
+            "title": "Güvenle inşa ediyoruz",
+            "description": "En yüksek güvenlik standartlarını uyguluyoruz"
+          },
+          {
+            "title": "Geleceği planlıyoruz",
+            "description": "Uzun vadeli ve sürdürülebilir çözümler sunuyoruz"
+          }
+        ]
+      }
+    },
+    "statistics": {
+      "globalPresence": {
+        "title": "GLOBAL VARLIĞIMIZ",
+        "mainTitle": "RAKAMLARLA DÖVEÇ",
+        "description": "Devam eden inşaat işleri 3 milyar £ değerinde olup, global ölçekte büyümeye devam ediyoruz."
+      },
+      "numbers": {
+        "partners": {
+          "value": "53",
+          "description": "Ülkeden Çözüm Ortakları"
+        },
+        "employees": {
+          "value": "550+",
+          "description": "Çalışan Sayısı"
+        },
+        "diversity": {
+          "value": "24",
+          "description": "Milletten Çalışan Çeşitliliği"
+        },
+        "revenue": {
+          "value": "5 Milyar £",
+          "description": "İştirakler ve bağlı ortaklıklar dahildir"
+        },
+        "projectArea": {
+          "value": "3.7M m²",
+          "description": "Proje Alanı"
+        },
+        "livingSpaces": {
+          "value": "5000+",
+          "description": "Yaşam Alanı"
+        }
+      }
+    },
+    "navigation": {
+      "menu": "Menü",
+      "projects": {
+        "title": "Projeler",
+        "ongoingProjects": "Devam Eden Projeler",
+        "completedProjects": "Tamamlanan Projeler",
+        "projectList": [
+          "La Casalia",
+          "Four Seasons Life",
+          "Querencia",
+          "Natulux",
+          "La Isla"
+        ]
+      },
+      "contact": {
+        "desktop": "DÖVEÇ'E BAĞLAN",
+        "mobile": "BAĞLAN"
+      }
+    },
+    "footer": {
+      "slogan": "Modern yaşam alanları tasarlıyor, geleceği inşa ediyoruz.",
+      "address": {
+        "title": "Adresimiz",
+        "text": "Döveç Head Quarters Uluçam yolu, No.2, Sakarya, Gazimağusa, KKTC"
+      },
+      "contact": {
+        "title": "Satış Ve Müşteri Hizmetleri",
+        "phone": "+90 548 837 0015",
+        "email": "info@dovecconstruction.com"
+      },
+      "socialMedia": {
+        "facebook": "https://www.facebook.com/DovecConstruction/",
+        "instagram": "https://www.instagram.com/dovec_group/",
+        "linkedin": "https://www.linkedin.com/company/dovecgroup/",
+        "youtube": "https://www.youtube.com/c/dovecgroup",
+        "whatsapp": "https://wa.me/905488370015"
+      },
+      "projectLinks": {
+        "title": "Projelerimiz",
+        "links": [
+          {
+            "title": "Devam Eden Projeler",
+            "url": "/projeler?filter=devam-eden"
+          },
+          {
+            "title": "Tamamlanan Projeler",
+            "url": "/projeler?filter=tamamlanan"
+          },
+          {
+            "title": "La Casalia",
+            "url": "/projeler/la-casalia"
+          },
+          {
+            "title": "Four Seasons Life",
+            "url": "/projeler/four-seasons-life"
+          },
+          {
+            "title": "Querencia",
+            "url": "/projeler/querencia"
+          },
+          {
+            "title": "Natulux",
+            "url": "/projeler/natulux"
+          },
+          {
+            "title": "La Isla",
+            "url": "/projeler/la-isla"
+          }
+        ]
+      },
+      "quickLinks": {
+        "title": "HIZLI ERİŞİM",
+        "aboutUs": "Hakkımızda",
+        "projects": "Projeler",
+        "media": "Medya",
+        "blog": "Blog",
+        "career": {
+          "text": "Kariyer",
+          "link": "https://www.linkedin.com/company/dovecgroup/jobs/"
+        },
+        "contact": "İletişim"
+      }
+    },
+    "contact": {
+      "hero": {
+        "title": "DÖVEÇ'E BAĞLAN",
+        "description": "Sorularınız, önerileriniz veya işbirliği talepleriniz için bizimle iletişime geçebilirsiniz."
+      },
+      "sections": {
+        "title": "Bize Ulaşın",
+        "description": "Sorularınız, önerileriniz veya işbirliği talepleriniz için bizimle iletişime geçebilirsiniz.",
+        "items": [
+          {
+            "type": "address",
+            "title": "Adres",
+            "content": "Döveç Head Quarters Uluçam yolu, No.2, Sakarya, Gazimağusa, KKTC",
+            "link": "https://www.google.com/maps/dir//D%C3%B6ve%C3%A7+Head+Quaters+Ulu%C3%A7am+yolu,+No.2,+Sakarya,+Gazima%C4%9Fusa,+KKTC"
+          },
+          {
+            "type": "phone",
+            "title": "Telefon",
+            "content": "+90 548 837 0015",
+            "link": "tel:+905488370015"
+          },
+          {
+            "type": "email",
+            "title": "E-posta",
+            "emails": [
+              {
+                "address": "info@dovecconstruction.com",
+                "link": "mailto:info@dovecconstruction.com"
+              },
+              {
+                "address": "info@dovecgroup.com",
+                "link": "mailto:info@dovecgroup.com"
+              },
+              {
+                "address": "ik@dovecgroup.com",
+                "link": "mailto:ik@dovecgroup.com"
+              }
+            ]
+          }
+        ]
+      },
+      "socialMedia": {
+        "title": "Sosyal Medya",
+        "links": [
+          {
+            "platform": "facebook",
+            "url": "https://www.facebook.com/DovecConstruction/"
+          },
+          {
+            "platform": "instagram",
+            "url": "https://www.instagram.com/dovecconstruction/"
+          },
+          {
+            "platform": "linkedin",
+            "url": "https://www.linkedin.com/company/dovecconstruction/"
+          }
+        ]
+      },
+      "map": {
+        "iframe": {
+          "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d406.8176527292394!2d33.90673591523173!3d35.20559598031037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dfe3c6b9455555%3A0x777d89f70a3333!2zRMO2dmXDpyBIZWFkIFF1YXRlcnM!5e0!3m2!1str!2str!4v1710876184975!5m2!1str!2str&center=35.20559598031037,33.90673591523173&zoom=19"
+        },
+        "location": {
+          "title": "Döveç Head Quaters",
+          "address": "Uluçam yolu, No.2, Sakarya, Gazimağusa, KKTC",
+          "cta": {
+            "text": "Yol Tarifi Al",
+            "link": "https://www.google.com/maps/dir//D%C3%B6ve%C3%A7+Head+Quaters+Ulu%C3%A7am+yolu,+No.2,+Sakarya,+Gazima%C4%9Fusa,+KKTC"
+          }
+        }
+      }
+    },
+    "components": {
+      "aboutSection": {
+        "title": "Hayalleri, toplulukları ve sürdürülebilir bir geleceği",
+        "titleItalic": "inşa ediyoruz.",
+        "content": [
+          "Döveç Group has helped over 2,000 families become homeowners through more than 100 projects completed to date.",
+          "At the 6th Property NC real estate awards ceremony in 2019, the most prestigious awards ceremony in Northern Cyprus, Döveç Group proved its industry leadership by winning awards in 13 different categories, including the Best Construction Company of the Year."
+        ],
+        "imageAlt": "Döveç Group Projesi"
+      },
+      "hero": {
+        "projects": {
+          "querencia": {
+            "title": "QUERENCIA",
+            "description": "Afrodit'in İzinde Efsanevi Yeni Yaşam Sanatı"
+          },
+          "laCasalia": {
+            "title": "LA CASALIA",
+            "description": "Afrodit'in İzinde Efsanevi Yeni Yaşam Sanatı"
+          },
+          "natulux": {
+            "title": "NATULUX",
+            "description": "Doğanın Lüks ile Buluştuğu Yaşam Alanı"
+          }
+        },
+        "cta": {
+          "text": "Keşfet"
+        },
+        "image_not_loaded": "Görsel yüklenemedi"
+      },
+      "projectSection": {
+        "title": "PROJELERİMİZ",
+        "description": "\"Her konut, bu muhteşem manzarayı en üst düzeye çıkaracak şekilde stratejik olarak konumlandırılmış olup, konut sakinlerinin günlük yaşamlarına büyüleyici bir fon oluşturan masmavi denizleri, yemyeşil doğayı ve parlak plajları hayranlıkla seyretmelerine olanak tanımaktadır.\"",
+        "additionalText": "Tesisin her noktasından, sakinlere gökyüzünün ve mevsimlerin değişen renkleriyle sürekli gelişen doğanın güzelliğinin görsel bir senfonisi sunulmaktadır. Önünüzde uzanan hayranlık uyandırıcı manzaraların tadını çıkarırken, şehir rahatlığı ve dağ huzurunun uyumlu karışımını kucaklayın."
+      },
+      "projectsShowcase": {
+        "projects": [
+          {
+            "name": "La Casalia",
+            "slug": "la-casalia",
+            "description": "Akdeniz'in kristal berraklığındaki sularına bakan, huzur ve yenilenmenin buluştuğu, Kıbrıs'ın kuzeyinde yer alan bir cennet köşesidir.",
+            "location": "Tatlısu, KKTC"
+          },
+          {
+            "name": "Four Seasons III",
+            "slug": "four-seasons-iii",
+            "description": "Dört mevsim ayrıcalıklı yaşam deneyimi sunan rezidanslar.",
+            "location": "İskele, KKTC"
+          },
+          {
+            "name": "Natulux",
+            "slug": "natulux",
+            "description": "Doğa ile iç içe, lüks yaşam standartları.",
+            "location": "Esentepe, KKTC"
+          },
+          {
+            "name": "Courtyard Platinum",
+            "slug": "courtyard-platinum",
+            "description": "Premium yaşam standartlarını sunan seçkin proje.",
+            "location": "Long Beach, KKTC"
+          }
+        ],
+        "cta": {
+          "text": "Projeyi İncele"
+        }
+      },
+      "navbar": {
+        "menu": "Menü",
+        "projects": {
+          "title": "Projeler",
+          "items": [
+            {
+              "title": "Devam Eden Projeler",
+              "url": "/projeler?filter=devam-eden"
+            },
+            {
+              "title": "Tamamlanan Projeler",
+              "url": "/projeler?filter=tamamlanan"
+            }
+          ]
+        },
+        "contact": {
+          "desktop": "DÖVEÇ'E BAĞLAN",
+          "mobile": "BAĞLAN"
+        }
+      }
+    },
+    "services": {
+      "title": "DÖVEÇ GROUP",
+      "mainTitle": "GRUP ŞİRKETLERİMİZ",
+      "dovecVentures": {
+        "description": "Yatırım ve girişim sermayesi hizmetleri."
+      },
+      "autoTrend": {
+        "description": "Premium araç kiralama ve satış hizmetleri."
+      },
+      "alfamDormitory": {
+        "description": "Modern öğrenci yaşam alanları."
+      },
+      "arredo": {
+        "description": "Lüks mobilya ve iç tasarım çözümleri."
+      },
+      "dovecFitness": {
+        "description": "Profesyonel spor ve yaşam merkezi."
+      },
+      "dcs": {
+        "description": "DCS Profesyonel onarım hizmetleri."
+      }
+    },
+    "projects": {
+      "hero": {
+        "company": "DÖVEÇ GROUP",
+        "title": "PROJELERİMİZ",
+        "description": "Modern mimari ve lüks yaşamın buluştuğu özel koleksiyonlarımız ile yaşam standartlarınızı yükseltiyoruz"
+      },
+      "projectTypes": {
+        "residential": "KONUT PROJESİ"
+      },
+      "details": {
+        "moreInfo": "DETAYLI BİLGİ",
+        "projectDetails": "Proje Detayları",
+        "areaInfo": "Alan Bilgileri",
+        "projectInfo": "Proje Bilgileri",
+        "units": "Daire Sayısı",
+        "delivery": "Teslim Tarihi",
+        "landArea": "Arsa Alanı",
+        "constructionArea": "İnşaat Alanı",
+        "stats": {
+          "units": "DAİRE SAYISI",
+          "landArea": "ARSA ALANI",
+          "constructionArea": "İNŞAAT ALANI",
+          "delivery": "TESLİM TARİHİ"
+        }
+      },
+      "items": {
+        "laCasalia": {
+          "description": "Modern mimari ve lüks yaşamın buluştuğu özel bir proje.",
+          "location": "İSKELE, KKTC"
+        },
+        "natulux": {
+          "description": "Doğa ile iç içe, lüks yaşam standartları.",
+          "location": "TATLISU, KKTC"
+        },
+        "laIsla": {
+          "description": "Ada yaşamının tüm ayrıcalıklarını sunan özel proje.",
+          "location": "GAZİMAĞUSA, KKTC"
+        },
+        "querencia": {
+          "description": "Huzur ve konforun buluştuğu yaşam alanları.",
+          "location": "GİRNE, KKTC"
+        },
+        "fourSeasonsLife": {
+          "description": "Dört mevsim ayrıcalıklı yaşam deneyimi.",
+          "location": "LEFKOŞA, KKTC"
+        },
+        "courtyardPlatinum": {
+          "description": "Premium yaşam standartlarını sunan seçkin proje.",
+          "location": "GİRNE, KKTC"
+        },
+        "skySakarya": {
+          "description": "Gökyüzüyle buluşan modern yaşam alanları.",
+          "location": "SAKARYA, TÜRKİYE"
+        },
+        "courtyard": {
+          "description": "Şehrin merkezinde huzurlu bir yaşam.",
+          "location": "GİRNE, KKTC"
+        },
+        "panorama": {
+          "description": "Eşsiz manzarasıyla öne çıkan yaşam projesi.",
+          "location": "GİRNE, KKTC"
+        }
+      }
+    }
+  },
+  "en": {
+    "about": {
+      "hero": {
+        "company": "DOVEC GROUP",
+        "founderTitle": "FOUNDER & CHAIRMAN",
+        "founderName": "MUHARREM DOVEC",
+        "title": "WHO WE ARE",
+        "mainTitle": "THE ADDRESS OF TRUST AND QUALITY",
+        "description": "Since 1993, we have been designing modern living spaces and building the future. With our customer satisfaction and quality-focused approach, we continue to be a leading brand in the industry."
+      },
+      "vision": {
+        "sectionTitle": "VISION",
+        "title": "OUR VISION",
+        "description": "To become a global brand in the real estate sector by creating innovative and sustainable living spaces at international standards and turning our customers' dreams into reality."
+      },
+      "mission": {
+        "sectionTitle": "MISSION",
+        "title": "OUR MISSION",
+        "description": "To add value to our customers and achieve sustainable growth with our employees by building environmentally conscious and modern living spaces at high quality standards."
+      },
+      "values": {
+        "title": "OUR VALUES",
+        "items": [
+          {
+            "title": "RELIABILITY",
+            "description": "We embrace transparency and honesty in all our business processes."
+          },
+          {
+            "title": "INNOVATION",
+            "description": "We follow and implement the latest technologies and trends in the industry."
+          },
+          {
+            "title": "SUSTAINABILITY",
+            "description": "We build environmentally conscious structures with future generations in mind."
+          },
+          {
+            "title": "CUSTOMER FOCUS",
+            "description": "We aim to meet our customers' needs and expectations at the highest level."
+          }
+        ]
+      },
+      "history": {
+        "title": "OUR HISTORY",
+        "description": "Founded in 1993 in Northern Cyprus, our company has become a trusted brand in the construction industry with over 30 years of experience. We have improved the quality of life for thousands of families and contributed to the region's development with hundreds of completed projects.",
+        "milestones": [
+          {
+            "year": "1993",
+            "event": "Establishment of DOVEC Group"
+          },
+          {
+            "year": "2000",
+            "event": "Completion of first large-scale residential project"
+          },
+          {
+            "year": "2010",
+            "event": "Expansion into international markets"
+          },
+          {
+            "year": "2015",
+            "event": "Transition to sustainable building technologies"
+          },
+          {
+            "year": "2020",
+            "event": "Digital transformation and innovation investments"
+          }
+        ]
+      },
+      "director": {
+        "role": "DIRECTOR",
+        "title": "CHAIRMAN OF THE BOARD",
+        "message": [
+          "\"Dear Customers and Business Partners,",
+          "As DOVEC Construction, we have aimed to maintain quality, trust, and customer satisfaction at the highest level in every project since our establishment. In every step we take, we have adopted the principle of creating modern and sustainable living spaces and developing projects that are sensitive to society and the environment.",
+          "We are aware of the responsibility that comes with being a pioneer in the construction industry. With this responsibility, while building innovative and aesthetically superior structures, we also prioritize functionality and durability. In each of our projects, we aim to provide you, our valued customers, with safe and comfortable living spaces by using high-quality materials and the latest technologies.",
+          "As the DOVEC Construction family, with your support and trust, we continue to grow day by day and undertake projects that make an impact not only in Northern Cyprus but also in the international arena. With our customer-oriented approach, we will continue to work with all our strength to provide you with the best service.",
+          "I thank you for your trust and support, and I hope that we will continue to undertake many more successful projects together.",
+          "Best regards,\""
+        ],
+        "signatureAlt": "Chairman's Signature",
+        "imageAlt": "Chairman of the Board"
+      },
+      "vicePresident1": {
+        "role": "Director",
+        "title": "Vice Chairman of the Board",
+        "message": [
+          "\"Dear Stakeholders,",
+          "With DOVEC Construction's innovative vision and sustainable approach, we continue to be a pioneer in the industry. While developing projects that exceed our customers' expectations, we do not forget our responsibility to the environment and society.",
+          "Best regards,\""
+        ],
+        "imageAlt": "Vice Chairman of the Board"
+      },
+      "vicePresident2": {
+        "role": "Director",
+        "title": "Vice Chairman of the Board",
+        "message": [
+          "\"Dear Customers,",
+          "As DOVEC Construction, we aim for excellence in every project and turn our customers' dreams into reality. With our operational excellence and customer satisfaction-focused approach, we continue to make a difference in the industry.",
+          "Best regards,\""
+        ],
+        "imageAlt": "Vice Chairman of the Board"
+      },
+      "manifesto": {
+        "title": "MANIFESTO",
+        "description1": "As DOVEC, we build not just structures but lives in the construction industry. We seek perfection in every project and capture elegance in every detail.",
+        "description2": "We believe that success lies not only in what you do but in how you do it.",
+        "items": [
+          {
+            "title": "We think innovatively",
+            "description": "We produce pioneering and innovative solutions in the industry"
+          },
+          {
+            "title": "We produce sustainably",
+            "description": "We develop environmentally conscious and sustainable projects"
+          },
+          {
+            "title": "We don't compromise on quality",
+            "description": "We adopt the highest quality standards"
+          },
+          {
+            "title": "We respect the environment",
+            "description": "We protect natural resources for future generations"
+          },
+          {
+            "title": "We build with confidence",
+            "description": "We implement the highest safety standards"
+          },
+          {
+            "title": "We plan for the future",
+            "description": "We offer long-term and sustainable solutions"
+          }
+        ]
+      }
+    },
+    "statistics": {
+      "globalPresence": {
+        "title": "OUR GLOBAL PRESENCE",
+        "mainTitle": "DÖVEÇ IN NUMBERS",
+        "description": "With ongoing construction works valued at £3 billion, we continue to grow on a global scale."
+      },
+      "numbers": {
+        "partners": {
+          "value": "53",
+          "description": "Partner Countries"
+        },
+        "employees": {
+          "value": "550+",
+          "description": "Employees"
+        },
+        "diversity": {
+          "value": "24",
+          "description": "Nationalities in Our Team"
+        },
+        "revenue": {
+          "value": "£5 Billion",
+          "description": "Including subsidiaries and affiliates"
+        },
+        "projectArea": {
+          "value": "3.7M m²",
+          "description": "Project Area"
+        },
+        "livingSpaces": {
+          "value": "5000+",
+          "description": "Living Spaces"
+        }
+      }
+    },
+    "navigation": {
+      "menu": "Menu",
+      "projects": {
+        "title": "Projects",
+        "ongoingProjects": "Ongoing Projects",
+        "completedProjects": "Completed Projects",
+        "projectList": [
+          "La Casalia",
+          "Four Seasons Life",
+          "Querencia",
+          "Natulux",
+          "La Isla"
+        ]
+      },
+      "contact": {
+        "desktop": "CONNECT WITH DÖVEÇ",
+        "mobile": "CONNECT"
+      }
+    },
+    "footer": {
+      "slogan": "Designing modern living spaces, building the future.",
+      "address": {
+        "title": "Our Address",
+        "text": "Döveç Head Quarters Uluçam Road, No.2, Sakarya, Famagusta, TRNC"
+      },
+      "contact": {
+        "title": "Sales and Customer Service",
+        "phone": "+90 548 837 0015",
+        "email": "info@dovecconstruction.com"
+      },
+      "socialMedia": {
+        "facebook": "https://www.facebook.com/DovecConstruction/",
+        "instagram": "https://www.instagram.com/dovec_group/",
+        "linkedin": "https://www.linkedin.com/company/dovecgroup/",
+        "youtube": "https://www.youtube.com/c/dovecgroup",
+        "whatsapp": "https://wa.me/905488370015"
+      },
+      "projectLinks": {
+        "title": "Our Projects",
+        "links": [
+          {
+            "title": "Ongoing Projects",
+            "url": "/projeler?filter=devam-eden"
+          },
+          {
+            "title": "Completed Projects",
+            "url": "/projeler?filter=tamamlanan"
+          },
+          {
+            "title": "La Casalia",
+            "url": "/projeler/la-casalia"
+          },
+          {
+            "title": "Four Seasons Life",
+            "url": "/projeler/four-seasons-life"
+          },
+          {
+            "title": "Querencia",
+            "url": "/projeler/querencia"
+          },
+          {
+            "title": "Natulux",
+            "url": "/projeler/natulux"
+          },
+          {
+            "title": "La Isla",
+            "url": "/projeler/la-isla"
+          }
+        ]
+      },
+      "quickLinks": {
+        "title": "QUICK LINKS",
+        "aboutUs": "About Us",
+        "projects": "Projects",
+        "media": "Media",
+        "blog": "Blog",
+        "career": {
+          "text": "Career",
+          "link": "https://www.linkedin.com/company/dovecgroup/jobs/"
+        },
+        "contact": "Contact"
+      }
+    },
+    "contact": {
+      "hero": {
+        "title": "CONNECT WITH DÖVEÇ",
+        "description": "Get in touch with us for your questions, suggestions, or collaboration requests."
+      },
+      "sections": {
+        "title": "Contact Us",
+        "description": "Get in touch with us for your questions, suggestions, or collaboration requests.",
+        "items": [
+          {
+            "type": "address",
+            "title": "Address",
+            "content": "Döveç Head Quarters Uluçam Road, No.2, Sakarya, Famagusta, TRNC",
+            "link": "https://www.google.com/maps/dir//D%C3%B6ve%C3%A7+Head+Quarters+Ulu%C3%A7am+Road,+No.2,+Sakarya,+Famagusta,+TRNC"
+          },
+          {
+            "type": "phone",
+            "title": "Phone",
+            "content": "+90 548 837 0015",
+            "link": "tel:+905488370015"
+          },
+          {
+            "type": "email",
+            "title": "Email",
+            "emails": [
+              {
+                "address": "info@dovecconstruction.com",
+                "link": "mailto:info@dovecconstruction.com"
+              },
+              {
+                "address": "info@dovecgroup.com",
+                "link": "mailto:info@dovecgroup.com"
+              },
+              {
+                "address": "hr@dovecgroup.com",
+                "link": "mailto:hr@dovecgroup.com"
+              }
+            ]
+          }
+        ]
+      },
+      "socialMedia": {
+        "title": "Social Media",
+        "links": [
+          {
+            "platform": "facebook",
+            "url": "https://www.facebook.com/DovecConstruction/",
+            "icon": "<path d='M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z' />"
+          },
+          {
+            "platform": "instagram",
+            "url": "https://www.instagram.com/dovecconstruction/",
+            "icon": "<path d='M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z' />"
+          },
+          {
+            "platform": "linkedin",
+            "url": "https://www.linkedin.com/company/dovecconstruction/",
+            "icon": "<path d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z'/>"
+          }
+        ]
+      },
+      "map": {
+        "iframe": {
+          "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d406.8176527292394!2d33.90673591523173!3d35.20559598031037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dfe3c6b9455555%3A0x777d89f70a3333!2zRMO2dmXDpyBIZWFkIFF1YXRlcnM!5e0!3m2!1sen!2str!4v1710876184975!5m2!1sen!2str&center=35.20559598031037,33.90673591523173&zoom=19"
+        },
+        "location": {
+          "title": "Döveç Head Quarters",
+          "address": "Uluçam Road, No.2, Sakarya, Famagusta, TRNC",
+          "cta": {
+            "text": "Get Directions",
+            "link": "https://www.google.com/maps/dir//D%C3%B6ve%C3%A7+Head+Quarters+Ulu%C3%A7am+Road,+No.2,+Sakarya,+Famagusta,+TRNC"
+          }
+        }
+      }
+    },
+    "components": {
+      "aboutSection": {
+        "title": "Building dreams, communities, and a sustainable future",
+        "titleItalic": "we build.",
+        "content": [
+          "Döveç Group has helped over 2,000 families become homeowners through more than 100 projects completed to date.",
+          "At the 6th Property NC real estate awards ceremony in 2019, the most prestigious awards ceremony in Northern Cyprus, Döveç Group proved its industry leadership by winning awards in 13 different categories, including the Best Construction Company of the Year."
+        ],
+        "imageAlt": "Döveç Group Project"
+      },
+      "hero": {
+        "projects": {
+          "querencia": {
+            "title": "QUERENCIA",
+            "description": "Legendary New Art of Living in the Footsteps of Aphrodite"
+          },
+          "laCasalia": {
+            "title": "LA CASALIA",
+            "description": "Legendary New Art of Living in the Footsteps of Aphrodite"
+          },
+          "natulux": {
+            "title": "NATULUX",
+            "description": "Where Nature Meets Luxury Living"
+          }
+        },
+        "cta": {
+          "text": "Explore"
+        },
+        "image_not_loaded": "Image could not be loaded"
+      },
+      "projectSection": {
+        "title": "OUR PROJECTS",
+        "description": "\"Each residence is strategically positioned to maximize this magnificent view, allowing residents to admire the azure seas, lush nature, and bright beaches that form a fascinating backdrop to their daily lives.\"",
+        "additionalText": "From every point of the facility, residents are presented with a visual symphony of the changing colors of the sky and seasons of ever-evolving nature. Embrace the harmonious blend of city comfort and mountain serenity while enjoying the breathtaking views before you."
+      },
+      "projectsShowcase": {
+        "projects": [
+          {
+            "name": "La Casalia",
+            "slug": "la-casalia",
+            "description": "A special project where modern architecture meets luxury living.",
+            "location": "ISKELE, TRNC"
+          },
+          {
+            "name": "Four Seasons III",
+            "slug": "four-seasons-iii",
+            "description": "Residences offering privileged living experience in all four seasons.",
+            "location": "LEFKOŞA, TRNC"
+          },
+          {
+            "name": "Natulux",
+            "slug": "natulux",
+            "description": "Luxury living standards intertwined with nature.",
+            "location": "TATLISU, TRNC"
+          },
+          {
+            "name": "Courtyard Platinum",
+            "slug": "courtyard-platinum",
+            "description": "An exclusive project offering premium living standards.",
+            "location": "KYRENIA, TRNC"
+          }
+        ],
+        "cta": {
+          "text": "Explore Project"
+        }
+      },
+      "navbar": {
+        "menu": "Menu",
+        "projects": {
+          "title": "Projects",
+          "items": [
+            {
+              "title": "Ongoing Projects",
+              "url": "/projeler?filter=devam-eden"
+            },
+            {
+              "title": "Completed Projects",
+              "url": "/projeler?filter=tamamlanan"
+            }
+          ]
+        },
+        "contact": {
+          "desktop": "CONNECT WITH DÖVEÇ",
+          "mobile": "CONNECT"
+        }
+      }
+    },
+    "services": {
+      "title": "DÖVEÇ GROUP",
+      "mainTitle": "OUR GROUP COMPANIES",
+      "dovecVentures": {
+        "description": "Investment and venture capital services."
+      },
+      "autoTrend": {
+        "description": "Premium car rental and sales services."
+      },
+      "alfamDormitory": {
+        "description": "Modern student living spaces."
+      },
+      "arredo": {
+        "description": "Luxury furniture and interior design solutions."
+      },
+      "dovecFitness": {
+        "description": "Professional sports and lifestyle center."
+      },
+      "dcs": {
+        "description": "DCS Professional repair services."
+      }
+    },
+    "projects": {
+      "hero": {
+        "company": "DOVEC GROUP",
+        "title": "OUR PROJECTS",
+        "description": "We elevate your living standards with our special collections where modern architecture meets luxury living"
+      },
+      "projectTypes": {
+        "residential": "RESIDENTIAL PROJECT"
+      },
+      "details": {
+        "moreInfo": "MORE INFO",
+        "projectDetails": "Project Details",
+        "areaInfo": "Area Information",
+        "projectInfo": "Project Information",
+        "units": "Number of Units",
+        "delivery": "Delivery Date",
+        "landArea": "Land Area",
+        "constructionArea": "Construction Area",
+        "stats": {
+          "units": "NUMBER OF UNITS",
+          "landArea": "LAND AREA",
+          "constructionArea": "CONSTRUCTION AREA",
+          "delivery": "DELIVERY DATE"
+        }
+      },
+      "items": {
+        "laCasalia": {
+          "description": "A special project where modern architecture meets luxury living.",
+          "location": "ISKELE, TRNC"
+        },
+        "natulux": {
+          "description": "Luxury living standards intertwined with nature.",
+          "location": "TATLISU, TRNC"
+        },
+        "laIsla": {
+          "description": "A special project offering all the privileges of island living.",
+          "location": "FAMAGUSTA, TRNC"
+        },
+        "querencia": {
+          "description": "Living spaces where peace meets comfort.",
+          "location": "KYRENIA, TRNC"
+        },
+        "fourSeasonsLife": {
+          "description": "A privileged living experience for all four seasons.",
+          "location": "NICOSIA, TRNC"
+        },
+        "courtyardPlatinum": {
+          "description": "An exclusive project offering premium living standards.",
+          "location": "KYRENIA, TRNC"
+        },
+        "skySakarya": {
+          "description": "Modern living spaces meeting the sky.",
+          "location": "SAKARYA, TURKEY"
+        },
+        "courtyard": {
+          "description": "A peaceful life in the heart of the city.",
+          "location": "KYRENIA, TRNC"
+        },
+        "panorama": {
+          "description": "A living project featuring unique views.",
+          "location": "KYRENIA, TRNC"
+        }
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": {
+        "tr": "DÖVEÇ'E BAĞLAN",
+        "en": "CONNECT WITH DÖVEÇ"
+      },
+      "alt": {
+        "tr": "İletişim",
+        "en": "Contact"
+      }
+    },
+    "contactUs": {
+      "title": {
+        "tr": "Bize Ulaşın",
+        "en": "Contact Us"
+      },
+      "description": {
+        "tr": "Sorularınız, önerileriniz veya işbirliği talepleriniz için bizimle iletişime geçebilirsiniz.",
+        "en": "You can contact us for your questions, suggestions or collaboration requests."
+      }
+    },
+    "address": {
+      "title": {
+        "tr": "Adres",
+        "en": "Address"
+      },
+      "text": {
+        "tr": "Döveç Head Quarters Uluçam yolu, No.2, Sakarya, Gazimağusa, KKTC",
+        "en": "Döveç Head Quarters Uluçam Road, No.2, Sakarya, Famagusta, TRNC"
+      },
+      "mapLink": {
+        "tr": "https://www.google.com/maps/dir//D%C3%B6ve%C3%A7+Head+Quaters+Ulu%C3%A7am+yolu,+No.2,+Sakarya,+Gazima%C4%9Fusa,+KKTC",
+        "en": "https://www.google.com/maps/dir//D%C3%B6ve%C3%A7+Head+Quarters+Ulu%C3%A7am+Road,+No.2,+Sakarya,+Famagusta,+TRNC"
+      }
+    },
+    "phone": {
+      "title": {
+        "tr": "Telefon",
+        "en": "Phone"
+      },
+      "number": {
+        "tr": "+90 548 837 0015",
+        "en": "+90 392 815 2222"
+      },
+      "link": {
+        "tr": "tel:+905488370015",
+        "en": "tel:+905488370015"
+      }
+    },
+    "email": {
+      "title": {
+        "tr": "E-posta",
+        "en": "Email"
+      },
+      "addresses": {
+        "tr": [
+          {
+            "address": "info@dovecconstruction.com"
+          },
+          {
+            "address": "info@dovecgroup.com"
+          },
+          {
+            "address": "ik@dovecgroup.com"
+          }
+        ],
+        "en": [
+          {
+            "address": "info@dovecconstruction.com"
+          },
+          {
+            "address": "info@dovecgroup.com"
+          },
+          {
+            "address": "hr@dovecgroup.com"
+          }
+        ]
+      }
+    },
+    "socialMedia": {
+      "title": {
+        "tr": "Sosyal Medya",
+        "en": "Social Media"
+      },
+      "links": {
+        "tr": [
+          {
+            "name": "Facebook",
+            "url": "https://www.facebook.com/DovecConstruction/",
+            "icon": "<path d='M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z' />"
+          },
+          {
+            "name": "Instagram",
+            "url": "https://www.instagram.com/dovecconstruction/",
+            "icon": "<path d='M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z' />"
+          },
+          {
+            "name": "LinkedIn",
+            "url": "https://www.linkedin.com/company/dovecconstruction/",
+            "icon": "<path d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z'/>"
+          }
+        ],
+        "en": [
+          {
+            "name": "Facebook",
+            "url": "https://www.facebook.com/DovecConstruction/",
+            "icon": "<path d='M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z' />"
+          },
+          {
+            "name": "Instagram",
+            "url": "https://www.instagram.com/dovecconstruction/",
+            "icon": "<path d='M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z' />"
+          },
+          {
+            "name": "LinkedIn",
+            "url": "https://www.linkedin.com/company/dovecconstruction/",
+            "icon": "<path d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z'/>"
+          }
+        ]
+      }
+    },
+    "map": {
+      "title": {
+        "tr": "Döveç Head Quaters",
+        "en": "Döveç Head Quarters"
+      },
+      "address": {
+        "tr": "Uluçam yolu, No.2, Sakarya, Gazimağusa, KKTC",
+        "en": "Yeni Girne, Karaoğlanoğlu Caddesi, No: 332, Girne/KKTC"
+      },
+      "embedUrl": {
+        "tr": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d406.8176527292394!2d33.90673591523173!3d35.20559598031037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dfe3c6b9455555%3A0x777d89f70a3333!2zRMO2dmXDpyBIZWFkIFF1YXRlcnM!5e0!3m2!1str!2str!4v1710876184975!5m2!1str!2str&center=35.20559598031037,33.90673591523173&zoom=19",
+        "en": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d406.8176527292394!2d33.90673591523173!3d35.20559598031037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14dfe3c6b9455555%3A0x777d89f70a3333!2zRMO2dmXDpyBIZWFkIFF1YXRlcnM!5e0!3m2!1sen!2str!4v1710876184975!5m2!1sen!2str&center=35.20559598031037,33.90673591523173&zoom=19"
+      },
+      "directionsLink": {
+        "tr": "https://www.google.com/maps/dir//D%C3%B6ve%C3%A7+Head+Quaters+Ulu%C3%A7am+yolu,+No.2,+Sakarya,+Gazima%C4%9Fusa,+KKTC",
+        "en": "https://www.google.com/maps/dir//D%C3%B6ve%C3%A7+Head+Quarters+Ulu%C3%A7am+Road,+No.2,+Sakarya,+Famagusta,+TRNC"
+      },
+      "getDirections": {
+        "tr": "Yol Tarifi Al",
+        "en": "Get Directions"
+      }
+    }
+  },
+  "errors": {
+    "imageLoadError": {
+      "tr": "Resimler yüklenemedi:",
+      "en": "Failed to load images:"
+    },
+    "imageNotLoaded": {
+      "tr": "Görsel yüklenemedi",
+      "en": "Image could not be loaded"
+    }
+  }
+} 

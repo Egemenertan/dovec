@@ -6,6 +6,7 @@ import { useRef, useEffect, useState, Suspense } from 'react';
 import { storage } from '@/firebase/config';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { useSearchParams } from 'next/navigation';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function ProjectsPage() {
   return (
@@ -16,6 +17,7 @@ export default function ProjectsPage() {
 }
 
 function ProjectsContent() {
+  const { t } = useLanguage();
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const searchParams = useSearchParams();
   const filterParam = searchParams?.get('filter');
@@ -24,11 +26,11 @@ function ProjectsContent() {
   const [projects, setProjects] = useState([
     {
       name: 'La Casalia',
-      type: 'KONUT PROJESİ',
-      description: 'Modern mimari ve lüks yaşamın buluştuğu özel bir proje.',
+      type: t('projects.projectTypes.residential'),
+      description: t('projects.items.laCasalia.description'),
       image: '',
       storagePath: 'lacasalia/tatlisu_12 copy.webp',
-      location: 'İSKELE, KKTC',
+      location: t('projects.items.laCasalia.location'),
       slug: 'la-casalia',
       status: 'devam-eden',
       stats: {
@@ -40,11 +42,11 @@ function ProjectsContent() {
     },
     {
       name: 'Natulux',
-      type: 'KONUT PROJESİ',
-      description: 'Doğa ile iç içe, lüks yaşam standartları.',
+      type: t('projects.projectTypes.residential'),
+      description: t('projects.items.natulux.description'),
       image: '',
       storagePath: 'natulux/Natulux Out View 1 (1)_11zon.webp',
-      location: 'TATLISU, KKTC',
+      location: t('projects.items.natulux.location'),
       slug: 'natulux',
       status: 'devam-eden',
       stats: {
@@ -56,11 +58,11 @@ function ProjectsContent() {
     },
     {
       name: 'La Isla',
-      type: 'KONUT PROJESİ',
-      description: 'Ada yaşamının tüm ayrıcalıklarını sunan özel proje.',
+      type: t('projects.projectTypes.residential'),
+      description: t('projects.items.laIsla.description'),
       image: '',
       storagePath: 'laisla/DRONE01E.webp',
-      location: 'GAZİMAĞUSA, KKTC',
+      location: t('projects.items.laIsla.location'),
       slug: 'la-isla',
       status: 'devam-eden',
       stats: {
@@ -72,11 +74,11 @@ function ProjectsContent() {
     },
     {
       name: 'Querencia',
-      type: 'KONUT PROJESİ',
-      description: 'Huzur ve konforun buluştuğu yaşam alanları.',
+      type: t('projects.projectTypes.residential'),
+      description: t('projects.items.querencia.description'),
       image: '',
       storagePath: 'querencia/r imaj_3 kopya_11_11zon.webp',
-      location: 'GİRNE, KKTC',
+      location: t('projects.items.querencia.location'),
       slug: 'querencia',
       status: 'devam-eden',
       stats: {
@@ -88,11 +90,11 @@ function ProjectsContent() {
     },
     {
       name: 'Four Seasons Life',
-      type: 'KONUT PROJESİ',
-      description: 'Dört mevsim ayrıcalıklı yaşam deneyimi.',
+      type: t('projects.projectTypes.residential'),
+      description: t('projects.items.fourSeasonsLife.description'),
       image: '',
       storagePath: 'fsl/7.webp',
-      location: 'LEFKOŞA, KKTC',
+      location: t('projects.items.fourSeasonsLife.location'),
       slug: 'four-seasons-life',
       status: 'devam-eden',
       stats: {
@@ -104,11 +106,11 @@ function ProjectsContent() {
     },
     {
       name: 'Courtyard Platinum',
-      type: 'KONUT PROJESİ',
-      description: 'Premium yaşam standartlarını sunan seçkin proje.',
+      type: t('projects.projectTypes.residential'),
+      description: t('projects.items.courtyardPlatinum.description'),
       image: '',
       storagePath: 'platinum/7.webp',
-      location: 'GİRNE, KKTC',
+      location: t('projects.items.courtyardPlatinum.location'),
       slug: 'courtyard-platinum',
       status: 'devam-eden',
       stats: {
@@ -120,11 +122,11 @@ function ProjectsContent() {
     },
     {
       name: 'Sky Sakarya',
-      type: 'KONUT PROJESİ',
-      description: 'Gökyüzüyle buluşan modern yaşam alanları.',
+      type: t('projects.projectTypes.residential'),
+      description: t('projects.items.skySakarya.description'),
       image: '',
       storagePath: 'skysakarya/WhatsApp Image 2021-08-24 at 11.08.54 (1).webp',
-      location: 'SAKARYA, TÜRKİYE',
+      location: t('projects.items.skySakarya.location'),
       slug: 'sky-sakarya',
       status: 'tamamlanan',
       stats: {
@@ -136,11 +138,11 @@ function ProjectsContent() {
     },
     {
       name: 'Courtyard',
-      type: 'KONUT PROJESİ',
-      description: 'Şehrin merkezinde huzurlu bir yaşam.',
+      type: t('projects.projectTypes.residential'),
+      description: t('projects.items.courtyard.description'),
       image: '',
       storagePath: 'courtyard/2 (1).webp',
-      location: 'GİRNE, KKTC',
+      location: t('projects.items.courtyard.location'),
       slug: 'courtyard',
       status: 'tamamlanan',
       stats: {
@@ -152,11 +154,11 @@ function ProjectsContent() {
     },
     {
       name: 'Panorama',
-      type: 'KONUT PROJESİ',
-      description: 'Eşsiz manzarasıyla öne çıkan yaşam projesi.',
+      type: t('projects.projectTypes.residential'),
+      description: t('projects.items.panorama.description'),
       image: '',
       storagePath: 'panorama/1_50 - Foto (1).webp',
-      location: 'GİRNE, KKTC',
+      location: t('projects.items.panorama.location'),
       slug: 'panorama',
       status: 'tamamlanan',
       stats: {
@@ -286,17 +288,15 @@ function ProjectsContent() {
           <div className="text-center space-y-6 md:space-y-12">
             <div className="space-y-4 md:space-y-6">
               <span className="inline-block text-xs md:text-sm font-light tracking-[0.5em] text-white/80 relative">
-                DÖVEÇ GROUP
+                {t('projects.hero.company')}
                 <div className="absolute -bottom-2 left-1/2 w-8 h-[1px] bg-white/40 transform -translate-x-1/2"></div>
               </span>
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extralight tracking-[.15em] text-white uppercase">
-                PROJELERİMİZ
+                {t('projects.hero.title')}
               </h1>
             </div>
             <p className="text-white/70 text-sm sm:text-base md:text-xl font-extralight tracking-wider max-w-3xl mx-auto leading-relaxed">
-              Modern mimari ve lüks yaşamın buluştuğu özel koleksiyonlarımız ile 
-              <br className="hidden md:block" />
-              yaşam standartlarınızı yükseltiyoruz
+              {t('projects.hero.description')}
             </p>
             
            
@@ -359,7 +359,7 @@ function ProjectsContent() {
                           href={`/projeler/${project.slug}`}
                           className="inline-flex items-center space-x-4 text-white group"
                         >
-                          <span className="text-lg tracking-wider">DETAYLI BİLGİ</span>
+                          <span className="text-lg tracking-wider">{t('projects.details.moreInfo')}</span>
                           <div className="w-12 h-12 rounded-full border border-white flex items-center justify-center group-hover:bg-white group-hover:text-[#061E4F] transition-all duration-300">
                             <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 5l7 7-7 7" />
@@ -372,30 +372,30 @@ function ProjectsContent() {
                       <div className="absolute right-12 top-12 z-10 space-y-8 hidden md:block">
                         {/* Üst Kutu */}
                         <div className="w-96 h-56 bg-black/80 backdrop-blur-sm p-8 transform hover:scale-105 transition-transform duration-300">
-                          <h4 className="text-white text-2xl font-light mb-6">Proje Detayları</h4>
+                          <h4 className="text-white text-2xl font-light mb-6">{t('projects.details.projectDetails')}</h4>
                           <div className="space-y-4">
                             <div className="flex justify-between text-white/80 text-lg">
-                              <span>Daire Sayısı:</span>
-                              <span>{project.stats?.daireSayisi}</span>
+                              <span>{t('projects.details.units')}:</span>
+                              <span className="font-numeric">{project.stats?.daireSayisi}</span>
                             </div>
                             <div className="flex justify-between text-white/80 text-lg">
-                              <span>Teslim Tarihi:</span>
-                              <span>{project.stats?.teslimTarihi}</span>
+                              <span>{t('projects.details.delivery')}:</span>
+                              <span className="font-numeric">{project.stats?.teslimTarihi}</span>
                             </div>
                           </div>
                         </div>
 
                         {/* Alt Kutu */}
                         <div className="w-96 h-56 bg-black/80 backdrop-blur-sm p-8 transform hover:scale-105 transition-transform duration-300">
-                          <h4 className="text-white text-2xl font-light mb-6">Alan Bilgileri</h4>
+                          <h4 className="text-white text-2xl font-light mb-6">{t('projects.details.areaInfo')}</h4>
                           <div className="space-y-4">
                             <div className="flex justify-between text-white/80 text-lg">
-                              <span>Arsa Alanı:</span>
-                              <span>{project.stats?.arsaAlani}</span>
+                              <span>{t('projects.details.landArea')}:</span>
+                              <span className="font-numeric">{project.stats?.arsaAlani}</span>
                             </div>
                             <div className="flex justify-between text-white/80 text-lg">
-                              <span>İnşaat Alanı:</span>
-                              <span>{project.stats?.insaatAlani}</span>
+                              <span>{t('projects.details.constructionArea')}:</span>
+                              <span className="font-numeric">{project.stats?.insaatAlani}</span>
                             </div>
                           </div>
                         </div>
@@ -404,26 +404,26 @@ function ProjectsContent() {
                       {/* Mobil için Tek Kutu */}
                       <div className="absolute bottom-24 left-4 right-4 md:hidden z-10">
                         <div className="w-full bg-black/80 backdrop-blur-sm p-4 transform hover:scale-105 transition-transform duration-300">
-                          <h4 className="text-white text-lg font-light mb-4">Proje Bilgileri</h4>
+                          <h4 className="text-white text-lg font-light mb-4">{t('projects.details.projectInfo')}</h4>
                           <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
                               <div className="flex justify-between text-white/80 text-sm">
-                                <span>Daire:</span>
-                                <span>{project.stats?.daireSayisi}</span>
+                                <span>{t('projects.details.units')}:</span>
+                                <span className="font-numeric">{project.stats?.daireSayisi}</span>
                               </div>
                               <div className="flex justify-between text-white/80 text-sm">
-                                <span>Teslim:</span>
-                                <span>{project.stats?.teslimTarihi}</span>
+                                <span>{t('projects.details.delivery')}:</span>
+                                <span className="font-numeric">{project.stats?.teslimTarihi}</span>
                               </div>
                             </div>
                             <div className="space-y-2">
                               <div className="flex justify-between text-white/80 text-sm">
-                                <span>Arsa:</span>
-                                <span>{project.stats?.arsaAlani}</span>
+                                <span>{t('projects.details.landArea')}:</span>
+                                <span className="font-numeric">{project.stats?.arsaAlani}</span>
                               </div>
                               <div className="flex justify-between text-white/80 text-sm">
-                                <span>İnşaat:</span>
-                                <span>{project.stats?.insaatAlani}</span>
+                                <span>{t('projects.details.constructionArea')}:</span>
+                                <span className="font-numeric">{project.stats?.insaatAlani}</span>
                               </div>
                             </div>
                           </div>
@@ -438,19 +438,19 @@ function ProjectsContent() {
                   <div className="w-full grid grid-cols-4 gap-4 px-8">
                     <div className="text-center">
                       <div className="text-3xl font-light mb-2 text-[#071E51]">{project.stats?.daireSayisi || '-'}</div>
-                      <div className="text-sm tracking-wider text-[#071E51]/70">DAİRE SAYISI</div>
+                      <div className="text-sm tracking-wider text-[#071E51]/70">{t('projects.details.stats.units')}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-light mb-2 text-[#071E51]">{project.stats?.arsaAlani || '-'}</div>
-                      <div className="text-sm tracking-wider text-[#071E51]/70">ARSA ALANI</div>
+                      <div className="text-sm tracking-wider text-[#071E51]/70">{t('projects.details.stats.landArea')}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-light mb-2 text-[#071E51]">{project.stats?.insaatAlani || '-'}</div>
-                      <div className="text-sm tracking-wider text-[#071E51]/70">İNŞAAT ALANI</div>
+                      <div className="text-sm tracking-wider text-[#071E51]/70">{t('projects.details.stats.constructionArea')}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-light mb-2 text-[#071E51]">{project.stats?.teslimTarihi || '-'}</div>
-                      <div className="text-sm tracking-wider text-[#071E51]/70">TESLİM TARİHİ</div>
+                      <div className="text-sm tracking-wider text-[#071E51]/70">{t('projects.details.stats.delivery')}</div>
                     </div>
                   </div>
                 </div>

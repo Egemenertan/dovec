@@ -43,7 +43,7 @@ export const Awards = () => {
 
           {/* Sağ taraf - Başlık ve Açıklama */}
           <div className="w-full md:w-1/2 text-left md:text-right">
-            <h1 className="text-6xl sm:text-9xl font-light mb-4">ÖDÜLLER</h1>
+            <h1 className="text-6xl sm:text-9xl font-light mb-4">AWARDS</h1>
             <div className="max-w-2xl ml-auto">
               <h2 className="text-2xl mb-2">A LEGACY OF DISTINCTION</h2>
               <p className="text-gray-400">

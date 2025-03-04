@@ -13,58 +13,76 @@ import { Awards } from '@/components/awards'
 import { storage } from '@/firebase/config'
 import { ref, getDownloadURL } from 'firebase/storage'
 import { motion } from 'framer-motion'
+import { useLanguage } from '@/context/LanguageContext'
 
 // Swiper stilleri
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/autoplay'
 
-const initialServices = [
+interface BaseService {
+  title: string;
+  image: string;
+  storagePath: string;
+}
+
+interface InitialService extends BaseService {
+  description: (t: (key: string) => string) => string;
+}
+
+interface LoadedService extends BaseService {
+  description: string;
+}
+
+type Service = InitialService | LoadedService;
+
+const initialServices: InitialService[] = [
   {
     title: 'Dovec Ventures',
-    description: 'Yatırım ve girişim sermayesi hizmetleri.',
+    description: (t) => t('services.dovecVentures.description'),
     image: '',
     storagePath: 'logo/dovecventures-logo-final-02-p-500.webp',
   },
   {
     title: 'Auto Trend',
-    description: 'Premium araç kiralama ve satış hizmetleri.',
+    description: (t) => t('services.autoTrend.description'),
     image: '',
     storagePath: 'logo/autotrend.webp',
   },
   {
     title: 'Alfam Dormitory',
-    description: 'Modern öğrenci yaşam alanları.',
+    description: (t) => t('services.alfamDormitory.description'),
     image: '',
     storagePath: 'logo/alfam yatay.webp',
   },
   {
     title: 'Arredo',
-    description: 'Lüks mobilya ve iç tasarım çözümleri.',
+    description: (t) => t('services.arredo.description'),
     image: '',
     storagePath: 'logo/arredo.webp',
   },
   {
     title: 'Dovec Fitness',
-    description: 'Profesyonel spor ve yaşam merkezi.',
+    description: (t) => t('services.dovecFitness.description'),
     image: '',
     storagePath: 'logo/Dovec_Fitness.webp',
   },
   {
     title: 'DCS',
-    description: 'DCS Profesyonel onarım hizmetleri.',
+    description: (t) => t('services.dcs.description'),
     image: '',
     storagePath: 'logo/DCS LOGO 2.webp',
   }
 ]
 
 export default function Home() {
-  const [services, setServices] = useState(initialServices)
+  const [services, setServices] = useState<Service[]>(initialServices)
   const [investmentImages, setInvestmentImages] = useState({
     image1: '',
     image2: '',
     image3: ''
   })
+  const { t } = useLanguage()
 
   useEffect(() => {
     const loadImages = async () => {
@@ -74,7 +92,11 @@ export default function Home() {
             try {
               const imageRef = ref(storage, service.storagePath)
               const url = await getDownloadURL(imageRef)
-              return { ...service, image: url }
+              return {
+                ...service,
+                image: url,
+                description: service.description(t)
+              } as LoadedService
             } catch (error: any) {
               console.error(`${service.title} logosu yüklenemedi:`, error.message)
               return service
@@ -115,10 +137,10 @@ export default function Home() {
     }
 
     loadImages()
-  }, [])
+  }, [t])
 
   return (
-    <div className="relative">
+    <main className="flex-1">
       {/* Hero Section */}
       <Hero />
 
@@ -136,16 +158,16 @@ export default function Home() {
               transition={{ duration: 0.4 }}
               className="text-sm tracking-[0.4em] text-[#061E4F]/60 mb-4"
             >
-              GLOBAL VARLIĞIMIZ
+              {t('statistics.globalPresence.title')}
             </motion.span>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-[.15em] text-[#061E4F] mb-6 "
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-[.15em] text-[#061E4F] mb-6"
             >
-              RAKAMLARLA DÖVEÇ
+              {t('statistics.globalPresence.mainTitle')}
             </motion.h2>
             <motion.div 
               initial={{ scaleX: 0 }}
@@ -161,7 +183,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg sm:text-xl font-light text-gray-600/90 max-w-2xl leading-relaxed"
             >
-              Devam eden inşaat işleri 3 milyar £ değerinde olup, global ölçekte büyümeye devam ediyoruz.
+              {t('statistics.globalPresence.description')}
             </motion.p>
           </div>
           
@@ -176,8 +198,12 @@ export default function Home() {
             >
               <div className="flex flex-col items-start relative">
                 <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#061E4F]/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
-                <span className="text-6xl lg:text-7xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">53</span>
-                <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative ">Ülkeden Çözüm Ortakları</span>
+                <span className="text-6xl lg:text-7xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">
+                  {t('statistics.numbers.partners.value')}
+                </span>
+                <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative">
+                  {t('statistics.numbers.partners.description')}
+                </span>
               </div>
             </motion.div>
             
@@ -191,8 +217,12 @@ export default function Home() {
             >
               <div className="flex flex-col items-start relative">
                 <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#061E4F]/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
-                <span className="text-6xl lg:text-7xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">550+</span>
-                <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative ">Çalışan Sayısı</span>
+                <span className="text-6xl lg:text-7xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">
+                  {t('statistics.numbers.employees.value')}
+                </span>
+                <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative">
+                  {t('statistics.numbers.employees.description')}
+                </span>
               </div>
             </motion.div>
             
@@ -206,8 +236,12 @@ export default function Home() {
             >
               <div className="flex flex-col items-start relative">
                 <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#061E4F]/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
-                <span className="text-6xl lg:text-7xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">24</span>
-                <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative ">Milletten Çalışan Çeşitliliği</span>
+                <span className="text-6xl lg:text-7xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">
+                  {t('statistics.numbers.diversity.value')}
+                </span>
+                <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative">
+                  {t('statistics.numbers.diversity.description')}
+                </span>
               </div>
             </motion.div>
             
@@ -221,8 +255,12 @@ export default function Home() {
             >
               <div className="flex flex-col items-start relative">
                 <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#061E4F]/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
-                <span className="text-6xl lg:text-7xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">5 Milyar £</span>
-                <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative ">İştirakler ve bağlı ortaklıklar dahildir</span>
+                <span className="text-6xl lg:text-7xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">
+                  {t('statistics.numbers.revenue.value')}
+                </span>
+                <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative">
+                  {t('statistics.numbers.revenue.description')}
+                </span>
               </div>
             </motion.div>
             
@@ -237,13 +275,21 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="flex flex-col items-start relative">
                   <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#061E4F]/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
-                  <span className="text-4xl lg:text-5xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">3.7M m²</span>
-                  <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative ">Proje Alanı</span>
+                  <span className="text-4xl lg:text-5xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">
+                    {t('statistics.numbers.projectArea.value')}
+                  </span>
+                  <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative">
+                    {t('statistics.numbers.projectArea.description')}
+                  </span>
                 </div>
                 <div className="flex flex-col items-start relative">
                   <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#061E4F]/5 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
-                  <span className="text-4xl lg:text-5xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">5000+</span>
-                  <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative ">Yaşam Alanı</span>
+                  <span className="text-4xl lg:text-5xl font-light text-[#061E4F] mb-4 transition-all group-hover:scale-110 origin-left relative font-inter">
+                    {t('statistics.numbers.livingSpaces.value')}
+                  </span>
+                  <span className="text-[#061E4F]/80 text-lg font-light tracking-wide relative">
+                    {t('statistics.numbers.livingSpaces.description')}
+                  </span>
                 </div>
               </div>
             </motion.div>
@@ -260,35 +306,32 @@ export default function Home() {
       {/* Projelerimiz Bölümü */}
       <ProjectSection 
         backgroundImage="/earth-day.jpg"
-        title="PROJELERİMİZ"
-        description='"Her konut, bu muhteşem manzarayı en üst düzeye çıkaracak şekilde stratejik olarak konumlandırılmış olup, konut sakinlerinin günlük yaşamlarına büyüleyici bir fon oluşturan masmavi denizleri, yemyeşil doğayı ve parlak plajları hayranlıkla seyretmelerine olanak tanımaktadır."'
-        additionalText="Tesisin her noktasından, sakinlere gökyüzünün ve mevsimlerin değişen renkleriyle sürekli gelişen doğanın güzelliğinin görsel bir senfonisi sunulmaktadır. Önünüzde uzanan hayranlık uyandırıcı manzaraların tadını çıkarırken, şehir rahatlığı ve dağ huzurunun uyumlu karışımını kucaklayın."
+        title={t('components.projectSection.title')}
+        description={t('components.projectSection.description')}
+        additionalText={t('components.projectSection.additionalText')}
       />
 
-    
-
-      {/* 360 Sanal Tur Bölümü */}
-      <div className=" ">
+      <Awards />
+      
+    {/* 360 Sanal Tur Bölümü */}
+    <div className=" ">
         <div className=" mx-auto ">
           <div className="text-center ">
           </div>
           <VirtualTour />
         </div>
       </div>
-
-      <Awards />
       
-
   S
       {/* Faaliyet Alanları */}
       <div className="py-16 sm:py-24 md:py-28 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <span className="block text-sm font-light tracking-[0.4em] text-zinc-400 mb-4">
-              DÖVEÇ GROUP
+              {t('services.title')}
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-wider text-[#061E4F] mb-6 relative inline-block">
-              GRUP ŞİRKETLERİMİZ
+              {t('services.mainTitle')}
               <div className="absolute -bottom-4 left-1/2 w-12 h-[1px] bg-gradient-to-r from-transparent via-zinc-300 to-transparent transform -translate-x-1/2"></div>
             </h2>
           </div>
@@ -322,6 +365,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 } 

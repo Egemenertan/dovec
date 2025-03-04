@@ -6,11 +6,13 @@ import { storage } from '@/firebase/config'
 import { useEffect, useState } from 'react'
 import { ref, getDownloadURL } from 'firebase/storage'
 import { motion } from 'framer-motion'
+import { useLanguage } from '@/context/LanguageContext'
 
 export function Footer() {
   const [logoUrl, setLogoUrl] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [loading, setLoading] = useState(true)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const loadLogo = async () => {
@@ -64,7 +66,7 @@ export function Footer() {
                 <div className="relative">
                   <Image 
                     src={imageUrl} 
-                    alt="Natulux Görünüm" 
+                    alt={t('footer.image.alt')} 
                     width={1200} 
                     height={400}
                     className="w-full h-[400px] object-cover"
@@ -89,10 +91,9 @@ export function Footer() {
                         </div>
                       </div>
                       
-                      <h3 className="text-xl md:text-3xl font-light text-gray-800 mb-2 md:mb-4">Adresimiz</h3>
+                      <h3 className="text-xl md:text-3xl font-light text-gray-800 mb-2 md:mb-4">{t('footer.address.title')}</h3>
                       <p className="text-sm md:text-base text-gray-700">
-                        Döveç Head Quarters Uluçam Yolu, No.2, Sakarya, <br />
-                        Gazimağusa, KKTC
+                        {t('footer.address.text')}
                       </p>
                     </motion.div>
                     
@@ -111,17 +112,17 @@ export function Footer() {
                         </div>
                       </div>
                       
-                      <h3 className="text-xl md:text-3xl font-light text-gray-800 mb-2 md:mb-4">Satış Ve Müşteri Hizmetleri</h3>
+                      <h3 className="text-xl md:text-3xl font-light text-gray-800 mb-2 md:mb-4">{t('footer.contact.title')}</h3>
                       <p className="text-sm md:text-base text-gray-700">
-                      +90 548 837 0015 <br />
-                      info@dovecconstruction.com
+                        <span className="font-numeric">{t('footer.contact.phone')}</span> <br />
+                        {t('footer.contact.email')}
                       </p>
                     </motion.div>
                   </div>
                 </div>
               </motion.div>
             ) : (
-              <div className="text-center text-gray-500">Resim yüklenemedi.</div>
+              <div className="text-center text-gray-500">{t('footer.image.error')}</div>
             )}
           </div>
         </div>
@@ -142,14 +143,14 @@ export function Footer() {
               )}
             </div>
             <p className="text-base font-light tracking-wide text-white/90 leading-snug">
-              Modern yaşam alanları tasarlıyor, geleceği inşa ediyoruz.
+              {t('footer.slogan')}
             </p>
             
             {/* Sosyal Medya */}
             <div className="mt-4">
               <div className="flex space-x-4 mt-3">
                 <Link 
-                  href="https://www.facebook.com/DovecConstruction/" 
+                  href={t('footer.socialMedia.facebook')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transform hover:scale-110 transition-all duration-300"
@@ -159,7 +160,7 @@ export function Footer() {
                   </svg>
                 </Link>
                 <Link 
-                  href="https://www.instagram.com/dovec_group/" 
+                  href={t('footer.socialMedia.instagram')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transform hover:scale-110 transition-all duration-300"
@@ -169,7 +170,7 @@ export function Footer() {
                   </svg>
                 </Link>
                 <Link 
-                  href="https://www.linkedin.com/company/dovecgroup/" 
+                  href={t('footer.socialMedia.linkedin')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transform hover:scale-110 transition-all duration-300"
@@ -179,7 +180,7 @@ export function Footer() {
                   </svg>
                 </Link>
                 <Link 
-                  href="https://www.youtube.com/c/dovecgroup" 
+                  href={t('footer.socialMedia.youtube')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transform hover:scale-110 transition-all duration-300"
@@ -189,7 +190,7 @@ export function Footer() {
                   </svg>
                 </Link>
                 <Link 
-                  href="https://wa.me/905488370015" 
+                  href={t('footer.socialMedia.whatsapp')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/80 hover:text-white transform hover:scale-110 transition-all duration-300"
@@ -206,108 +207,74 @@ export function Footer() {
           <div className="col-span-1 sm:col-span-4">
             <div className="text-left sm:text-right">
               <h3 className="text-base font-medium tracking-wide uppercase mb-4 relative inline-block text-white">
-                Projelerimiz
+                {t('footer.projectLinks.title')}
                 <div className="absolute -bottom-1.5 left-0 sm:left-auto sm:right-0 w-8 h-0.5 bg-white/80"></div>
               </h3>
               <ul className="space-y-1.5">
-                <li>
-                  <Link href="/projeler?filter=devam-eden" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Devam Eden Projeler</span>
-                    <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projeler?filter=tamamlanan" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Tamamlanan Projeler</span>
-                    <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projeler/la-casalia" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">La Casalia</span>
-                    <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projeler/four-seasons-life" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Four Seasons Life</span>
-                    <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projeler/querencia" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Querencia</span>
-                    <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projeler/natulux" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Natulux</span>
-                    <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projeler/la-isla" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">La Isla</span>
-                    <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projeler/courtyard-platinum" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Courtyard Platinum</span>
-                    <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
-                  </Link>
-                </li>
+                {(() => {
+                  const links = t('footer.projectLinks.links', { returnObjects: true });
+                  if (Array.isArray(links)) {
+                    return links.map((link, index) => (
+                      <li key={index}>
+                        <Link href={link.url} className="text-sm text-white/80 relative group/link tracking-wide">
+                          <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">{link.title}</span>
+                          <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
+                        </Link>
+                      </li>
+                    ));
+                  }
+                  return null;
+                })()}
               </ul>
             </div>
           </div>
 
-          {/* Sağ Kısım - Hızlı Linkler ve Sosyal Medya */}
+          {/* Sağ Kısım - Hızlı Linkler */}
           <div className="col-span-1 sm:col-span-4">
             <div className="text-left sm:text-right">
               <h3 className="text-base font-medium tracking-wide uppercase mb-4 relative inline-block text-white">
-                Hızlı Linkler
+                {t('footer.quickLinks.title')}
                 <div className="absolute -bottom-1.5 left-0 sm:left-auto sm:right-0 w-8 h-0.5 bg-white/80"></div>
               </h3>
               <ul className="space-y-1.5">
                 <li>
                   <Link href="/hakkimizda" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Biz Kimiz</span>
+                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">{t('footer.quickLinks.aboutUs')}</span>
                     <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/projeler" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Projeler</span>
+                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">{t('footer.quickLinks.projects')}</span>
                     <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/medya" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Medya</span>
+                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">{t('footer.quickLinks.media')}</span>
                     <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/blog" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Blog</span>
+                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">{t('footer.quickLinks.blog')}</span>
                     <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
                   </Link>
                 </li>
                 <li>
                   <a 
-                    href="https://www.linkedin.com/company/dovecgroup/" 
+                    href={t('footer.quickLinks.career.link')}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-white/80 relative group/link tracking-wide"
                   >
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Kariyer</span>
+                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">{t('footer.quickLinks.career.text')}</span>
                     <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
                   </a>
                 </li>
                 <li>
                   <Link href="/iletisim" className="text-sm text-white/80 relative group/link tracking-wide">
-                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">İletişim</span>
+                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">{t('footer.quickLinks.contact')}</span>
                     <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
                   </Link>
                 </li>
@@ -319,7 +286,7 @@ export function Footer() {
         {/* Alt Kısım - Telif Hakkı */}
         <div className="py-4 border-t border-white/10 w-full">
           <p className="text-center text-sm text-white/60">
-            © {new Date().getFullYear()} DOVEC Group. Tüm hakları saklıdır.
+            © {new Date().getFullYear()} {t('footer.copyright')}
           </p>
         </div>
       </div>

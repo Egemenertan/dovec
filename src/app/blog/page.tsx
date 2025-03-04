@@ -81,20 +81,29 @@ export default function BlogPage() {
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
+      setLoading(true)
       try {
         const db = getFirestore()
         const blogRef = collection(db, 'blogs')
         const q = query(blogRef, orderBy('createdAt', 'desc'))
         const querySnapshot = await getDocs(q)
         
+        if (querySnapshot.empty) {
+          console.log('Hiç blog yazısı bulunamadı')
+          setBlogPosts([])
+          return
+        }
+
         const posts = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         })) as BlogPost[]
 
+        console.log('Yüklenen blog sayısı:', posts.length)
         setBlogPosts(posts)
       } catch (error) {
         console.error('Blog yazıları yüklenirken hata:', error)
+        setBlogPosts([])
       } finally {
         setLoading(false)
       }
@@ -120,6 +129,7 @@ export default function BlogPage() {
             src={heroImage}
             alt="Blog"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
             priority
             unoptimized
