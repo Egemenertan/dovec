@@ -2,13 +2,24 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, Suspense } from 'react';
 import { storage } from '@/firebase/config';
 import { ref, getDownloadURL } from 'firebase/storage';
+import { useSearchParams } from 'next/navigation';
 
 export default function ProjectsPage() {
+  return (
+    <Suspense fallback={null}>
+      <ProjectsContent />
+    </Suspense>
+  );
+}
+
+function ProjectsContent() {
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const [activeFilter, setActiveFilter] = useState('devam-eden');
+  const searchParams = useSearchParams();
+  const filterParam = searchParams?.get('filter');
+  const [activeFilter, setActiveFilter] = useState(filterParam || 'devam-eden');
   const [mobileVideoUrl, setMobileVideoUrl] = useState('');
   const [projects, setProjects] = useState([
     {
@@ -19,7 +30,13 @@ export default function ProjectsPage() {
       storagePath: 'lacasalia/tatlisu_12 copy.webp',
       location: 'İSKELE, KKTC',
       slug: 'la-casalia',
-      status: 'devam-eden'
+      status: 'devam-eden',
+      stats: {
+        daireSayisi: '126',
+        arsaAlani: '4,250m²',
+        insaatAlani: '15,750m²',
+        teslimTarihi: '2025'
+      }
     },
     {
       name: 'Natulux',
@@ -29,7 +46,13 @@ export default function ProjectsPage() {
       storagePath: 'natulux/Natulux Out View 1 (1)_11zon.webp',
       location: 'TATLISU, KKTC',
       slug: 'natulux',
-      status: 'devam-eden'
+      status: 'devam-eden',
+      stats: {
+        daireSayisi: '126',
+        arsaAlani: '4,250m²',
+        insaatAlani: '15,750m²',
+        teslimTarihi: '2025'
+      }
     },
     {
       name: 'La Isla',
@@ -39,7 +62,13 @@ export default function ProjectsPage() {
       storagePath: 'laisla/DRONE01E.webp',
       location: 'GAZİMAĞUSA, KKTC',
       slug: 'la-isla',
-      status: 'devam-eden'
+      status: 'devam-eden',
+      stats: {
+        daireSayisi: '126',
+        arsaAlani: '4,250m²',
+        insaatAlani: '15,750m²',
+        teslimTarihi: '2025'
+      }
     },
     {
       name: 'Querencia',
@@ -49,7 +78,13 @@ export default function ProjectsPage() {
       storagePath: 'querencia/r imaj_3 kopya_11_11zon.webp',
       location: 'GİRNE, KKTC',
       slug: 'querencia',
-      status: 'devam-eden'
+      status: 'devam-eden',
+      stats: {
+        daireSayisi: '126',
+        arsaAlani: '4,250m²',
+        insaatAlani: '15,750m²',
+        teslimTarihi: '2025'
+      }
     },
     {
       name: 'Four Seasons Life',
@@ -59,7 +94,13 @@ export default function ProjectsPage() {
       storagePath: 'fsl/7.webp',
       location: 'LEFKOŞA, KKTC',
       slug: 'four-seasons-life',
-      status: 'devam-eden'
+      status: 'devam-eden',
+      stats: {
+        daireSayisi: '126',
+        arsaAlani: '4,250m²',
+        insaatAlani: '15,750m²',
+        teslimTarihi: '2025'
+      }
     },
     {
       name: 'Courtyard Platinum',
@@ -69,7 +110,13 @@ export default function ProjectsPage() {
       storagePath: 'platinum/7.webp',
       location: 'GİRNE, KKTC',
       slug: 'courtyard-platinum',
-      status: 'devam-eden'
+      status: 'devam-eden',
+      stats: {
+        daireSayisi: '126',
+        arsaAlani: '4,250m²',
+        insaatAlani: '15,750m²',
+        teslimTarihi: '2025'
+      }
     },
     {
       name: 'Sky Sakarya',
@@ -79,7 +126,13 @@ export default function ProjectsPage() {
       storagePath: 'skysakarya/WhatsApp Image 2021-08-24 at 11.08.54 (1).webp',
       location: 'SAKARYA, TÜRKİYE',
       slug: 'sky-sakarya',
-      status: 'tamamlanan'
+      status: 'tamamlanan',
+      stats: {
+        daireSayisi: '156',
+        arsaAlani: '3,850m²',
+        insaatAlani: '18,250m²',
+        teslimTarihi: '2022'
+      }
     },
     {
       name: 'Courtyard',
@@ -89,7 +142,13 @@ export default function ProjectsPage() {
       storagePath: 'courtyard/2 (1).webp',
       location: 'GİRNE, KKTC',
       slug: 'courtyard',
-      status: 'tamamlanan'
+      status: 'tamamlanan',
+      stats: {
+        daireSayisi: '92',
+        arsaAlani: '2,750m²',
+        insaatAlani: '12,500m²',
+        teslimTarihi: '2021'
+      }
     },
     {
       name: 'Panorama',
@@ -99,9 +158,48 @@ export default function ProjectsPage() {
       storagePath: 'panorama/1_50 - Foto (1).webp',
       location: 'GİRNE, KKTC',
       slug: 'panorama',
-      status: 'tamamlanan'
+      status: 'tamamlanan',
+      stats: {
+        daireSayisi: '84',
+        arsaAlani: '2,950m²',
+        insaatAlani: '11,800m²',
+        teslimTarihi: '2020'
+      }
     }
   ]);
+
+  // Navbar görünürlüğünü kontrol etmek için özel event
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.querySelector('.hero-section');
+      if (heroSection) {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        const event = new CustomEvent('navbar-visibility-change', {
+          detail: { visible: heroBottom > 0 }
+        });
+        window.dispatchEvent(event);
+      }
+    };
+
+    // İlk yüklemede navbar'ı göster
+    const event = new CustomEvent('navbar-visibility-change', {
+      detail: { visible: true }
+    });
+    window.dispatchEvent(event);
+
+    // Scroll event listener ekle
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      // Sayfadan çıkarken navbar'ı tekrar göster
+      const event = new CustomEvent('navbar-visibility-change', {
+        detail: { visible: true }
+      });
+      window.dispatchEvent(event);
+    };
+  }, []);
 
   useEffect(() => {
     const loadImages = async () => {
@@ -142,33 +240,15 @@ export default function ProjectsPage() {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      sectionsRef.current.forEach((section) => {
-        if (!section) return;
-        
-        const rect = section.getBoundingClientRect();
-        const isInView = rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2;
-        
-        if (isInView) {
-          section.classList.add('opacity-100');
-          section.classList.remove('opacity-0');
-        } else {
-          section.classList.add('opacity-0');
-          section.classList.remove('opacity-100');
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (filterParam) {
+      setActiveFilter(filterParam);
+    }
+  }, [filterParam]);
 
   return (
     <div className="min-h-screen">
       {/* Hero Bölümü */}
-      <div className="relative w-full h-screen overflow-hidden">
+      <div className="relative w-full h-screen overflow-hidden hero-section">
         {/* Video Arkaplan */}
         <div className="absolute inset-0">
           <div className="relative w-full h-full">
@@ -210,7 +290,7 @@ export default function ProjectsPage() {
                 <div className="absolute -bottom-2 left-1/2 w-8 h-[1px] bg-white/40 transform -translate-x-1/2"></div>
               </span>
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extralight tracking-[.15em] text-white uppercase">
-                Koleksiyonlarımız
+                PROJELERİMİZ
               </h1>
             </div>
             <p className="text-white/70 text-sm sm:text-base md:text-xl font-extralight tracking-wider max-w-3xl mx-auto leading-relaxed">
@@ -219,108 +299,163 @@ export default function ProjectsPage() {
               yaşam standartlarınızı yükseltiyoruz
             </p>
             
-            {/* Filtre Butonları */}
-            <div className="flex items-center justify-center space-x-4 pt-8">
-              <button
-                onClick={() => setActiveFilter('devam-eden')}
-                className={`px-6 py-2.5 text-sm tracking-wider transition-all duration-300 border ${
-                  activeFilter === 'devam-eden'
-                    ? 'bg-white text-[#061E4F] border-white'
-                    : 'bg-transparent text-white border-white/30 hover:border-white'
-                }`}
-              >
-                DEVAM EDEN
-              </button>
-              <button
-                onClick={() => setActiveFilter('tamamlanan')}
-                className={`px-6 py-2.5 text-sm tracking-wider transition-all duration-300 border ${
-                  activeFilter === 'tamamlanan'
-                    ? 'bg-white text-[#061E4F] border-white'
-                    : 'bg-transparent text-white border-white/30 hover:border-white'
-                }`}
-              >
-                TAMAMLANAN
-              </button>
-            </div>
+           
           </div>
         </div>
 
         {/* Scroll İndikatörü */}
         <div className="absolute bottom-6 md:bottom-16 left-1/2 -translate-x-1/2 z-20">
           <div className="animate-bounce">
-            <div className="w-16 md:w-24 h-16 md:h-24 flex items-center justify-center group cursor-pointer">
-              <svg 
-                className="w-full h-full text-white/30 group-hover:text-white/50 transition-all duration-700" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path 
-                  d="M12 4 L12 20 M12 20 L5 13 M12 20 L19 13" 
-                  stroke="currentColor" 
-                  strokeWidth="1" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
+            <svg className="w-6 h-6 text-white" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
           </div>
         </div>
       </div>
 
-      {/* Proje Sectionları */}
-      <div className="relative">
+      {/* Projeler Listesi */}
+      <div className="relative bg-gradient-to-b from-white via-gray-50 to-white">
         {projects
           .filter(project => project.status === activeFilter)
-          .map((project, index) => (
-            <Link 
-              key={index} 
-              href={`/projeler/${project.slug}`}
-              className="block cursor-pointer"
+          .map((project) => (
+            <div 
+              key={project.slug}
+              className="min-h-screen flex flex-col items-center"
             >
-              <div
-                ref={(el) => {
-                  sectionsRef.current[index] = el;
-                }}
-                className="relative h-screen transition-opacity duration-1000 group"
-              >
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  priority={index === 0}
-                />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-500" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="max-w-4xl mx-auto px-4 text-center transform transition-transform duration-500 group-hover:scale-[1.02]">
-                    <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white rounded-full mb-4">
-                      {project.type}
-                    </span>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">
-                      {project.name}
-                    </h2>
-                    <p className="text-lg md:text-xl text-white/80 mb-6">
-                      {project.description}
-                    </p>
-                    <button className="px-8 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:border-white/60 rounded-full transition-all duration-300 mb-6 group">
-                      <span className="text-sm tracking-[0.2em] group-hover:tracking-[0.25em] transition-all duration-300">KOLEKSİYONU KEŞFET</span>
-                    </button>
-                    <div className="flex items-center justify-center space-x-2 text-white/90">
-                      <span>{project.location}</span>
-                      <svg 
-                        className="w-5 h-5 transform transition-transform duration-500 group-hover:translate-x-1" 
-                        fill="none" 
-                        viewBox="0 0 24 24" 
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
+              {/* Görsel Alanı */}
+              <div className="w-full h-screen flex flex-col">
+                {/* Ana Görsel */}
+                <div className="relative h-[80vh]">
+                  {project.image && (
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={project.image}
+                        alt={project.name}
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                      {/* Karartma Katmanları */}
+                      <div className="absolute inset-0">
+                        {/* Desktop Karartma - Soldan Sağa */}
+                        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+                        {/* Mobil Karartma - Üstten Alta */}
+                        <div className="md:hidden absolute inset-0 h-[50%] bg-gradient-to-b from-black/95 via-black/80 to-transparent"></div>
+                      </div>
+                      {/* Proje Bilgileri */}
+                      <div className="absolute top-12 left-4 md:left-12 z-10 max-w-2xl">
+                        <span className="text-sm tracking-[0.3em] text-white">{project.type}</span>
+                        <h3 className="text-4xl md:text-6xl lg:text-7xl font-light text-white tracking-wider mt-4">
+                          {project.name}
+                        </h3>
+                        <div className="w-24 h-[1px] bg-white/40 my-6 md:my-8"></div>
+                        <p className="text-lg md:text-xl text-white font-light leading-relaxed mb-6">
+                          {project.description}
+                        </p>
+                        <div className="text-base md:text-lg text-white font-light mb-8">
+                          {project.location}
+                        </div>
+                        <Link
+                          href={`/projeler/${project.slug}`}
+                          className="inline-flex items-center space-x-4 text-white group"
+                        >
+                          <span className="text-lg tracking-wider">DETAYLI BİLGİ</span>
+                          <div className="w-12 h-12 rounded-full border border-white flex items-center justify-center group-hover:bg-white group-hover:text-[#061E4F] transition-all duration-300">
+                            <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
+                        </Link>
+                      </div>
+
+                      {/* Sağ Taraftaki Kutular - Desktop */}
+                      <div className="absolute right-12 top-12 z-10 space-y-8 hidden md:block">
+                        {/* Üst Kutu */}
+                        <div className="w-96 h-56 bg-black/80 backdrop-blur-sm p-8 transform hover:scale-105 transition-transform duration-300">
+                          <h4 className="text-white text-2xl font-light mb-6">Proje Detayları</h4>
+                          <div className="space-y-4">
+                            <div className="flex justify-between text-white/80 text-lg">
+                              <span>Daire Sayısı:</span>
+                              <span>{project.stats?.daireSayisi}</span>
+                            </div>
+                            <div className="flex justify-between text-white/80 text-lg">
+                              <span>Teslim Tarihi:</span>
+                              <span>{project.stats?.teslimTarihi}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Alt Kutu */}
+                        <div className="w-96 h-56 bg-black/80 backdrop-blur-sm p-8 transform hover:scale-105 transition-transform duration-300">
+                          <h4 className="text-white text-2xl font-light mb-6">Alan Bilgileri</h4>
+                          <div className="space-y-4">
+                            <div className="flex justify-between text-white/80 text-lg">
+                              <span>Arsa Alanı:</span>
+                              <span>{project.stats?.arsaAlani}</span>
+                            </div>
+                            <div className="flex justify-between text-white/80 text-lg">
+                              <span>İnşaat Alanı:</span>
+                              <span>{project.stats?.insaatAlani}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Mobil için Tek Kutu */}
+                      <div className="absolute bottom-24 left-4 right-4 md:hidden z-10">
+                        <div className="w-full bg-black/80 backdrop-blur-sm p-4 transform hover:scale-105 transition-transform duration-300">
+                          <h4 className="text-white text-lg font-light mb-4">Proje Bilgileri</h4>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <div className="flex justify-between text-white/80 text-sm">
+                                <span>Daire:</span>
+                                <span>{project.stats?.daireSayisi}</span>
+                              </div>
+                              <div className="flex justify-between text-white/80 text-sm">
+                                <span>Teslim:</span>
+                                <span>{project.stats?.teslimTarihi}</span>
+                              </div>
+                            </div>
+                            <div className="space-y-2">
+                              <div className="flex justify-between text-white/80 text-sm">
+                                <span>Arsa:</span>
+                                <span>{project.stats?.arsaAlani}</span>
+                              </div>
+                              <div className="flex justify-between text-white/80 text-sm">
+                                <span>İnşaat:</span>
+                                <span>{project.stats?.insaatAlani}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Sayısal Veriler */}
+                <div className="h-[20vh] bg-[#DFD8CF] flex items-center justify-center">
+                  <div className="w-full grid grid-cols-4 gap-4 px-8">
+                    <div className="text-center">
+                      <div className="text-3xl font-light mb-2 text-[#071E51]">{project.stats?.daireSayisi || '-'}</div>
+                      <div className="text-sm tracking-wider text-[#071E51]/70">DAİRE SAYISI</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-light mb-2 text-[#071E51]">{project.stats?.arsaAlani || '-'}</div>
+                      <div className="text-sm tracking-wider text-[#071E51]/70">ARSA ALANI</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-light mb-2 text-[#071E51]">{project.stats?.insaatAlani || '-'}</div>
+                      <div className="text-sm tracking-wider text-[#071E51]/70">İNŞAAT ALANI</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-light mb-2 text-[#071E51]">{project.stats?.teslimTarihi || '-'}</div>
+                      <div className="text-sm tracking-wider text-[#071E51]/70">TESLİM TARİHİ</div>
                     </div>
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
       </div>
     </div>

@@ -1114,16 +1114,11 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
       </div>
 
       {/* Proje Tanıtım */}
-      <div className="relative py-32 overflow-hidden">
+      <div className="bg-[#DFD8CF] relative py-32 overflow-hidden">
         {/* Dekoratif Arka Plan Elemanları */}
         <div className="absolute inset-0 pointer-events-none">
           {/* Sol taraftaki Roma sütunu ve Afrodit heykeli */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[300px] h-[600px] opacity-10">
-            <div className="absolute top-0 left-10 w-[2px] h-full bg-gradient-to-b from-[#061E4F]/0 via-[#061E4F]/20 to-[#061E4F]/0"></div>
-            <div className="absolute top-0 left-20 w-[2px] h-full bg-gradient-to-b from-[#061E4F]/0 via-[#061E4F]/15 to-[#061E4F]/0"></div>
-            <div className="absolute top-0 left-30 w-[2px] h-full bg-gradient-to-b from-[#061E4F]/0 via-[#061E4F]/10 to-[#061E4F]/0"></div>
-            <div className="absolute bottom-0 left-0 w-40 h-40 bg-[url('/images/aphrodite-pattern.png')] bg-contain bg-no-repeat opacity-20"></div>
-          </div>
+          
           
           {/* Antik desen ve motifler */}
           <div className="absolute top-0 left-0 w-full h-full">
@@ -1164,7 +1159,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             </div>
 
             {/* Sağ Taraf - Proje Görseli */}
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl group">
+            <div className="relative aspect-[4/3]  overflow-hidden shadow-2xl group">
               {aboutImage && (
                 <Image
                   src={aboutImage}
@@ -1184,7 +1179,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
       </div>
 
       {/* Proje Görselleri Bölümü */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <section className="bg-[#DFD8CF]  mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <Gallery projectId={folderName} />
       </section>
 
@@ -1230,7 +1225,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
             {/* 1+1 Deluxe */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="querencia/indoor/a1+1" alt="A 1+1" />
                 <div className="space-y-8">
@@ -1246,7 +1241,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 1+1 Deluxe 2 */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="querencia/indoor/a2+1" alt="A 2+1" />
                 <div className="space-y-8">
@@ -1262,7 +1257,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* A Studio */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="querencia/indoor/astudio" alt="A Studio" />
                 <div className="space-y-8">
@@ -1278,7 +1273,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* BCD 1+1 */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="querencia/indoor/bcd1+1" alt="BCD 1+1" />
                 <div className="space-y-8">
@@ -1294,7 +1289,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* BCD 2+1 */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="querencia/indoor/bcd2+1" alt="BCD 2+1" />
                 <div className="space-y-8">
@@ -1310,7 +1305,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* BCD 3+1 */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="querencia/indoor/bcd3+1" alt="BCD 3+1" />
                 <div className="space-y-8">
@@ -1326,7 +1321,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* BCD Dublex */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="querencia/indoor/bcddublex" alt="BCD Dublex" />
                 <div className="space-y-8">
@@ -1342,7 +1337,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* BCD Penthouse */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="querencia/indoor/bcdpenthouse" alt="BCD Penthouse" />
                 <div className="space-y-8">
@@ -1358,7 +1353,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* BCD Studio */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="querencia/indoor/bcdstudio" alt="BCD Studio" />
                 <div className="space-y-8">
@@ -1378,7 +1373,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
             {/* 1+1 Deluxe */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="lacasalia/indoor/1+1" alt="1+1 Deluxe" />
                 <div className="space-y-8">
@@ -1394,7 +1389,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 1+1 Deluxe 2 */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="lacasalia/indoor/1+1deluxe2" alt="1+1 Deluxe 2" />
                 <div className="space-y-8">
@@ -1410,7 +1405,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 2+1 Deluxe */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="lacasalia/indoor/2+1" alt="2+1 Deluxe" />
                 <div className="space-y-8">
@@ -1426,7 +1421,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 2+1 Deluxe 2 */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="lacasalia/indoor/2+1deluxe2" alt="2+1 Deluxe 2" />
                 <div className="space-y-8">
@@ -1442,7 +1437,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 3+1 Loft */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="lacasalia/indoor/3+1loft" alt="3+1 Loft" />
                 <div className="space-y-8">
@@ -1458,7 +1453,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 3+1 Villa */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="lacasalia/indoor/3+1villa" alt="3+1 Villa" />
                 <div className="space-y-8">
@@ -1474,7 +1469,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* Grand Studio */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="lacasalia/indoor/grand" alt="Grand Studio" />
                 <div className="space-y-8">
@@ -1494,7 +1489,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
             {/* 1+1 */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="natulux/indoor/1+1" alt="1+1" />
                 <div className="space-y-8">
@@ -1510,7 +1505,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 2+1 */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="natulux/indoor/2+1" alt="2+1" />
                 <div className="space-y-8">
@@ -1526,7 +1521,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 3+1 Garden */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="natulux/indoor/3+1garden" alt="3+1 Garden" />
                 <div className="space-y-8">
@@ -1542,7 +1537,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 3+1 Penthouse */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="natulux/indoor/3+1penthouse" alt="3+1 Penthouse" />
                 <div className="space-y-8">
@@ -1558,7 +1553,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 3+1 Villa */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="natulux/indoor/3+1villa" alt="3+1 Villa" />
                 <div className="space-y-8">
@@ -1574,7 +1569,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 4+1 Villa */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="natulux/indoor/4+1villa" alt="4+1 Villa" />
                 <div className="space-y-8">
@@ -1594,7 +1589,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-24">
             {/* 2+1 */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="laisla/indoor/2+1" alt="2+1" />
                 <div className="space-y-8">
@@ -1610,7 +1605,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 3+1 Apart */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="laisla/indoor/3+1apart" alt="3+1 Apart" />
                 <div className="space-y-8">
@@ -1626,7 +1621,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 3+1 Villa */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="laisla/indoor/3+1villa" alt="3+1 Villa" />
                 <div className="space-y-8">
@@ -1642,7 +1637,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {/* 4+1 */}
             <div className="group relative">
-              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent rounded-3xl blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#061E4F]/5 to-transparent blur-2xl group-hover:blur-xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
               <div className="relative">
                 <ImageSlider folderPath="laisla/indoor/4+1" alt="4+1" />
                 <div className="space-y-8">
@@ -1722,22 +1717,14 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           <div className="absolute -inset-4 bg-gradient-to-r from-[#061E4F]/5 via-[#061E4F]/10 to-[#061E4F]/5 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"></div>
           <div className="relative flex items-center space-x-4">
             <BackIcon />
-            <span className="text-base font-light tracking-[.2em] text-[#061E4F]/80 group-hover:text-[#061E4F] transition-colors duration-300">TÜM KOLEKSİYONLAR</span>
+            <span className="text-base font-light tracking-[.2em] text-[#061E4F]/80 group-hover:text-[#061E4F] transition-colors duration-300">TÜM PROJELER</span>
             <div className="h-[1px] w-12 bg-gradient-to-r from-[#061E4F]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
           </div>
         </Link>
       </div>
 
       {/* Konut Tipleri bölümünden sonra haritayı ekleyin */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-3xl font-semibold text-gray-900 mb-8">Konum</h2>
-        <div className="w-full">
-          <ProjectMap 
-            lat={projectData.coordinates.lat} 
-            lng={projectData.coordinates.lng} 
-          />
-        </div>
-      </div>
+      
     </div>
   );
 } 

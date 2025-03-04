@@ -26,6 +26,7 @@ export default function Navbar() {
   const [logoUrl, setLogoUrl] = useState('')
   const [isVisible, setIsVisible] = useState(true) // Navbar görünürlüğü için yeni state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isProjectsMenuOpen, setIsProjectsMenuOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
 
@@ -47,6 +48,9 @@ export default function Navbar() {
     // Menü açıksa kapat
     if (isOpen) {
       setIsOpen(false)
+    }
+    if (isProjectsMenuOpen) {
+      setIsProjectsMenuOpen(false)
     }
   }, [pathname, isOpen])
 
@@ -139,19 +143,54 @@ export default function Navbar() {
             </button>
 
             {/* Projeler Linki - Mobilde Gizli */}
-            <Link
-              href="/projeler"
-              className={`hidden md:block relative font-scandia tracking-wider py-2 transition-all duration-300 ${
-                isScrolled ? 'text-zinc-800' : 'text-white'
-              } group`}
-            >
-              <span className="relative z-10 text-sm uppercase">Projeler</span>
-              <div className={`absolute bottom-0 left-0 w-full h-[1px] ${
-                isScrolled 
-                  ? 'bg-gradient-to-r from-transparent via-zinc-600 to-transparent' 
-                  : 'bg-gradient-to-r from-transparent via-white to-transparent'
-              } scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center`}></div>
-            </Link>
+            <div className="hidden md:block relative">
+              <button
+                onClick={() => setIsProjectsMenuOpen(!isProjectsMenuOpen)}
+                onMouseEnter={() => setIsProjectsMenuOpen(true)}
+                onMouseLeave={() => setIsProjectsMenuOpen(false)}
+                className={`relative font-scandia tracking-wider py-2 transition-all duration-300 ${
+                  isScrolled ? 'text-zinc-800' : 'text-white'
+                } group`}
+              >
+                <span className="relative z-10 text-sm uppercase">Projeler</span>
+                <div className={`absolute bottom-0 left-0 w-full h-[1px] ${
+                  isScrolled 
+                    ? 'bg-gradient-to-r from-transparent via-zinc-600 to-transparent' 
+                    : 'bg-gradient-to-r from-transparent via-white to-transparent'
+                } scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center`}></div>
+              </button>
+
+              {/* Projeler Dropdown Menu */}
+              <div
+                onMouseEnter={() => setIsProjectsMenuOpen(true)}
+                onMouseLeave={() => setIsProjectsMenuOpen(false)}
+                className={`absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 transition-all duration-300 ${
+                  isProjectsMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                }`}
+              >
+                <Link
+                  href="/projeler"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                  onClick={() => setIsProjectsMenuOpen(false)}
+                >
+                  Tüm Projeler
+                </Link>
+                <Link
+                  href="/projeler?filter=devam-eden"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                  onClick={() => setIsProjectsMenuOpen(false)}
+                >
+                  Devam Eden Projeler
+                </Link>
+                <Link
+                  href="/projeler?filter=tamamlanan"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+                  onClick={() => setIsProjectsMenuOpen(false)}
+                >
+                  Tamamlanan Projeler
+                </Link>
+              </div>
+            </div>
           </div>
 
           {/* Logo - Tam Ortada */}

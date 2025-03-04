@@ -185,7 +185,7 @@ export function Footer() {
                   className="text-white/80 hover:text-white transform hover:scale-110 transition-all duration-300"
                 >
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12Z"/>
                   </svg>
                 </Link>
                 <Link 
@@ -210,6 +210,18 @@ export function Footer() {
                 <div className="absolute -bottom-1.5 left-0 sm:left-auto sm:right-0 w-8 h-0.5 bg-white/80"></div>
               </h3>
               <ul className="space-y-1.5">
+                <li>
+                  <Link href="/projeler?filter=devam-eden" className="text-sm text-white/80 relative group/link tracking-wide">
+                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Devam Eden Projeler</span>
+                    <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/projeler?filter=tamamlanan" className="text-sm text-white/80 relative group/link tracking-wide">
+                    <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">Tamamlanan Projeler</span>
+                    <span className="absolute bottom-0 left-0 sm:left-auto sm:right-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover/link:w-full"></span>
+                  </Link>
+                </li>
                 <li>
                   <Link href="/projeler/la-casalia" className="text-sm text-white/80 relative group/link tracking-wide">
                     <span className="relative inline-block transition-transform duration-300 group-hover/link:translate-x-2 sm:group-hover/link:-translate-x-2 text-left sm:text-right">La Casalia</span>

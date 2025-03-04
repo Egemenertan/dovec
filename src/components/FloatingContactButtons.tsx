@@ -9,7 +9,7 @@ const FloatingContactButtons = () => {
 
   return (
     <>
-      <div className="fixed bottom-20 sm:bottom-16 right-8 flex flex-col gap-4 z-50">
+      <div className="fixed bottom-32 sm:bottom-32 right-8 flex flex-col gap-4 z-50">
         <a
           href="https://wa.me/905488370015"
           target="_blank"

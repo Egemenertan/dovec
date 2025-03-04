@@ -3,9 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { storage } from '@/firebase/config';
 import { ref, getDownloadURL } from 'firebase/storage';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 // Proje tipi tanımı
 interface Project {
@@ -59,9 +60,22 @@ export const ProjectsShowcase = () => {
 
   // Aktif proje indeksi
   const [activeProject, setActiveProject] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   
   // Bileşen referansı
   const showcaseRef = useRef<HTMLDivElement>(null);
+
+  // Ekran boyutunu kontrol etme
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Firebase'den görselleri yükleme
   useEffect(() => {
@@ -128,6 +142,171 @@ export const ProjectsShowcase = () => {
       window.dispatchEvent(event);
     };
   }, []);
+
+  const nextProject = () => {
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+  };
+
+  const prevProject = () => {
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  if (isMobile) {
+    return (
+      <div ref={showcaseRef} className="relative w-full h-screen bg-black overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative w-full h-full"
+          >
+            {/* Proje Görseli */}
+            <div className="absolute inset-0">
+              {projects[currentIndex]?.image && (
+                <Image
+                  src={projects[currentIndex].image}
+                  alt={projects[currentIndex].name}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="100vw"
+                  quality={90}
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+            </div>
+
+            {/* Proje İçeriği */}
+            <Link
+              href={`/projeler/${projects[currentIndex].slug}`}
+              className="absolute inset-0 flex items-center justify-center p-6"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-center max-w-lg"
+              >
+                <div className="mb-4">
+                  <span className="inline-block px-4 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white/90 uppercase tracking-wider">
+                    {projects[currentIndex].location.split(',')[0]}
+                  </span>
+                </div>
+                
+                <h3 className="text-4xl sm:text-5xl font-light text-white mb-6 tracking-wider">
+                  {projects[currentIndex].name}
+                </h3>
+                
+                <p className="text-white/90 font-light text-lg leading-relaxed mb-8">
+                  {projects[currentIndex].description}
+                </p>
+
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="inline-block px-8 py-3 border border-white/30 rounded-full text-white backdrop-blur-sm
+                    hover:bg-white hover:text-black transition-all duration-300"
+                >
+                  Projeyi İncele
+                </motion.div>
+              </motion.div>
+            </Link>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigasyon Butonları */}
+        <div className="absolute bottom-0 left-0 right-0 bg-[#DFD8CF] py-6 z-20">
+          <div className="container mx-auto flex justify-between items-center px-6 max-w-4xl">
+            {/* Sol Ok */}
+            <button
+              onClick={prevProject}
+              className="w-11 h-11 rounded-full border border-[#071E51] flex items-center justify-center
+                hover:bg-[#071E51] transition-all duration-500 text-[#071E51] hover:text-[#DFD8CF] group
+                hover:shadow-md hover:scale-105"
+            >
+              <IoIosArrowBack 
+                size={20} 
+                className="transform group-hover:scale-110 transition-all duration-500" 
+              />
+            </button>
+
+            {/* Proje Noktaları */}
+            <div className="flex gap-3">
+              {projects.map((project, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className="group relative py-1"
+                >
+                  <div className={`
+                    relative z-10 transition-all duration-500 overflow-hidden
+                    ${index === currentIndex 
+                      ? 'w-12 h-2.5 bg-[#071E51] rounded-full shadow-sm transform hover:scale-105' 
+                      : 'w-2.5 h-2.5 bg-[#071E51]/30 rounded-full hover:bg-[#071E51]/50'
+                    }
+                  `}>
+                    <div className={`
+                      absolute inset-0 bg-[#071E51] transform origin-left
+                      ${index === currentIndex ? 'scale-x-100' : 'scale-x-0'}
+                      transition-transform duration-500
+                    `} />
+                  </div>
+                  <div className={`
+                    absolute top-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap
+                    text-[10px] font-medium tracking-widest uppercase transition-all duration-300
+                    opacity-0 group-hover:opacity-100 text-[#071E51]
+                    ${index === currentIndex ? 'font-semibold' : ''}
+                  `}>
+                    {project.name}
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Sağ Ok */}
+            <button
+              onClick={nextProject}
+              className="w-11 h-11 rounded-full border border-[#071E51] flex items-center justify-center
+                hover:bg-[#071E51] transition-all duration-500 text-[#071E51] hover:text-[#DFD8CF] group
+                hover:shadow-md hover:scale-105"
+            >
+              <IoIosArrowForward 
+                size={20} 
+                className="transform group-hover:scale-110 transition-all duration-500" 
+              />
+            </button>
+          </div>
+        </div>
+
+        {/* Swipe Desteği */}
+        <div
+          className="absolute inset-0 z-10"
+          onTouchStart={(e) => {
+            const touch = e.touches[0];
+            const startX = touch.clientX;
+            
+            const handleTouchEnd = (e: TouchEvent) => {
+              const touch = e.changedTouches[0];
+              const endX = touch.clientX;
+              const diff = startX - endX;
+
+              if (Math.abs(diff) > 50) { // minimum swipe mesafesi
+                if (diff > 0) {
+                  nextProject();
+                } else {
+                  prevProject();
+                }
+              }
+            };
+
+            document.addEventListener('touchend', handleTouchEnd, { once: true });
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div ref={showcaseRef} className="relative w-full h-screen overflow-hidden">

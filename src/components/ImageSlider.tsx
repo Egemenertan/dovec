@@ -49,7 +49,7 @@ export const ImageSlider = ({ folderPath, alt }: ImageSliderProps) => {
 
   if (loading) {
     return (
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12 bg-gradient-to-b from-white via-gray-50 to-white">
+      <div className="relative aspect-[4/3] overflow-hidden mb-12 bg-gradient-to-b from-white via-gray-50 to-white">
         <LoadingSpinner />
       </div>
     );
@@ -57,7 +57,7 @@ export const ImageSlider = ({ folderPath, alt }: ImageSliderProps) => {
 
   if (images.length === 0) {
     return (
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12 bg-gray-100 flex items-center justify-center">
+      <div className="relative aspect-[4/3] overflow-hidden mb-12 bg-gray-100 flex items-center justify-center">
         <span className="text-gray-500">Resim bulunamadı</span>
       </div>
     );
@@ -65,7 +65,7 @@ export const ImageSlider = ({ folderPath, alt }: ImageSliderProps) => {
 
   return (
     <>
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-12 group">
+      <div className="relative aspect-[4/3] overflow-hidden mb-12 group">
         <div 
           onClick={() => setShowFullScreen(true)}
           className="cursor-pointer relative w-full h-full"
@@ -86,7 +86,7 @@ export const ImageSlider = ({ folderPath, alt }: ImageSliderProps) => {
             e.stopPropagation();
             prevSlide();
           }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-white/20"
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-white/20"
           aria-label="Önceki resim"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -99,7 +99,7 @@ export const ImageSlider = ({ folderPath, alt }: ImageSliderProps) => {
             e.stopPropagation();
             nextSlide();
           }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-white/20"
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hover:bg-white/20"
           aria-label="Sonraki resim"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

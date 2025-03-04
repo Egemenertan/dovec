@@ -8,13 +8,14 @@ import FloatingContactButtons from '../components/FloatingContactButtons'
 const cormorant = Cormorant({ 
   subsets: ['latin'],
   variable: '--font-cormorant',
-  weight: ['300', '400', '500'],
+  weight: ['300', '400'],
   display: 'swap',
 })
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  weight: ['300', '400'],
   display: 'swap',
 })
 

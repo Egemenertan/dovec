@@ -4,6 +4,22 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react'
 import { storage } from '@/firebase/config'
 import { ref, getDownloadURL } from 'firebase/storage'
+import { motion } from 'framer-motion'
+
+// Animasyon varyantları
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 }
+}
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
 
 // Ekip üyeleri verisi
 const teamMembers = [
@@ -310,7 +326,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl group">
+              <div className="relative aspect-[4/3]  overflow-hidden shadow-2xl group">
                 {visionImage && (
                   <Image
                     src={visionImage}
@@ -325,7 +341,7 @@ export default function AboutPage() {
 
             {/* Sağ Taraf - Misyon */}
             <div className="space-y-16 lg:mt-32">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl group lg:order-first order-last">
+              <div className="relative aspect-[4/3]  overflow-hidden shadow-2xl group lg:order-first order-last">
                 {missionImage && (
                   <Image
                     src={missionImage}
@@ -423,7 +439,13 @@ export default function AboutPage() {
       </div>
 
       {/* Manifesto */}
-      <div className="relative min-h-screen bg-[#C4C1B4] text-white overflow-hidden">
+      <motion.div 
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+        variants={staggerContainer}
+        className="relative min-h-screen bg-[#C4C1B4] text-[#071E51] overflow-hidden"
+      >
         {/* Arka plan desenleri */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[#C4C1B4]"></div>
@@ -439,131 +461,161 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-[#C4C1B4] via-[#C4C1B4] to-[#C4C1B4]"></div>
           
           {/* Işık efektleri */}
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] animate-slow-spin">
-              <div className="absolute top-1/2 left-1/2 w-1/4 h-1/4 bg-white/5 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-              <div className="absolute top-1/4 left-1/3 w-1/3 h-1/3 bg-white/5 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-1/3 right-1/4 w-1/4 h-1/4 bg-white/5 rounded-full blur-3xl"></div>
+          <motion.div 
+            animate={{ 
+              rotate: 360,
+              transition: { duration: 50, repeat: Infinity, ease: "linear" }
+            }}
+            className="absolute top-0 left-0 w-full h-full"
+          >
+            <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%]">
+              <div className="absolute top-1/2 left-1/2 w-1/4 h-1/4 bg-[#071E51]/5 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+              <div className="absolute top-1/4 left-1/3 w-1/3 h-1/3 bg-[#071E51]/5 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-1/3 right-1/4 w-1/4 h-1/4 bg-[#071E51]/5 rounded-full blur-3xl"></div>
             </div>
-          </div>
+          </motion.div>
 
           {/* İnce çizgiler */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full rotate-12 opacity-10">
               {Array.from({ length: 10 }).map((_, i) => (
-                <div
+                <motion.div
                   key={i}
-                  className="absolute h-[1px] bg-gradient-to-r from-transparent via-white to-transparent transform"
+                  initial={{ x: '-100%' }}
+                  animate={{ x: '100%' }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    delay: i * 0.2,
+                    ease: "linear"
+                  }}
+                  className="absolute h-[1px] bg-gradient-to-r from-transparent via-[#071E51] to-transparent transform"
                   style={{
                     top: `${i * 20}%`,
-                    left: '-100%',
-                    right: '-100%',
                     opacity: 0.1 + (i * 0.05)
                   }}
-                ></div>
+                ></motion.div>
               ))}
             </div>
           </div>
 
           {/* Dekoratif daireler */}
           <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 border border-white/10 rounded-full"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 border border-white/10 rounded-full"></div>
-            <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] border border-white/5 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+            <motion.div
+              animate={{
+                scale: [1, 1.1, 1],
+                transition: { duration: 5, repeat: Infinity }
+              }}
+              className="absolute top-1/4 left-1/4 w-96 h-96 border border-[#071E51]/10 rounded-full"
+            ></motion.div>
+            <motion.div
+              animate={{
+                scale: [1, 1.2, 1],
+                transition: { duration: 6, repeat: Infinity, delay: 0.5 }
+              }}
+              className="absolute bottom-1/4 right-1/4 w-64 h-64 border border-[#071E51]/10 rounded-full"
+            ></motion.div>
+            <motion.div
+              animate={{
+                scale: [1, 1.05, 1],
+                transition: { duration: 7, repeat: Infinity, delay: 1 }
+              }}
+              className="absolute top-1/2 left-1/2 w-[800px] h-[800px] border border-[#071E51]/5 rounded-full transform -translate-x-1/2 -translate-y-1/2"
+            ></motion.div>
           </div>
         </div>
 
         {/* Ana içerik */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-12">
-              <div className="space-y-8">
+            <motion.div 
+              variants={staggerContainer}
+              className="space-y-12"
+            >
+              <motion.div 
+                variants={fadeInUp}
+                className="space-y-8"
+              >
                 <div className="flex items-center space-x-4">
-                  <div className="w-20 h-[1px] bg-gradient-to-r from-white to-transparent"></div>
+                  <div className="w-20 h-[1px] bg-gradient-to-r from-[#071E51] to-transparent"></div>
                   <span className="text-xl font-light tracking-[.5em] uppercase text-[#071E51]">Dovec</span>
                 </div>
                 <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extralight tracking-[.2em] uppercase leading-tight text-[#071E51]">
                   Manifesto
                 </h2>
-              </div>
+              </motion.div>
 
-              <div className="prose prose-lg prose-invert">
-                <p className="text-xl font-light leading-relaxed">
+              <motion.div 
+                variants={fadeInUp}
+                className="prose prose-lg"
+              >
+                <p className="text-xl font-light leading-relaxed text-[#071E51]">
                   Biz, DOVEC olarak, inşaat sektöründe sadece yapılar değil, yaşamlar inşa ediyoruz. Her projemizde mükemmelliği arıyor, her detayda zarafeti yakalıyoruz.
                 </p>
-                <p className="text-xl font-light leading-relaxed">
+                <p className="text-xl font-light leading-relaxed text-[#071E51]">
                   İnanıyoruz ki, başarı sadece ne yaptığınızda değil, nasıl yaptığınızda gizlidir.
                 </p>
-              </div>
+              </motion.div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
-                <div className="space-y-8">
-                  <div>
+                {[
+                  { title: "Yenilikçi düşünüyoruz", desc: "Sektörde öncü ve yenilikçi çözümler üretiyoruz" },
+                  { title: "Sürdürülebilir üretiyoruz", desc: "Çevreye duyarlı ve sürdürülebilir projeler geliştiriyoruz" },
+                  { title: "Kaliteden ödün vermiyoruz", desc: "En yüksek kalite standartlarını benimsiyoruz" },
+                  { title: "Çevreye saygı duyuyoruz", desc: "Doğal kaynakları koruyarak gelecek nesillere aktarıyoruz" },
+                  { title: "Güvenle inşa ediyoruz", desc: "En yüksek güvenlik standartlarını uyguluyoruz" },
+                  { title: "Geleceği planlıyoruz", desc: "Uzun vadeli ve sürdürülebilir çözümler sunuyoruz" }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="space-y-2"
+                  >
                     <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                      <h3 className="text-xl font-light">Yenilikçi düşünüyoruz</h3>
+                      <div className="w-2 h-2 bg-[#071E51] rounded-full"></div>
+                      <h3 className="text-xl font-light text-[#071E51]">{item.title}</h3>
                     </div>
-                    <p className="text-white/70 pl-6">Sektörde öncü ve yenilikçi çözümler üretiyoruz</p>
-                  </div>
-                  <div>
-                    <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                      <h3 className="text-xl font-light">Sürdürülebilir üretiyoruz</h3>
-                    </div>
-                    <p className="text-white/70 pl-6">Çevreye duyarlı ve sürdürülebilir projeler geliştiriyoruz</p>
-                  </div>
-                  <div>
-                    <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                      <h3 className="text-xl font-light">Kaliteden ödün vermiyoruz</h3>
-                    </div>
-                    <p className="text-white/70 pl-6">En yüksek kalite standartlarını benimsiyoruz</p>
-                  </div>
-                </div>
-                <div className="space-y-8">
-                  <div>
-                    <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                      <h3 className="text-xl font-light">Çevreye saygı duyuyoruz</h3>
-                    </div>
-                    <p className="text-white/70 pl-6">Doğal kaynakları koruyarak gelecek nesillere aktarıyoruz</p>
-                  </div>
-                  <div>
-                    <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                      <h3 className="text-xl font-light">Güvenle inşa ediyoruz</h3>
-                    </div>
-                    <p className="text-white/70 pl-6">En yüksek güvenlik standartlarını uyguluyoruz</p>
-                  </div>
-                  <div>
-                    <div className="flex items-center space-x-4 mb-2">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                      <h3 className="text-xl font-light">Geleceği planlıyoruz</h3>
-                    </div>
-                    <p className="text-white/70 pl-6">Uzun vadeli ve sürdürülebilir çözümler sunuyoruz</p>
-                  </div>
-                </div>
+                    <p className="text-[#071E51]/70 pl-6">{item.desc}</p>
+                  </motion.div>
+                ))}
               </div>
-            </div>
+            </motion.div>
 
-            <div className="relative">
+            <motion.div 
+              variants={fadeInUp}
+              className="relative"
+            >
               <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
                 {manifestoImage && (
                   <Image
                     src={manifestoImage}
                     alt="DOVEC Manifesto"
                     fill
-                    className="object-cover transform hover:scale-105 transition-transform duration-1000"
+                    className="object-cover"
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#061E4F] via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#071E51] via-transparent to-transparent"></div>
               </div>
-              <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-              <div className="absolute -top-8 -left-8 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-            </div>
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.1, 0.2, 0.1],
+                  transition: { duration: 5, repeat: Infinity }
+                }}
+                className="absolute -bottom-8 -right-8 w-64 h-64 bg-[#071E51]/10 rounded-full blur-3xl"
+              ></motion.div>
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.1, 0.2, 0.1],
+                  transition: { duration: 5, repeat: Infinity, delay: 0.5 }
+                }}
+                className="absolute -top-8 -left-8 w-64 h-64 bg-[#071E51]/10 rounded-full blur-3xl"
+              ></motion.div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 } 
